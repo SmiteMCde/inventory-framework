@@ -7,7 +7,7 @@ import me.devnatan.inventoryframework.component.Component
 import net.minestom.server.entity.Player
 import net.minestom.server.event.inventory.InventoryPreClickEvent
 import net.minestom.server.inventory.PlayerInventory
-import net.minestom.server.inventory.click.ClickType
+import net.minestom.server.inventory.click.Click
 import net.minestom.server.item.ItemStack
 import org.jetbrains.annotations.ApiStatus
 
@@ -31,7 +31,7 @@ class SlotClickContext
 
         override val item: ItemStack
             /** The item that was clicked. */
-            get() = clickOrigin.cursorItem
+            get() = clickOrigin.clickedItem
 
         override fun getComponent(): Component? = clickedComponent
 
@@ -48,22 +48,24 @@ class SlotClickContext
 
         override fun getClickedSlot(): Int = clickOrigin.slot
 
-        override fun isLeftClick(): Boolean = clickOrigin.clickType == ClickType.LEFT_CLICK
+        override fun isLeftClick(): Boolean = clickOrigin.click == Click.Left(slot)
 
-        override fun isRightClick(): Boolean = clickOrigin.clickType == ClickType.RIGHT_CLICK
+        override fun isRightClick(): Boolean = clickOrigin.click == Click.Right(slot)
 
         override fun isMiddleClick(): Boolean = false
 
         override fun isShiftClick(): Boolean {
-            val clickType = clickOrigin.clickType
-            return clickType == ClickType.SHIFT_CLICK
+            val clickType = clickOrigin.click
+            return clickType == Click.LeftShift(slot) ||
+                clickType == Click.RightShift(slot)
         }
 
-        override fun isKeyboardClick(): Boolean = clickOrigin.clickType == ClickType.CHANGE_HELD
+        // TODO: Implement this
+        override fun isKeyboardClick(): Boolean = false
 
         override fun isOutsideClick(): Boolean = clickOrigin.slot < 0
 
-        override fun getClickIdentifier(): String = clickOrigin.clickType.name
+        override fun getClickIdentifier(): String = clickOrigin.click.toString()
 
         override fun isOnEntityContainer(): Boolean = clickOrigin.inventory is PlayerInventory
 
