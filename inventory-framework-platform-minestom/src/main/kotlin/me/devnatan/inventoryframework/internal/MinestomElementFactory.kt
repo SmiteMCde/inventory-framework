@@ -90,8 +90,11 @@ class MinestomElementFactory : ElementFactory() {
         val inventory =
             Inventory(
                 type,
-                net.kyori.adventure.text.Component
-                    .empty(),
+                if (config.title is net.kyori.adventure.text.Component) {
+                    config.title as net.kyori.adventure.text.Component
+                } else {
+                    net.kyori.adventure.text.Component.text(config.title.toString())
+                }
             )
         return MinestomViewContainer(inventory, false, finalType, false)
     }
