@@ -49,6 +49,24 @@ public interface IFSlotClickContext extends IFSlotContext, IFConfinedContext {
      */
     boolean isShiftClick();
 
+	/**
+	 * If the click was accompanied by a click holding the keyboard control button.
+	 *
+	 * @return If it was a click holding the keyboard control button.
+	 */
+	default boolean isShiftLeftClick() {
+		return isLeftClick() && isShiftClick();
+	}
+
+	/**
+	 * If the click was accompanied by a click holding the keyboard control button.
+	 *
+	 * @return If it was a click holding the keyboard control button.
+	 */
+	default boolean isShiftRightClick() {
+		return isRightClick() && isShiftClick();
+	}
+
     /**
      * If the click source came from a keyboard, e.g. the player's toolbar number.
      *
@@ -63,14 +81,16 @@ public interface IFSlotClickContext extends IFSlotContext, IFConfinedContext {
      */
     boolean isOutsideClick();
 
-    /**
-     * The click identifier, available only in cases where the library does not cover all types of
-     * clicks, so you can discover the type of click through its identifier.
-     *
-     * @return The click type identifier.
-     */
-    @NotNull
-    String getClickIdentifier();
+	/**
+	 * The click identifier, available only in cases where the library does not cover all types of
+	 * clicks, so you can discover the type of click through its identifier.
+	 *
+	 * @return The click type identifier. Can be null if the click type is known or a platform doesn't implement an identifier.
+	 */
+	@NotNull
+	default String getClickIdentifier() {
+		return null;
+	}
 
     /**
      * If the click was cancelled.
