@@ -1,13 +1,13 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
-import java.util.List;
-
 import me.devnatan.inventoryframework.api.context.IFConfinedContext;
 import me.devnatan.inventoryframework.api.context.IFOpenContext;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnknownNullability;
+
+import java.util.List;
 
 public interface Context extends IFConfinedContext {
 

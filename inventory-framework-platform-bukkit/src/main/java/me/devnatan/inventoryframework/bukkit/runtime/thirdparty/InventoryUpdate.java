@@ -21,19 +21,20 @@
  */
 package me.devnatan.inventoryframework.bukkit.runtime.thirdparty;
 
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.*;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.InventoryView;
+
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Set;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.InventoryView;
+
+import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.*;
 
 /**
  * A utility class for update the inventory of a player. This is useful to change the title of an

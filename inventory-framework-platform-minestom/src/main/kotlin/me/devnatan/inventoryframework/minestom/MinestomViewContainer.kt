@@ -9,7 +9,7 @@ import net.minestom.server.entity.Player
 import net.minestom.server.inventory.Inventory
 import net.minestom.server.inventory.InventoryType
 import net.minestom.server.item.ItemStack
-import java.util.Objects
+import java.util.*
 
 class MinestomViewContainer(
     private val inventory: Inventory,

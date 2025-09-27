@@ -1,14 +1,14 @@
 package me.devnatan.inventoryframework.platform.feature;
 
+import me.devnatan.inventoryframework.api.feature.Feature;
+import me.devnatan.inventoryframework.api.feature.FeatureInstaller;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.UnaryOperator;
-
-import me.devnatan.inventoryframework.api.feature.Feature;
-import me.devnatan.inventoryframework.api.feature.FeatureInstaller;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Simple HashMap-backed feature installer implementation.

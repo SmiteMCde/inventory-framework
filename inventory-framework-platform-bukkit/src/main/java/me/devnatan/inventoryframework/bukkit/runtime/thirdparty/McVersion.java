@@ -1,7 +1,8 @@
 package me.devnatan.inventoryframework.bukkit.runtime.thirdparty;
 
-import java.util.Objects;
 import org.bukkit.Bukkit;
+
+import java.util.Objects;
 
 public class McVersion implements Comparable<McVersion> {
 

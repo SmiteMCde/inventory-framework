@@ -1,26 +1,18 @@
 package me.devnatan.inventoryframework.bukkit.internal;
 
-import static me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils.checkInventoryTypeSupport;
-
 import com.tcoded.folialib.FoliaLib;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import me.devnatan.inventoryframework.api.*;
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.ComponentBuilder;
 import me.devnatan.inventoryframework.api.context.*;
 import me.devnatan.inventoryframework.api.internal.ElementFactory;
 import me.devnatan.inventoryframework.api.internal.Job;
+import me.devnatan.inventoryframework.api.logging.Logger;
 import me.devnatan.inventoryframework.bukkit.BukkitViewContainer;
 import me.devnatan.inventoryframework.bukkit.BukkitViewer;
 import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.bukkit.component.BukkitItemComponentBuilder;
-import me.devnatan.inventoryframework.api.component.Component;
-import me.devnatan.inventoryframework.api.component.ComponentBuilder;
 import me.devnatan.inventoryframework.bukkit.context.*;
-import me.devnatan.inventoryframework.api.logging.Logger;
 import me.devnatan.inventoryframework.platform.logging.NoopLogger;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -30,6 +22,14 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils.checkInventoryTypeSupport;
 
 public class BukkitElementFactory extends ElementFactory {
 

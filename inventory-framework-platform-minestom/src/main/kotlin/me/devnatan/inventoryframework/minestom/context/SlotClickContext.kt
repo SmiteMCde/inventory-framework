@@ -3,9 +3,9 @@ package me.devnatan.inventoryframework.minestom.context
 import me.devnatan.inventoryframework.api.RootView
 import me.devnatan.inventoryframework.api.ViewContainer
 import me.devnatan.inventoryframework.api.Viewer
+import me.devnatan.inventoryframework.api.component.Component
 import me.devnatan.inventoryframework.api.context.IFRenderContext
 import me.devnatan.inventoryframework.api.context.IFSlotClickContext
-import me.devnatan.inventoryframework.api.component.Component
 import net.minestom.server.entity.Player
 import net.minestom.server.event.inventory.InventoryPreClickEvent
 import net.minestom.server.inventory.PlayerInventory

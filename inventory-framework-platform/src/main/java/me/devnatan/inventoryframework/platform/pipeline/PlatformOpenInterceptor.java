@@ -1,22 +1,22 @@
 package me.devnatan.inventoryframework.platform.pipeline;
 
-import java.util.HashMap;
-
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFOpenContext;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.exception.InvalidLayoutException;
 import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
+import me.devnatan.inventoryframework.api.internal.ElementFactory;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import me.devnatan.inventoryframework.platform.PlatformView;
 import me.devnatan.inventoryframework.platform.context.PlatformRenderContext;
-import me.devnatan.inventoryframework.api.exception.InvalidLayoutException;
-import me.devnatan.inventoryframework.api.internal.ElementFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.TestOnly;
+
+import java.util.HashMap;
 
 public final class PlatformOpenInterceptor implements PipelineInterceptor<VirtualView> {
 

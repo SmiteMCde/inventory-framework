@@ -1,11 +1,5 @@
 package me.devnatan.inventoryframework.core;
 
-import static java.util.Collections.newSetFromMap;
-import static java.util.Collections.synchronizedMap;
-import static me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases.*;
-
-import java.util.*;
-
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.VirtualView;
@@ -16,6 +10,15 @@ import me.devnatan.inventoryframework.api.pipeline.Pipeline;
 import me.devnatan.inventoryframework.core.state.StateRegistry;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.UUID;
+
+import static java.util.Collections.newSetFromMap;
+import static java.util.Collections.synchronizedMap;
+import static me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases.*;
 
 @ApiStatus.NonExtendable
 public abstract class DefaultRootView implements RootView {

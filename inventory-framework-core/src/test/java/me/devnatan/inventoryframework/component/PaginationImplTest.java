@@ -1,22 +1,16 @@
 package me.devnatan.inventoryframework.component;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.Collections;
-
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.InteractionHandler;
 import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
 import me.devnatan.inventoryframework.core.component.PaginationImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class PaginationImplTest {
 

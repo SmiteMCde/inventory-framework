@@ -1,10 +1,5 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import me.devnatan.inventoryframework.bukkit.BukkitViewer;
-import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
@@ -13,12 +8,18 @@ import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.api.state.StateValue;
 import me.devnatan.inventoryframework.api.state.StateWatcher;
+import me.devnatan.inventoryframework.bukkit.BukkitViewer;
+import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.platform.context.PlatformConfinedContext;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class CloseContext extends PlatformConfinedContext implements IFCloseContext, Context {
 

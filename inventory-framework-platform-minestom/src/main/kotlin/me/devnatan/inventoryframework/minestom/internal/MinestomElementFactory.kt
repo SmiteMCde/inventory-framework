@@ -1,32 +1,17 @@
 package me.devnatan.inventoryframework.minestom.internal
 
-import me.devnatan.inventoryframework.api.RootView
-import me.devnatan.inventoryframework.api.ViewConfig
-import me.devnatan.inventoryframework.api.ViewContainer
-import me.devnatan.inventoryframework.api.ViewType
-import me.devnatan.inventoryframework.api.Viewer
-import me.devnatan.inventoryframework.api.VirtualView
+import me.devnatan.inventoryframework.api.*
 import me.devnatan.inventoryframework.api.component.Component
 import me.devnatan.inventoryframework.api.component.ComponentBuilder
-import me.devnatan.inventoryframework.minestom.component.MinestomItemComponentBuilder
-import me.devnatan.inventoryframework.minestom.context.CloseContext
-import me.devnatan.inventoryframework.minestom.context.Context
-import me.devnatan.inventoryframework.api.context.IFCloseContext
-import me.devnatan.inventoryframework.api.context.IFContext
-import me.devnatan.inventoryframework.api.context.IFOpenContext
-import me.devnatan.inventoryframework.api.context.IFRenderContext
-import me.devnatan.inventoryframework.api.context.IFSlotClickContext
+import me.devnatan.inventoryframework.api.context.*
 import me.devnatan.inventoryframework.api.internal.ElementFactory
 import me.devnatan.inventoryframework.api.internal.Job
-import me.devnatan.inventoryframework.api.context.IFSlotRenderContext
-import me.devnatan.inventoryframework.minestom.context.OpenContext
-import me.devnatan.inventoryframework.minestom.context.RenderContext
-import me.devnatan.inventoryframework.minestom.context.SlotClickContext
-import me.devnatan.inventoryframework.minestom.context.SlotRenderContext
 import me.devnatan.inventoryframework.api.logging.Logger
 import me.devnatan.inventoryframework.minestom.MinestomViewContainer
 import me.devnatan.inventoryframework.minestom.MinestomViewer
 import me.devnatan.inventoryframework.minestom.View
+import me.devnatan.inventoryframework.minestom.component.MinestomItemComponentBuilder
+import me.devnatan.inventoryframework.minestom.context.*
 import me.devnatan.inventoryframework.platform.logging.NoopLogger
 import net.kyori.adventure.text.Component.text
 import net.minestom.server.entity.Player
@@ -34,7 +19,7 @@ import net.minestom.server.event.inventory.InventoryCloseEvent
 import net.minestom.server.event.inventory.InventoryPreClickEvent
 import net.minestom.server.inventory.Inventory
 import net.minestom.server.inventory.InventoryType
-import java.util.UUID
+import java.util.*
 import java.util.function.Function
 import java.util.stream.Collectors
 

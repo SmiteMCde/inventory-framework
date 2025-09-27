@@ -1,32 +1,28 @@
 package me.devnatan.inventoryframework.bukkit;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
-
 import me.devnatan.inventoryframework.api.IFDebug;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.context.EndlessContextInfo;
 import me.devnatan.inventoryframework.api.context.IFContext;
-import me.devnatan.inventoryframework.platform.IFViewFrame;
-import me.devnatan.inventoryframework.platform.PlatformView;
-import me.devnatan.inventoryframework.platform.feature.DefaultFeatureInstaller;
 import me.devnatan.inventoryframework.api.feature.Feature;
 import me.devnatan.inventoryframework.api.feature.FeatureInstaller;
 import me.devnatan.inventoryframework.bukkit.internal.BukkitElementFactory;
-import me.devnatan.inventoryframework.platform.internal.PlatformUtils;
 import me.devnatan.inventoryframework.bukkit.runtime.thirdparty.Metrics;
+import me.devnatan.inventoryframework.platform.IFViewFrame;
+import me.devnatan.inventoryframework.platform.PlatformView;
+import me.devnatan.inventoryframework.platform.feature.DefaultFeatureInstaller;
+import me.devnatan.inventoryframework.platform.internal.PlatformUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class ViewFrame extends IFViewFrame<ViewFrame, View> {
 

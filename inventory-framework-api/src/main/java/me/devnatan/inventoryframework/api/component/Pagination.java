@@ -1,10 +1,11 @@
 package me.devnatan.inventoryframework.api.component;
 
-import java.util.Collections;
-import java.util.List;
 import me.devnatan.inventoryframework.api.state.StateValue;
 import me.devnatan.inventoryframework.api.state.StateValueHost;
 import org.jetbrains.annotations.ApiStatus;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Pagination is a host to multiple components that can be paginated, essentially it is a {@link

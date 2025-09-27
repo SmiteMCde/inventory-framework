@@ -1,11 +1,12 @@
 package me.devnatan.inventoryframework.api.context;
 
-import java.util.concurrent.CompletableFuture;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewConfigBuilder;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This context is created before the container is opened, it is used for cancellation by previously

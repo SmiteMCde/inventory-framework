@@ -1,9 +1,5 @@
 package me.devnatan.inventoryframework.platform;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-
 import me.devnatan.inventoryframework.api.IFDebug;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.ViewConfigBuilder;
@@ -16,6 +12,10 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public abstract class IFViewFrame<S extends IFViewFrame<S, V>, V extends PlatformView<S, ?, ?, ?, ?, ?, ?, ?>> {
 

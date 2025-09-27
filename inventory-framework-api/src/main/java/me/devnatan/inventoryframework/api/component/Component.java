@@ -1,6 +1,5 @@
 package me.devnatan.inventoryframework.api.component;
 
-import java.util.Set;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFContext;
@@ -9,6 +8,8 @@ import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.Set;
 
 /**
  * A component represents one or {@link ComponentComposition more} items within a {@link VirtualView}.

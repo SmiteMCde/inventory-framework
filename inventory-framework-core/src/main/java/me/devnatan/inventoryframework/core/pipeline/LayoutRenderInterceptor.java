@@ -1,19 +1,20 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import java.util.AbstractMap;
-import java.util.Map;
-import java.util.function.IntFunction;
-import java.util.stream.Collectors;
-import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.ComponentFactory;
 import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
 import me.devnatan.inventoryframework.api.component.Pagination;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
 import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
+
+import java.util.AbstractMap;
+import java.util.Map;
+import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 public final class LayoutRenderInterceptor implements PipelineInterceptor<VirtualView> {
 

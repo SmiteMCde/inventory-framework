@@ -1,7 +1,8 @@
 package me.devnatan.inventoryframework.api.context;
 
-import java.util.Objects;
 import me.devnatan.inventoryframework.api.RootView;
+
+import java.util.Objects;
 
 public final class EndlessContextInfo {
 

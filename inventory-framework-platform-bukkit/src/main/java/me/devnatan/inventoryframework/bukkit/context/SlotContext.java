@@ -1,9 +1,5 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
@@ -13,11 +9,16 @@ import me.devnatan.inventoryframework.api.context.IFSlotContext;
 import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.api.state.StateValue;
 import me.devnatan.inventoryframework.api.state.StateWatcher;
+import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.platform.context.PlatformContext;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public abstract class SlotContext extends PlatformContext implements IFSlotContext, Context {
 

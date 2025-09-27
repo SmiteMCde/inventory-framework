@@ -10,13 +10,12 @@ import me.devnatan.inventoryframework.api.state.StateValue
 import me.devnatan.inventoryframework.api.state.StateWatcher
 import me.devnatan.inventoryframework.minestom.MinestomViewer
 import me.devnatan.inventoryframework.minestom.View
-import me.devnatan.inventoryframework.platform.context.PlatformConfinedContext
 import net.kyori.adventure.text.Component
 import net.minestom.server.entity.Player
 import net.minestom.server.event.inventory.InventoryCloseEvent
 import org.jetbrains.annotations.ApiStatus
 import org.jetbrains.annotations.UnmodifiableView
-import java.util.UUID
+import java.util.*
 
 class CloseContext
     @ApiStatus.Internal

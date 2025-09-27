@@ -1,27 +1,9 @@
 package me.devnatan.inventoryframework;
 
-import static java.util.Objects.requireNonNull;
-import static me.devnatan.inventoryframework.AnvilInput.defaultConfig;
-import static me.devnatan.inventoryframework.platform.IFViewFrame.FRAME_REGISTERED;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.function.UnaryOperator;
-
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.ViewType;
-import me.devnatan.inventoryframework.bukkit.BukkitViewContainer;
-import me.devnatan.inventoryframework.bukkit.ViewFrame;
-import me.devnatan.inventoryframework.bukkit.context.CloseContext;
-import me.devnatan.inventoryframework.api.context.IFCloseContext;
-import me.devnatan.inventoryframework.api.context.IFContext;
-import me.devnatan.inventoryframework.api.context.IFOpenContext;
-import me.devnatan.inventoryframework.api.context.IFRenderContext;
-import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
-import me.devnatan.inventoryframework.bukkit.context.OpenContext;
-import me.devnatan.inventoryframework.bukkit.context.SlotClickContext;
+import me.devnatan.inventoryframework.api.context.*;
 import me.devnatan.inventoryframework.api.feature.Feature;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
@@ -29,6 +11,11 @@ import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.api.state.StateValue;
 import me.devnatan.inventoryframework.api.state.StateValueHost;
 import me.devnatan.inventoryframework.api.state.StateWatcher;
+import me.devnatan.inventoryframework.bukkit.BukkitViewContainer;
+import me.devnatan.inventoryframework.bukkit.ViewFrame;
+import me.devnatan.inventoryframework.bukkit.context.CloseContext;
+import me.devnatan.inventoryframework.bukkit.context.OpenContext;
+import me.devnatan.inventoryframework.bukkit.context.SlotClickContext;
 import me.devnatan.inventoryframework.platform.IFViewFrame;
 import me.devnatan.inventoryframework.platform.PlatformView;
 import org.bukkit.Material;
@@ -36,6 +23,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.UnaryOperator;
+
+import static java.util.Objects.requireNonNull;
+import static me.devnatan.inventoryframework.AnvilInput.defaultConfig;
+import static me.devnatan.inventoryframework.platform.IFViewFrame.FRAME_REGISTERED;
 
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 public final class AnvilInputFeature implements Feature<AnvilInputConfig, Void, ViewFrame> {

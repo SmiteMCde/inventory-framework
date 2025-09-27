@@ -1,16 +1,11 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
-import java.util.stream.Collectors;
-import me.devnatan.inventoryframework.bukkit.BukkitViewContainer;
-import me.devnatan.inventoryframework.bukkit.BukkitViewer;
-import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
+import me.devnatan.inventoryframework.bukkit.BukkitViewContainer;
+import me.devnatan.inventoryframework.bukkit.BukkitViewer;
+import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.bukkit.component.BukkitItemComponentBuilder;
 import me.devnatan.inventoryframework.platform.context.PlatformRenderContext;
 import org.bukkit.entity.Player;
@@ -20,6 +15,12 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public final class RenderContext extends PlatformRenderContext<BukkitItemComponentBuilder, Context>
         implements Context, InventoryHolder {

@@ -1,58 +1,30 @@
 package me.devnatan.inventoryframework.platform;
 
-import static java.lang.String.format;
+import me.devnatan.inventoryframework.api.*;
+import me.devnatan.inventoryframework.api.component.*;
+import me.devnatan.inventoryframework.api.context.*;
+import me.devnatan.inventoryframework.api.internal.ElementFactory;
+import me.devnatan.inventoryframework.api.pipeline.Pipeline;
+import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+import me.devnatan.inventoryframework.api.state.*;
+import me.devnatan.inventoryframework.core.DefaultRootView;
+import me.devnatan.inventoryframework.core.MultiRefsImpl;
+import me.devnatan.inventoryframework.core.RefImpl;
+import me.devnatan.inventoryframework.core.pipeline.*;
+import me.devnatan.inventoryframework.core.state.InitialDataStateValue;
+import me.devnatan.inventoryframework.core.state.StateAccessImpl;
+import me.devnatan.inventoryframework.platform.context.PlatformRenderContext;
+import me.devnatan.inventoryframework.platform.internal.PlatformUtils;
+import me.devnatan.inventoryframework.platform.pipeline.*;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import me.devnatan.inventoryframework.api.*;
-import me.devnatan.inventoryframework.api.component.*;
-import me.devnatan.inventoryframework.api.context.IFCloseContext;
-import me.devnatan.inventoryframework.api.context.IFConfinedContext;
-import me.devnatan.inventoryframework.api.context.IFContext;
-import me.devnatan.inventoryframework.api.context.IFOpenContext;
-import me.devnatan.inventoryframework.api.context.IFRenderContext;
-import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
-import me.devnatan.inventoryframework.api.context.IFSlotContext;
-import me.devnatan.inventoryframework.platform.context.PlatformRenderContext;
-import me.devnatan.inventoryframework.api.internal.ElementFactory;
-import me.devnatan.inventoryframework.core.DefaultRootView;
-import me.devnatan.inventoryframework.core.MultiRefsImpl;
-import me.devnatan.inventoryframework.core.RefImpl;
-import me.devnatan.inventoryframework.platform.internal.PlatformUtils;
-import me.devnatan.inventoryframework.core.pipeline.AvailableSlotInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.ComponentClickHandlerCallInterceptor;
-import me.devnatan.inventoryframework.platform.pipeline.ContextInvalidationOnCloseInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.FirstRenderInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.LayoutRenderInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.LayoutResolutionInterceptor;
-import me.devnatan.inventoryframework.api.pipeline.Pipeline;
-import me.devnatan.inventoryframework.platform.pipeline.PlatformCloseInterceptor;
-import me.devnatan.inventoryframework.platform.pipeline.PlatformInitInterceptor;
-import me.devnatan.inventoryframework.platform.pipeline.PlatformOpenInterceptor;
-import me.devnatan.inventoryframework.platform.pipeline.PlatformRenderInterceptor;
-import me.devnatan.inventoryframework.platform.pipeline.PlatformUpdateHandlerInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.ScheduledUpdateStartInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.ScheduledUpdateStopInterceptor;
-import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
-import me.devnatan.inventoryframework.core.pipeline.UpdateInterceptor;
-import me.devnatan.inventoryframework.core.pipeline.ViewerLastInteractionTrackerInterceptor;
-import me.devnatan.inventoryframework.core.state.InitialDataStateValue;
-import me.devnatan.inventoryframework.api.state.MutableIntState;
-import me.devnatan.inventoryframework.api.state.MutableState;
-import me.devnatan.inventoryframework.api.state.State;
-import me.devnatan.inventoryframework.api.state.StateAccess;
-import me.devnatan.inventoryframework.core.state.StateAccessImpl;
-import me.devnatan.inventoryframework.api.state.StateValue;
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
+import static java.lang.String.format;
 
 public abstract class PlatformView<
                 TFramework extends IFViewFrame<?, ?>,

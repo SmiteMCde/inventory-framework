@@ -1,11 +1,5 @@
 package me.devnatan.inventoryframework.core.state;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
 import me.devnatan.inventoryframework.api.IFDebug;
 import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.api.state.StateValue;
@@ -14,6 +8,9 @@ import me.devnatan.inventoryframework.api.state.StateWatcher;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * HashMap-backed Default implementation for StateHost.

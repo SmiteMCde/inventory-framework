@@ -1,10 +1,11 @@
 package me.devnatan.inventoryframework.bukkit.runtime.util;
 
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
 import me.devnatan.inventoryframework.api.ViewType;
 import org.bukkit.event.inventory.InventoryType;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public final class InventoryUtils {
 

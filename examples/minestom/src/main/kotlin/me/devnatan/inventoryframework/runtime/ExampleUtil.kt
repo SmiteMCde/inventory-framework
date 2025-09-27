@@ -3,7 +3,7 @@ package me.devnatan.inventoryframework.runtime
 import net.kyori.adventure.text.Component
 import net.minestom.server.item.ItemStack
 import net.minestom.server.item.Material
-import java.util.Random
+import java.util.*
 
 object ExampleUtil {
     @JvmStatic

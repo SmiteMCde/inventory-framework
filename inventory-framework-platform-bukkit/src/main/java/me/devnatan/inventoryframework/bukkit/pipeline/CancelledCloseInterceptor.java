@@ -1,10 +1,10 @@
 package me.devnatan.inventoryframework.bukkit.pipeline;
 
 import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.context.IFCloseContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import me.devnatan.inventoryframework.bukkit.context.CloseContext;
-import me.devnatan.inventoryframework.api.context.IFCloseContext;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

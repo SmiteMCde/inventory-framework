@@ -1,8 +1,5 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import static me.devnatan.inventoryframework.api.IFDebug.debug;
-
-import java.util.List;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Component;
@@ -17,6 +14,10 @@ import me.devnatan.inventoryframework.api.state.StateValue;
 import me.devnatan.inventoryframework.api.state.StateValueHost;
 import me.devnatan.inventoryframework.api.state.StateWatcher;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
+import static me.devnatan.inventoryframework.api.IFDebug.debug;
 
 /**
  * Intercepts the rendering phase of a context and renders all components on it.

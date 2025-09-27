@@ -1,12 +1,5 @@
 package me.devnatan.inventoryframework.bukkit.component;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.VirtualView;
@@ -18,16 +11,24 @@ import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
 import me.devnatan.inventoryframework.api.context.IFSlotContext;
 import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
+import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.bukkit.context.Context;
 import me.devnatan.inventoryframework.bukkit.context.SlotClickContext;
 import me.devnatan.inventoryframework.bukkit.context.SlotContext;
 import me.devnatan.inventoryframework.bukkit.context.SlotRenderContext;
-import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.core.component.DefaultComponentBuilder;
 import me.devnatan.inventoryframework.core.utils.SlotConverter;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public final class BukkitItemComponentBuilder extends DefaultComponentBuilder<BukkitItemComponentBuilder, Context>
         implements ItemComponentBuilder<BukkitItemComponentBuilder, Context>, ComponentFactory {

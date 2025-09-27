@@ -1,18 +1,19 @@
 package me.devnatan.inventoryframework.api.component;
 
+import me.devnatan.inventoryframework.api.Ref;
+import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.context.*;
+import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
+import me.devnatan.inventoryframework.api.state.State;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.UnmodifiableView;
+
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
-import me.devnatan.inventoryframework.api.Ref;
-import me.devnatan.inventoryframework.api.VirtualView;
-import me.devnatan.inventoryframework.api.context.*;
-import me.devnatan.inventoryframework.api.state.State;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.UnmodifiableView;
 
 // TODO Make this render abstract and remove `getResult` (Object) from IFSlotRenderContext
 public class ItemComponent implements Component, InteractionHandler {

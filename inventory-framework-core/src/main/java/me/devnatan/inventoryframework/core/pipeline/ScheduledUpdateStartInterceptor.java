@@ -1,7 +1,5 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import java.util.ArrayList;
-import java.util.List;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFContext;
@@ -9,6 +7,9 @@ import me.devnatan.inventoryframework.api.internal.Job;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class ScheduledUpdateStartInterceptor implements PipelineInterceptor<VirtualView> {
 

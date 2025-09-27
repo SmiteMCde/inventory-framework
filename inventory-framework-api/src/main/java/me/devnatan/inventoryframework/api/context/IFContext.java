@@ -1,19 +1,16 @@
 package me.devnatan.inventoryframework.api.context;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import me.devnatan.inventoryframework.api.RootView;
-import me.devnatan.inventoryframework.api.ViewConfig;
-import me.devnatan.inventoryframework.api.ViewContainer;
-import me.devnatan.inventoryframework.api.Viewer;
-import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.*;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.ComponentContainer;
 import me.devnatan.inventoryframework.api.state.StateValueHost;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public interface IFContext extends VirtualView, StateValueHost, ComponentContainer {
 

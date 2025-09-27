@@ -1,11 +1,5 @@
 package me.devnatan.inventoryframework.context;
 
-import static org.mockito.Mockito.mock;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.function.BiFunction;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
@@ -16,6 +10,13 @@ import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import me.devnatan.inventoryframework.core.context.AbstractIFContext;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.function.BiFunction;
+
+import static org.mockito.Mockito.mock;
 
 public class MockRenderIFContext extends AbstractIFContext implements IFRenderContext {
 

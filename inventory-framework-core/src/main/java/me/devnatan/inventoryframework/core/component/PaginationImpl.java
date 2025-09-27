@@ -1,21 +1,5 @@
 package me.devnatan.inventoryframework.core.component;
 
-import static me.devnatan.inventoryframework.api.IFDebug.debug;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.VirtualView;
@@ -30,6 +14,14 @@ import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 import org.jetbrains.annotations.VisibleForTesting;
+
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import static me.devnatan.inventoryframework.api.IFDebug.debug;
 
 // TODO add "key" to child pagination components and check if it needs to be updated based on it
 @VisibleForTesting

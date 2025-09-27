@@ -1,8 +1,8 @@
 package me.devnatan.inventoryframework.api;
 
-import static java.lang.String.format;
-
 import java.util.Objects;
+
+import static java.lang.String.format;
 
 public final class ViewType {
 

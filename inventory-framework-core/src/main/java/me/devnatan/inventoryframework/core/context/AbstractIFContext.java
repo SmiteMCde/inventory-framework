@@ -1,16 +1,6 @@
 package me.devnatan.inventoryframework.core.context;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import me.devnatan.inventoryframework.api.IFDebug;
-import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
-import me.devnatan.inventoryframework.api.exception.UnsupportedOperationInSharedContextException;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
@@ -21,11 +11,15 @@ import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
 import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
+import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
+import me.devnatan.inventoryframework.api.exception.UnsupportedOperationInSharedContextException;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
 import me.devnatan.inventoryframework.core.state.DefaultStateValueHost;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.*;
 
 public abstract class AbstractIFContext extends DefaultStateValueHost implements IFContext {
 

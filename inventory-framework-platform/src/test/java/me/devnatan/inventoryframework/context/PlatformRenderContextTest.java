@@ -1,22 +1,23 @@
 package me.devnatan.inventoryframework.context;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.BiFunction;
-import me.devnatan.inventoryframework.platform.PlatformView;
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.component.ComponentFactory;
 import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
 import me.devnatan.inventoryframework.component.TestItemComponentBuilder;
+import me.devnatan.inventoryframework.platform.PlatformView;
 import me.devnatan.inventoryframework.platform.context.PlatformRenderContext;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.BiFunction;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PlatformRenderContextTest {

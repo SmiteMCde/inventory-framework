@@ -1,29 +1,22 @@
 package me.devnatan.inventoryframework.platform.context;
 
-import static me.devnatan.inventoryframework.core.utils.SlotConverter.convertSlot;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
-import me.devnatan.inventoryframework.platform.PlatformView;
-import me.devnatan.inventoryframework.api.RootView;
-import me.devnatan.inventoryframework.api.ViewConfig;
-import me.devnatan.inventoryframework.api.ViewContainer;
-import me.devnatan.inventoryframework.api.ViewType;
-import me.devnatan.inventoryframework.api.Viewer;
+import me.devnatan.inventoryframework.api.*;
 import me.devnatan.inventoryframework.api.component.ComponentFactory;
 import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.exception.InventoryFrameworkException;
 import me.devnatan.inventoryframework.api.internal.LayoutSlot;
+import me.devnatan.inventoryframework.platform.PlatformView;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+
+import static me.devnatan.inventoryframework.core.utils.SlotConverter.convertSlot;
 
 @SuppressWarnings("rawtypes")
 public abstract class PlatformRenderContext<T extends ItemComponentBuilder<T, C>, C extends IFContext>

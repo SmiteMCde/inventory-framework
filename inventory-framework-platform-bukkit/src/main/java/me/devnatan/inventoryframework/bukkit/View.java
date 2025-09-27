@@ -1,19 +1,15 @@
 package me.devnatan.inventoryframework.bukkit;
 
 import me.devnatan.inventoryframework.api.VirtualView;
-import me.devnatan.inventoryframework.bukkit.component.BukkitItemComponentBuilder;
-import me.devnatan.inventoryframework.bukkit.context.CloseContext;
-import me.devnatan.inventoryframework.bukkit.context.Context;
-import me.devnatan.inventoryframework.bukkit.context.OpenContext;
-import me.devnatan.inventoryframework.bukkit.context.RenderContext;
-import me.devnatan.inventoryframework.bukkit.context.SlotClickContext;
 import me.devnatan.inventoryframework.api.internal.ElementFactory;
+import me.devnatan.inventoryframework.api.pipeline.Pipeline;
+import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+import me.devnatan.inventoryframework.bukkit.component.BukkitItemComponentBuilder;
+import me.devnatan.inventoryframework.bukkit.context.*;
 import me.devnatan.inventoryframework.bukkit.pipeline.CancelledCloseInterceptor;
 import me.devnatan.inventoryframework.bukkit.pipeline.GlobalClickInterceptor;
 import me.devnatan.inventoryframework.bukkit.pipeline.ItemClickInterceptor;
 import me.devnatan.inventoryframework.bukkit.pipeline.ItemCloseOnClickInterceptor;
-import me.devnatan.inventoryframework.api.pipeline.Pipeline;
-import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
 import me.devnatan.inventoryframework.platform.PlatformView;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

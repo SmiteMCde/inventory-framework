@@ -1,8 +1,9 @@
 package me.devnatan.inventoryframework.api.pipeline;
 
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
+
+import java.util.List;
 
 @VisibleForTesting
 public class PipelineContext<S> {

@@ -1,9 +1,9 @@
 package me.devnatan.inventoryframework.runtime.view;
 
 import me.devnatan.inventoryframework.AnvilInput;
-import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.api.ViewConfigBuilder;
 import me.devnatan.inventoryframework.api.ViewType;
+import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.bukkit.context.RenderContext;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

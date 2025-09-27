@@ -1,8 +1,5 @@
 package me.devnatan.inventoryframework.bukkit;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.ViewType;
 import me.devnatan.inventoryframework.api.Viewer;
@@ -15,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public final class BukkitViewContainer implements ViewContainer {
 

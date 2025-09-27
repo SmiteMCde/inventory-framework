@@ -12,8 +12,7 @@ import net.kyori.adventure.text.Component
 import net.minestom.server.entity.Player
 import net.minestom.server.item.ItemStack
 import org.jetbrains.annotations.ApiStatus
-import java.util.Objects
-import java.util.UUID
+import java.util.*
 
 class RenderContext
     @ApiStatus.Internal

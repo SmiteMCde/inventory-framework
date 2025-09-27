@@ -1,8 +1,5 @@
 package me.devnatan.inventoryframework.runtime.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.bukkit.ViewFrame;
 import me.devnatan.inventoryframework.runtime.view.AnvilInputSample;
@@ -16,6 +13,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class IFExampleCommandExecutor implements CommandExecutor, TabCompleter {
 

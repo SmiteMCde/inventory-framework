@@ -1,11 +1,12 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import java.util.List;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
+
+import java.util.List;
 
 /**
  * Intercepts the update phase of a context.

@@ -1,5 +1,19 @@
 package me.devnatan.inventoryframework.pipeline;
 
+import me.devnatan.inventoryframework.api.*;
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.ComponentFactory;
+import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.internal.LayoutSlot;
+import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
+import me.devnatan.inventoryframework.component.FakeComponent;
+import me.devnatan.inventoryframework.core.pipeline.AvailableSlotInterceptor;
+import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import static me.devnatan.inventoryframework.TestUtils.createContextMock;
 import static me.devnatan.inventoryframework.TestUtils.createRootMock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,23 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.function.BiFunction;
-import me.devnatan.inventoryframework.api.RootView;
-import me.devnatan.inventoryframework.api.ViewConfig;
-import me.devnatan.inventoryframework.api.ViewConfigBuilder;
-import me.devnatan.inventoryframework.api.ViewContainer;
-import me.devnatan.inventoryframework.api.ViewType;
-import me.devnatan.inventoryframework.api.component.Component;
-import me.devnatan.inventoryframework.api.component.ComponentFactory;
-import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
-import me.devnatan.inventoryframework.component.FakeComponent;
-import me.devnatan.inventoryframework.api.context.IFRenderContext;
-import me.devnatan.inventoryframework.api.internal.LayoutSlot;
-import me.devnatan.inventoryframework.core.pipeline.AvailableSlotInterceptor;
-import org.junit.jupiter.api.Test;
 
 public class AvailableSlotInterceptorTest {
 

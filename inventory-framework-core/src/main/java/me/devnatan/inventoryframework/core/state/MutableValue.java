@@ -1,10 +1,10 @@
 package me.devnatan.inventoryframework.core.state;
 
-import java.util.Objects;
-
 import me.devnatan.inventoryframework.api.state.AbstractStateValue;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.ApiStatus;
+
+import java.util.Objects;
 
 /**
  * <b><i> This is an internal inventory-framework API that should not be used from outside of

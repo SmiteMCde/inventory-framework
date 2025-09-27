@@ -1,15 +1,5 @@
 package me.devnatan.inventoryframework.pipeline;
 
-import static me.devnatan.inventoryframework.TestUtils.createContextMock;
-import static me.devnatan.inventoryframework.TestUtils.createRootMock;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.Collections;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.VirtualView;
@@ -19,6 +9,14 @@ import me.devnatan.inventoryframework.api.pipeline.Pipeline;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
 import me.devnatan.inventoryframework.core.pipeline.UpdateInterceptor;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+
+import static me.devnatan.inventoryframework.TestUtils.createContextMock;
+import static me.devnatan.inventoryframework.TestUtils.createRootMock;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 public class UpdateInterceptorTest {
 

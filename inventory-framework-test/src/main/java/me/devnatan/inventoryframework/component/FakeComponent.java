@@ -1,7 +1,5 @@
 package me.devnatan.inventoryframework.component;
 
-import java.util.Collections;
-import java.util.Set;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Component;
@@ -13,6 +11,9 @@ import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.Collections;
+import java.util.Set;
 
 public class FakeComponent implements Component, InteractionHandler {
 

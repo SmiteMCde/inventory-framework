@@ -1,9 +1,10 @@
 package me.devnatan.inventoryframework.api.state;
 
-import java.util.Map;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.Map;
 
 /**
  * StateHost is an entity capable of storing current data from multiple states.

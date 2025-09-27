@@ -3,8 +3,8 @@ package me.devnatan.inventoryframework.minestom.context
 import me.devnatan.inventoryframework.api.ViewConfig
 import me.devnatan.inventoryframework.api.ViewContainer
 import me.devnatan.inventoryframework.api.Viewer
-import me.devnatan.inventoryframework.api.context.IFRenderContext
 import me.devnatan.inventoryframework.api.component.Component
+import me.devnatan.inventoryframework.api.context.IFRenderContext
 import me.devnatan.inventoryframework.api.context.IFSlotContext
 import me.devnatan.inventoryframework.api.state.State
 import me.devnatan.inventoryframework.api.state.StateValue
@@ -15,7 +15,7 @@ import net.minestom.server.entity.Player
 import net.minestom.server.item.ItemStack
 import org.jetbrains.annotations.ApiStatus
 import org.jetbrains.annotations.UnmodifiableView
-import java.util.UUID
+import java.util.*
 
 abstract class SlotContext
     @ApiStatus.Internal

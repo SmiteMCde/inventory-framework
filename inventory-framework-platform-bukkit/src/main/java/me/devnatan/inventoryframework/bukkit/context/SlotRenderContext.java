@@ -1,10 +1,10 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
-import me.devnatan.inventoryframework.bukkit.BukkitViewer;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
+import me.devnatan.inventoryframework.bukkit.BukkitViewer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.ApiStatus;

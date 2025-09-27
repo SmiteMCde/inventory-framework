@@ -1,13 +1,14 @@
 package me.devnatan.inventoryframework.api.context;
 
-import java.util.List;
-import java.util.function.BiFunction;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.component.ComponentFactory;
 import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.List;
+import java.util.function.BiFunction;
 
 public interface IFRenderContext extends IFConfinedContext {
 

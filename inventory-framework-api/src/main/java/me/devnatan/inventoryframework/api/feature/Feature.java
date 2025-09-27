@@ -1,7 +1,8 @@
 package me.devnatan.inventoryframework.api.feature;
 
-import java.util.function.UnaryOperator;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.UnaryOperator;
 
 /**
  * A feature is a module that is installed in the runtime and acts independently of the rest of the

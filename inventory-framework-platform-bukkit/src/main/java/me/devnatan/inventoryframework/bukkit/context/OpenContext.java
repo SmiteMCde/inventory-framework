@@ -1,24 +1,25 @@
 package me.devnatan.inventoryframework.bukkit.context;
 
+import me.devnatan.inventoryframework.api.ViewConfig;
+import me.devnatan.inventoryframework.api.ViewConfigBuilder;
+import me.devnatan.inventoryframework.api.ViewContainer;
+import me.devnatan.inventoryframework.api.Viewer;
+import me.devnatan.inventoryframework.api.context.IFOpenContext;
+import me.devnatan.inventoryframework.api.exception.UnsupportedOperationInSharedContextException;
+import me.devnatan.inventoryframework.bukkit.BukkitViewer;
+import me.devnatan.inventoryframework.bukkit.View;
+import me.devnatan.inventoryframework.platform.context.PlatformConfinedContext;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-import me.devnatan.inventoryframework.bukkit.BukkitViewer;
-import me.devnatan.inventoryframework.api.exception.UnsupportedOperationInSharedContextException;
-import me.devnatan.inventoryframework.bukkit.View;
-import me.devnatan.inventoryframework.api.ViewConfig;
-import me.devnatan.inventoryframework.api.ViewConfigBuilder;
-import me.devnatan.inventoryframework.api.ViewContainer;
-import me.devnatan.inventoryframework.api.Viewer;
-import me.devnatan.inventoryframework.api.context.IFOpenContext;
-import me.devnatan.inventoryframework.platform.context.PlatformConfinedContext;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class OpenContext extends PlatformConfinedContext implements IFOpenContext, Context {
 

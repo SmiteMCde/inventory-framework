@@ -1,8 +1,9 @@
 package me.devnatan.inventoryframework.api.component;
 
-import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.UnmodifiableView;
+
+import java.util.List;
 
 public interface ComponentContainer extends Iterable<Component> {
 

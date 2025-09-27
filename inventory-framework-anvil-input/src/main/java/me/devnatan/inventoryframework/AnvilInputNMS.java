@@ -1,21 +1,5 @@
 package me.devnatan.inventoryframework;
 
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.CONTAINER;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.createTitleComponent;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.getConstructor;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.getContainerOrName;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.getField;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.getMethod;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.packetPlayOutOpenWindow;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.setField;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.setFieldHandle;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.useContainers;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.ENTITY_PLAYER;
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.getNMSClass;
-
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodType;
-import java.util.Objects;
 import me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate;
 import me.devnatan.inventoryframework.bukkit.runtime.thirdparty.McVersion;
 import me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils;
@@ -27,6 +11,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodType;
+import java.util.Objects;
+
+import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.InventoryUpdate.*;
+import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.ENTITY_PLAYER;
+import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.ReflectionUtils.getNMSClass;
 
 class AnvilInputNMS {
 

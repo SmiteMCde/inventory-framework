@@ -1,13 +1,14 @@
 package me.devnatan.inventoryframework.api.component;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.internal.ElementFactory;
 import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public final class PaginationStateBuilder<
         Context extends IFContext, Builder extends ItemComponentBuilder<Builder, Context> & ComponentFactory, V> {

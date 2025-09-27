@@ -1,14 +1,14 @@
 package me.devnatan.inventoryframework.core.state;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import me.devnatan.inventoryframework.api.state.State;
 import me.devnatan.inventoryframework.api.state.StateWatcher;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * HashMap-backed state container to store a collection of states.

@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.platform.pipeline;
 
 import me.devnatan.inventoryframework.api.IFDebug;
-import me.devnatan.inventoryframework.platform.PlatformView;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFCloseContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
+import me.devnatan.inventoryframework.platform.PlatformView;
 
 public final class ContextInvalidationOnCloseInterceptor implements PipelineInterceptor<VirtualView> {
 

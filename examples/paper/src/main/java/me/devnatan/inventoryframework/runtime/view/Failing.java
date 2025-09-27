@@ -1,10 +1,10 @@
 package me.devnatan.inventoryframework.runtime.view;
 
-import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.api.ViewConfigBuilder;
+import me.devnatan.inventoryframework.api.state.MutableState;
+import me.devnatan.inventoryframework.bukkit.View;
 import me.devnatan.inventoryframework.bukkit.context.RenderContext;
 import me.devnatan.inventoryframework.runtime.ExampleUtil;
-import me.devnatan.inventoryframework.api.state.MutableState;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 

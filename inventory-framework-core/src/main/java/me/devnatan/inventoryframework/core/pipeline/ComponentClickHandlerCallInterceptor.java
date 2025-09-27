@@ -1,7 +1,5 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import me.devnatan.inventoryframework.api.IFDebug;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Component;
@@ -9,6 +7,9 @@ import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class ComponentClickHandlerCallInterceptor implements PipelineInterceptor<VirtualView> {
 

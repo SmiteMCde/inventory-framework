@@ -21,14 +21,15 @@
  */
 package me.devnatan.inventoryframework.bukkit.runtime.thirdparty;
 
-import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.McVersion.supports;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.Nullable;
+
+import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.McVersion.supports;
 
 /**
  * <b>ReflectionUtils</b> - Reflection handler for NMS and CraftBukkit.<br>

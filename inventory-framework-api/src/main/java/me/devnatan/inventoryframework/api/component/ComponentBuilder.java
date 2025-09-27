@@ -1,12 +1,13 @@
 package me.devnatan.inventoryframework.api.component;
 
-import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 
 /**
  * Builder base for any {@link Component} implementation.

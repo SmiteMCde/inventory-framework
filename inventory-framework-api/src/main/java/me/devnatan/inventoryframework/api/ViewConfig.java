@@ -1,17 +1,13 @@
 package me.devnatan.inventoryframework.api;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.function.Function;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
+
+import java.util.*;
+import java.util.function.Function;
 
 @VisibleForTesting
 @ApiStatus.NonExtendable

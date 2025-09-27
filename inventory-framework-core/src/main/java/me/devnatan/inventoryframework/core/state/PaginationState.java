@@ -1,7 +1,5 @@
 package me.devnatan.inventoryframework.core.state;
 
-import static me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases.LAYOUT_RESOLUTION;
-
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.Pagination;
@@ -14,6 +12,8 @@ import me.devnatan.inventoryframework.api.pipeline.PipelinePhase;
 import me.devnatan.inventoryframework.api.state.*;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import static me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases.LAYOUT_RESOLUTION;
 
 /**
  * <b><i> This is an internal inventory-framework API that should not be used from outside of

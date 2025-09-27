@@ -1,15 +1,5 @@
 package me.devnatan.inventoryframework.pipeline;
 
-import static me.devnatan.inventoryframework.TestUtils.createRootMock;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFOpenContext;
@@ -18,6 +8,14 @@ import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
 import me.devnatan.inventoryframework.platform.pipeline.PlatformOpenInterceptor;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+
+import static me.devnatan.inventoryframework.TestUtils.createRootMock;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class OpenInterceptorTest {

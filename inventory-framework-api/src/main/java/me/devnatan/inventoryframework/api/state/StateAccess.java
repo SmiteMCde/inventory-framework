@@ -1,18 +1,15 @@
 package me.devnatan.inventoryframework.api.state;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import me.devnatan.inventoryframework.api.component.ComponentFactory;
-import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
-import me.devnatan.inventoryframework.api.component.Pagination;
-import me.devnatan.inventoryframework.api.component.PaginationStateBuilder;
-import me.devnatan.inventoryframework.api.component.PaginationValueConsumer;
+import me.devnatan.inventoryframework.api.component.*;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.context.IFOpenContext;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public interface StateAccess<
         Context extends IFContext, ItemBuilder extends ItemComponentBuilder<ItemBuilder, Context> & ComponentFactory> {

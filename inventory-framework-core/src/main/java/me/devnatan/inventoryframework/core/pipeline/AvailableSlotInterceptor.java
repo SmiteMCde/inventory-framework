@@ -1,10 +1,5 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.BiFunction;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.component.ComponentFactory;
 import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
@@ -14,6 +9,12 @@ import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import org.jetbrains.annotations.VisibleForTesting;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
 
 public final class AvailableSlotInterceptor implements PipelineInterceptor<VirtualView> {
 

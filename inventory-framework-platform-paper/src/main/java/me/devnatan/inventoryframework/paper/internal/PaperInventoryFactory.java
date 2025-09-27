@@ -1,7 +1,5 @@
 package me.devnatan.inventoryframework.paper.internal;
 
-import static java.util.Objects.requireNonNull;
-
 import me.devnatan.inventoryframework.api.ViewType;
 import me.devnatan.inventoryframework.bukkit.internal.BukkitInventoryFactory;
 import me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils;
@@ -9,6 +7,8 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * InventoryFactory implementation for PaperSpigot software.

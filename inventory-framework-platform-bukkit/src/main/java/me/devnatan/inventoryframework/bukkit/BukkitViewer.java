@@ -1,15 +1,15 @@
 package me.devnatan.inventoryframework.bukkit;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Objects;
-
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.ViewType;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Objects;
 
 public final class BukkitViewer implements Viewer {
 

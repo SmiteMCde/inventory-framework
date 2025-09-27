@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.core.state;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 import me.devnatan.inventoryframework.api.state.AbstractStateValue;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Lazy value whose initial value is undefined if the host has not previously attempted to retrieve it.

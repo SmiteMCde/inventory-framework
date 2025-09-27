@@ -1,10 +1,11 @@
 package me.devnatan.inventoryframework.api.internal;
 
+import me.devnatan.inventoryframework.api.component.ComponentFactory;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.IntFunction;
-import me.devnatan.inventoryframework.api.component.ComponentFactory;
-import org.jetbrains.annotations.Nullable;
 
 public final class LayoutSlot {
 

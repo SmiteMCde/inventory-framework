@@ -6,8 +6,7 @@ import me.devnatan.inventoryframework.api.Viewer
 import me.devnatan.inventoryframework.api.context.IFRenderContext
 import net.minestom.server.entity.Player
 import net.minestom.server.inventory.Inventory
-import java.util.Deque
-import java.util.LinkedList
+import java.util.*
 
 class MinestomViewer(
     val player: Player,

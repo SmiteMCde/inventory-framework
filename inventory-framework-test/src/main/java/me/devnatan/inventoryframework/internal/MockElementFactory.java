@@ -1,12 +1,5 @@
 package me.devnatan.inventoryframework.internal;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import me.devnatan.inventoryframework.api.*;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.ComponentBuilder;
@@ -16,6 +9,13 @@ import me.devnatan.inventoryframework.api.internal.Job;
 import me.devnatan.inventoryframework.api.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MockElementFactory extends ElementFactory {
     @Override

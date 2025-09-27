@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.core.state;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 import me.devnatan.inventoryframework.api.state.AbstractStateValue;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Computed value whose value returned by the function to get the state value is always a new value

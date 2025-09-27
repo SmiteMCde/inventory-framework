@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.bukkit.internal;
 
-import static java.util.Objects.requireNonNull;
-import static me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils.toInventoryType;
-
 import me.devnatan.inventoryframework.api.ViewType;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+
+import static java.util.Objects.requireNonNull;
+import static me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils.toInventoryType;
 
 public class BukkitInventoryFactory extends InventoryFactory {
 

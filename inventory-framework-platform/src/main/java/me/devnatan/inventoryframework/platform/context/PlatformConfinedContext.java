@@ -1,15 +1,12 @@
 package me.devnatan.inventoryframework.platform.context;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.Viewer;
 import me.devnatan.inventoryframework.api.context.IFConfinedContext;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public abstract class PlatformConfinedContext extends PlatformContext implements IFConfinedContext {
 

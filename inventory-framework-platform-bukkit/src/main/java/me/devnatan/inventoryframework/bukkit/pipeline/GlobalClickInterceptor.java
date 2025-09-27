@@ -1,13 +1,13 @@
 package me.devnatan.inventoryframework.bukkit.pipeline;
 
-import static me.devnatan.inventoryframework.api.ViewConfig.CANCEL_ON_CLICK;
-
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
 import me.devnatan.inventoryframework.bukkit.context.SlotClickContext;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
+
+import static me.devnatan.inventoryframework.api.ViewConfig.CANCEL_ON_CLICK;
 
 /**
  * Intercepted when a player clicks on the view container.

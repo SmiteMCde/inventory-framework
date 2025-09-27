@@ -1,11 +1,5 @@
 package me.devnatan.inventoryframework.pipeline;
 
-import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import me.devnatan.inventoryframework.api.ViewConfig;
 import me.devnatan.inventoryframework.api.ViewContainer;
 import me.devnatan.inventoryframework.api.VirtualView;
@@ -15,6 +9,12 @@ import me.devnatan.inventoryframework.api.pipeline.Pipeline;
 import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
 import me.devnatan.inventoryframework.core.pipeline.LayoutResolutionInterceptor;
 import org.junit.jupiter.api.Test;
+
+import static java.lang.String.format;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LayoutInterceptorTest {
 

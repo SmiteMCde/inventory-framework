@@ -2,11 +2,7 @@ package me.devnatan.inventoryframework.api.pipeline;
 
 import me.devnatan.inventoryframework.api.RootView;
 import me.devnatan.inventoryframework.api.Viewer;
-import me.devnatan.inventoryframework.api.context.IFCloseContext;
-import me.devnatan.inventoryframework.api.context.IFConfinedContext;
-import me.devnatan.inventoryframework.api.context.IFContext;
-import me.devnatan.inventoryframework.api.context.IFOpenContext;
-import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.context.*;
 
 /**
  * Pipeline phases used internally by the framework. All phases have a {@link IFContext} as subject.

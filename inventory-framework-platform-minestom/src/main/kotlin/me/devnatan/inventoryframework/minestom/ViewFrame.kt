@@ -3,11 +3,10 @@ package me.devnatan.inventoryframework.minestom
 import me.devnatan.inventoryframework.api.IFDebug
 import me.devnatan.inventoryframework.api.Viewer
 import me.devnatan.inventoryframework.api.context.EndlessContextInfo
-import me.devnatan.inventoryframework.platform.feature.DefaultFeatureInstaller
 import me.devnatan.inventoryframework.api.feature.Feature
 import me.devnatan.inventoryframework.api.feature.FeatureInstaller
 import me.devnatan.inventoryframework.minestom.internal.MinestomElementFactory
-import me.devnatan.inventoryframework.platform.IFViewFrame
+import me.devnatan.inventoryframework.platform.feature.DefaultFeatureInstaller
 import me.devnatan.inventoryframework.platform.internal.PlatformUtils
 import net.minestom.server.entity.Player
 import net.minestom.server.event.EventNode
@@ -15,7 +14,6 @@ import net.minestom.server.event.trait.EntityEvent
 import org.jetbrains.annotations.ApiStatus
 import org.jetbrains.annotations.ApiStatus.Experimental
 import java.util.function.UnaryOperator
-import kotlin.collections.iterator
 
 class ViewFrame private constructor(
     private val parentNode: EventNode<in EntityEvent>,

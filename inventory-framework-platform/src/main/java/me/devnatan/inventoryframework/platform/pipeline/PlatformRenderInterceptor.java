@@ -1,10 +1,10 @@
 package me.devnatan.inventoryframework.platform.pipeline;
 
-import me.devnatan.inventoryframework.platform.PlatformView;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
+import me.devnatan.inventoryframework.platform.PlatformView;
 import org.jetbrains.annotations.NotNull;
 
 public final class PlatformRenderInterceptor implements PipelineInterceptor<VirtualView> {

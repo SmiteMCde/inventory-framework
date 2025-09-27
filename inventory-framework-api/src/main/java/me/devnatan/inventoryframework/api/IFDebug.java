@@ -1,8 +1,9 @@
 package me.devnatan.inventoryframework.api;
 
-import java.util.function.Supplier;
 import org.intellij.lang.annotations.PrintFormat;
 import org.jetbrains.annotations.ApiStatus;
+
+import java.util.function.Supplier;
 
 /**
  * <b><i> This is an internal inventory-framework API that should not be used from outside of

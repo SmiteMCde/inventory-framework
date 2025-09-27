@@ -1,11 +1,11 @@
 package me.devnatan.inventoryframework.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class MultiRefsImpl<E> implements Ref<List<E>> {
 

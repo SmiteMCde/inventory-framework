@@ -1,9 +1,9 @@
 package me.devnatan.inventoryframework;
 
-import java.util.function.UnaryOperator;
-
 import me.devnatan.inventoryframework.api.ViewType;
 import org.jetbrains.annotations.Contract;
+
+import java.util.function.UnaryOperator;
 
 public class AnvilInputConfig {
 

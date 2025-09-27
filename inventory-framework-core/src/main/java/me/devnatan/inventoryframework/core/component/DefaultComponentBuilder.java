@@ -1,18 +1,15 @@
 package me.devnatan.inventoryframework.core.component;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 import me.devnatan.inventoryframework.api.Ref;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.ComponentBuilder;
 import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 
 @SuppressWarnings("unchecked")
 public abstract class DefaultComponentBuilder<S extends ComponentBuilder<S, C>, C extends IFContext>

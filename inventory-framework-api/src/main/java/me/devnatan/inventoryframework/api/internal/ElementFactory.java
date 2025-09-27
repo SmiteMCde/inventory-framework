@@ -1,24 +1,16 @@
 package me.devnatan.inventoryframework.api.internal;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import me.devnatan.inventoryframework.api.RootView;
-import me.devnatan.inventoryframework.api.ViewConfig;
-import me.devnatan.inventoryframework.api.ViewContainer;
-import me.devnatan.inventoryframework.api.Viewer;
-import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.*;
 import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.api.component.ComponentBuilder;
-import me.devnatan.inventoryframework.api.context.IFCloseContext;
-import me.devnatan.inventoryframework.api.context.IFContext;
-import me.devnatan.inventoryframework.api.context.IFOpenContext;
-import me.devnatan.inventoryframework.api.context.IFRenderContext;
-import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
-import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
+import me.devnatan.inventoryframework.api.context.*;
 import me.devnatan.inventoryframework.api.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Element creation factory for the current platform.

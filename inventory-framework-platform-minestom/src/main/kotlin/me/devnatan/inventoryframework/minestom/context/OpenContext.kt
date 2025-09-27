@@ -7,12 +7,10 @@ import me.devnatan.inventoryframework.api.Viewer
 import me.devnatan.inventoryframework.api.context.IFOpenContext
 import me.devnatan.inventoryframework.minestom.MinestomViewer
 import me.devnatan.inventoryframework.minestom.View
-import me.devnatan.inventoryframework.platform.context.PlatformConfinedContext
 import net.kyori.adventure.text.Component
 import net.minestom.server.entity.Player
 import org.jetbrains.annotations.ApiStatus
-import java.util.Objects
-import java.util.UUID
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /**

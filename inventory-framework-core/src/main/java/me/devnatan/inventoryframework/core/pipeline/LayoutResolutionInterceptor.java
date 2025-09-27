@@ -1,17 +1,18 @@
 package me.devnatan.inventoryframework.core.pipeline;
 
-import static java.lang.String.format;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import me.devnatan.inventoryframework.api.VirtualView;
 import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.api.exception.InvalidLayoutException;
 import me.devnatan.inventoryframework.api.internal.LayoutSlot;
 import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
 import me.devnatan.inventoryframework.api.pipeline.PipelineInterceptor;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.String.format;
 
 public final class LayoutResolutionInterceptor implements PipelineInterceptor<VirtualView> {
 

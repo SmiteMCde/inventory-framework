@@ -1,8 +1,9 @@
 package me.devnatan.inventoryframework.api.state;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * States are just intermediate interfaces to a {@link StateValueHost} and a {@link StateValue}.

@@ -1,9 +1,10 @@
 package me.devnatan.inventoryframework.api.feature;
 
-import java.util.Collection;
-import java.util.function.UnaryOperator;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
+import java.util.function.UnaryOperator;
 
 /**
  * A feature installer stores information about installed features, installs features and ensures
