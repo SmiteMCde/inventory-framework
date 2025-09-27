@@ -4,9 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 public final class IsTypeOf {
 
-    private IsTypeOf() {}
+	private IsTypeOf() {
+	}
 
-    public static boolean isTypeOf(@NotNull Class<?> superCls, @NotNull Class<?> cls) {
-        return superCls.isAssignableFrom(cls);
-    }
+	public static boolean isTypeOf(@NotNull Class<?> superCls, @NotNull Class<?> cls) {
+		return superCls.isAssignableFrom(cls);
+	}
 }

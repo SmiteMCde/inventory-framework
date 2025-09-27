@@ -5,12 +5,12 @@ package me.devnatan.inventoryframework.api.component;
  */
 public interface ComponentComposition extends Component, ComponentContainer {
 
-    /**
-     * Checks if any component of that composition is in a specific position.
-     *
-     * @param position The position to check.
-     * @return If any component in this composition is contained in the given position.
-     */
-    @Override
-    boolean isContainedWithin(int position);
+	/**
+	 * Checks if any component of that composition is in a specific position.
+	 *
+	 * @param position The position to check.
+	 * @return If any component in this composition is contained in the given position.
+	 */
+	@Override
+	boolean isContainedWithin(int position);
 }

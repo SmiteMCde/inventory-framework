@@ -10,13 +10,12 @@ import org.jetbrains.annotations.NotNull;
 
 public final class PlatformInitInterceptor implements PipelineInterceptor<VirtualView> {
 
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, VirtualView view) {
-        if (!(view instanceof RootView)) return;
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, VirtualView view) {
+		if (!(view instanceof RootView)) return;
 
-        @SuppressWarnings("rawtypes")
-        final PlatformView root = (PlatformView) view;
-        ViewConfigBuilder configBuilder = root.createConfig();
-        root.onInit(configBuilder);
-        root.setConfig(configBuilder.build());
-    }
+		@SuppressWarnings("rawtypes") final PlatformView root = (PlatformView) view;
+		ViewConfigBuilder configBuilder = root.createConfig();
+		root.onInit(configBuilder);
+		root.setConfig(configBuilder.build());
+	}
 }

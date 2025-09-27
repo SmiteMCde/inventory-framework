@@ -20,27 +20,27 @@ import static org.mockito.Mockito.*;
 
 public class UpdateInterceptorTest {
 
-    @Test
-    void neverRenderIfItemDoNotHaveRenderHandler() {
-        Pipeline<VirtualView> pipeline = new Pipeline<>(StandardPipelinePhases.UPDATE);
-        pipeline.intercept(StandardPipelinePhases.UPDATE, new UpdateInterceptor());
+	@Test
+	void neverRenderIfItemDoNotHaveRenderHandler() {
+		Pipeline<VirtualView> pipeline = new Pipeline<>(StandardPipelinePhases.UPDATE);
+		pipeline.intercept(StandardPipelinePhases.UPDATE, new UpdateInterceptor());
 
-        RootView root = createRootMock();
-        IFRenderContext context = createContextMock(root, IFRenderContext.class);
-        when(context.isShared()).thenReturn(true);
-        ViewContainer container = mock(ViewContainer.class);
-        when(context.getContainer()).thenReturn(container);
+		RootView root = createRootMock();
+		IFRenderContext context = createContextMock(root, IFRenderContext.class);
+		when(context.isShared()).thenReturn(true);
+		ViewContainer container = mock(ViewContainer.class);
+		when(context.getContainer()).thenReturn(container);
 
-        ItemComponent component = mock(ItemComponent.class);
-        when(component.getRenderHandler()).thenReturn(null);
+		ItemComponent component = mock(ItemComponent.class);
+		when(component.getRenderHandler()).thenReturn(null);
 
-        when(context.getComponents()).thenReturn(Collections.singletonList(component));
-        when(root.getInternalContexts()).thenReturn(Collections.singleton(context));
+		when(context.getComponents()).thenReturn(Collections.singletonList(component));
+		when(root.getInternalContexts()).thenReturn(Collections.singleton(context));
 
-        pipeline.execute(StandardPipelinePhases.UPDATE, context);
+		pipeline.execute(StandardPipelinePhases.UPDATE, context);
 
-        verify(component, never()).clear(eq(context));
-        verify(component, never()).updated(any());
-        verify(component, never()).render(any());
-    }
+		verify(component, never()).clear(eq(context));
+		verify(component, never()).updated(any());
+		verify(component, never()).render(any());
+	}
 }

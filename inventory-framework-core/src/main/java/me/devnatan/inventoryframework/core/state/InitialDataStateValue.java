@@ -18,41 +18,41 @@ import java.util.Map;
 @ApiStatus.Internal
 public final class InitialDataStateValue extends AbstractStateValue {
 
-    private final IFContext context;
-    private final String key;
-    private StateValue backingValue;
+	private final IFContext context;
+	private final String key;
+	private StateValue backingValue;
 
-    public InitialDataStateValue(@NotNull State<?> state, @NotNull StateValueHost host, String key) {
-        super(state);
-        this.key = key;
-        if (!(host instanceof IFContext))
-            throw new IllegalArgumentException("State host for initial data must be a IFContext");
+	public InitialDataStateValue(@NotNull State<?> state, @NotNull StateValueHost host, String key) {
+		super(state);
+		this.key = key;
+		if (!(host instanceof IFContext))
+			throw new IllegalArgumentException("State host for initial data must be a IFContext");
 
-        this.context = (IFContext) host;
-        this.backingValue = createBackingValue(state, (IFContext) host, key);
-    }
+		this.context = (IFContext) host;
+		this.backingValue = createBackingValue(state, (IFContext) host, key);
+	}
 
-    @SuppressWarnings("unchecked")
-    private StateValue createBackingValue(State<?> state, IFContext context, String key) {
-        return new LazyValue(
-                state,
-                () -> key != null && context.getInitialData() instanceof Map
-                        ? ((Map<String, ?>) context.getInitialData()).get(key)
-                        : context.getInitialData());
-    }
+	@SuppressWarnings("unchecked")
+	private StateValue createBackingValue(State<?> state, IFContext context, String key) {
+		return new LazyValue(
+			state,
+			() -> key != null && context.getInitialData() instanceof Map
+				? ((Map<String, ?>) context.getInitialData()).get(key)
+				: context.getInitialData());
+	}
 
-    @Override
-    @UnknownNullability
-    public Object get() {
-        return backingValue.get();
-    }
+	@Override
+	@UnknownNullability
+	public Object get() {
+		return backingValue.get();
+	}
 
-    @Override
-    public void set(Object value) {
-        backingValue.set(value);
-    }
+	@Override
+	public void set(Object value) {
+		backingValue.set(value);
+	}
 
-    public void reset() {
-        backingValue = createBackingValue(getState(), context, key);
-    }
+	public void reset() {
+		backingValue = createBackingValue(getState(), context, key);
+	}
 }

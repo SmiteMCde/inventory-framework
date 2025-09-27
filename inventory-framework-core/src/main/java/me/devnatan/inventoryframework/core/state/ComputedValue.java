@@ -18,34 +18,34 @@ import java.util.function.Supplier;
 @ApiStatus.Internal
 public final class ComputedValue extends AbstractStateValue {
 
-    private final Supplier<?> factory;
+	private final Supplier<?> factory;
 
-    public ComputedValue(@NotNull State<?> state, @NotNull Supplier<?> factory) {
-        super(state);
-        this.factory = factory;
-    }
+	public ComputedValue(@NotNull State<?> state, @NotNull Supplier<?> factory) {
+		super(state);
+		this.factory = factory;
+	}
 
-    @Override
-    public Object get() {
-        return factory.get();
-    }
+	@Override
+	public Object get() {
+		return factory.get();
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ComputedValue that = (ComputedValue) o;
-        return factory.equals(that.factory);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		ComputedValue that = (ComputedValue) o;
+		return factory.equals(that.factory);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), factory);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), factory);
+	}
 
-    @Override
-    public String toString() {
-        return "ComputedValue{" + "computation=" + factory + "} " + super.toString();
-    }
+	@Override
+	public String toString() {
+		return "ComputedValue{" + "computation=" + factory + "} " + super.toString();
+	}
 }

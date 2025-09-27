@@ -36,164 +36,166 @@ import static me.devnatan.inventoryframework.platform.IFViewFrame.FRAME_REGISTER
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 public final class AnvilInputFeature implements Feature<AnvilInputConfig, Void, ViewFrame> {
 
-    private static final int INGREDIENT_SLOT = 0;
+	/**
+	 * Instance of the Anvil Input feature.
+	 *
+	 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/anvil-input">Anvil Input on Wiki</a>
+	 */
+	public static final Feature<AnvilInputConfig, Void, ViewFrame> AnvilInput = new AnvilInputFeature();
+	private static final int INGREDIENT_SLOT = 0;
+	private AnvilInputConfig config;
+	private PipelineInterceptor frameInterceptor;
 
-    /**
-     * Instance of the Anvil Input feature.
-     *
-     * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/anvil-input">Anvil Input on Wiki</a>
-     */
-    public static final Feature<AnvilInputConfig, Void, ViewFrame> AnvilInput = new AnvilInputFeature();
+	private AnvilInputFeature() {
+	}
 
-    private AnvilInputConfig config;
-    private PipelineInterceptor frameInterceptor;
+	@Override
+	public @NotNull String name() {
+		return "Anvil Input";
+	}
 
-    private AnvilInputFeature() {}
+	@Override
+	public @NotNull Void install(ViewFrame framework, UnaryOperator<AnvilInputConfig> configure) {
+		config = configure.apply(defaultConfig());
+		framework.getPipeline().intercept(FRAME_REGISTERED, (frameInterceptor = createFrameworkInterceptor()));
+		return null;
+	}
 
-    @Override
-    public @NotNull String name() {
-        return "Anvil Input";
-    }
+	@Override
+	public void uninstall(ViewFrame framework) {
+		framework.getPipeline().removeInterceptor(FRAME_REGISTERED, frameInterceptor);
+	}
 
-    @Override
-    public @NotNull Void install(ViewFrame framework, UnaryOperator<AnvilInputConfig> configure) {
-        config = configure.apply(defaultConfig());
-        framework.getPipeline().intercept(FRAME_REGISTERED, (frameInterceptor = createFrameworkInterceptor()));
-        return null;
-    }
+	private PipelineInterceptor createFrameworkInterceptor() {
+		return (PipelineInterceptor<IFViewFrame>) (pipeline, subject) -> {
+			final Map<UUID, PlatformView> views = subject.getRegisteredViews();
 
-    @Override
-    public void uninstall(ViewFrame framework) {
-        framework.getPipeline().removeInterceptor(FRAME_REGISTERED, frameInterceptor);
-    }
+			for (final PlatformView view : views.values()) {
+				handleOpen(view);
+				handleClose(view);
+				handleClick(view);
+			}
+		};
+	}
 
-    private PipelineInterceptor createFrameworkInterceptor() {
-        return (PipelineInterceptor<IFViewFrame>) (pipeline, subject) -> {
-            final Map<UUID, PlatformView> views = subject.getRegisteredViews();
+	private AnvilInput getAnvilInput(IFContext context) {
+		if (context.getConfig().getType() != ViewType.ANVIL) return null;
 
-            for (final PlatformView view : views.values()) {
-                handleOpen(view);
-                handleClose(view);
-                handleClick(view);
-            }
-        };
-    }
+		final Optional<ViewConfig.Modifier> optional = context.getConfig().getModifiers().stream()
+			.filter(modifier -> modifier instanceof AnvilInput)
+			.findFirst();
 
-    private AnvilInput getAnvilInput(IFContext context) {
-        if (context.getConfig().getType() != ViewType.ANVIL) return null;
+		//noinspection OptionalIsPresent
+		if (!optional.isPresent()) return null;
 
-        final Optional<ViewConfig.Modifier> optional = context.getConfig().getModifiers().stream()
-                .filter(modifier -> modifier instanceof AnvilInput)
-                .findFirst();
+		return (AnvilInput) optional.get();
+	}
 
-        //noinspection OptionalIsPresent
-        if (!optional.isPresent()) return null;
+	private void updatePhysicalResult(String newText, ViewContainer container) {
+		final Inventory inventory = ((BukkitViewContainer) container).getInventory();
+		final ItemStack ingredientItem = requireNonNull(inventory.getItem(INGREDIENT_SLOT));
+		final ItemMeta ingredientMeta = requireNonNull(ingredientItem.getItemMeta());
+		ingredientMeta.setDisplayName(newText);
+		ingredientItem.setItemMeta(ingredientMeta);
+	}
 
-        return (AnvilInput) optional.get();
-    }
+	private void handleClick(PlatformView view) {
+		view.getPipeline().intercept(StandardPipelinePhases.CLICK, (pipeline, subject) -> {
+			if (!(subject instanceof IFSlotClickContext)) return;
 
-    private void updatePhysicalResult(String newText, ViewContainer container) {
-        final Inventory inventory = ((BukkitViewContainer) container).getInventory();
-        final ItemStack ingredientItem = requireNonNull(inventory.getItem(INGREDIENT_SLOT));
-        final ItemMeta ingredientMeta = requireNonNull(ingredientItem.getItemMeta());
-        ingredientMeta.setDisplayName(newText);
-        ingredientItem.setItemMeta(ingredientMeta);
-    }
+			final SlotClickContext context = (SlotClickContext) subject;
+			final AnvilInput anvilInput = getAnvilInput(context);
+			if (anvilInput == null) return;
 
-    private void handleClick(PlatformView view) {
-        view.getPipeline().intercept(StandardPipelinePhases.CLICK, (pipeline, subject) -> {
-            if (!(subject instanceof IFSlotClickContext)) return;
+			final int resultSlot = context.getContainer().getType().getResultSlots()[0];
+			if (context.getClickedSlot() != resultSlot) return;
 
-            final SlotClickContext context = (SlotClickContext) subject;
-            final AnvilInput anvilInput = getAnvilInput(context);
-            if (anvilInput == null) return;
+			final ItemStack resultItem = context.getItem();
+			if (resultItem == null || resultItem.getType() == Material.AIR) return;
 
-            final int resultSlot = context.getContainer().getType().getResultSlots()[0];
-            if (context.getClickedSlot() != resultSlot) return;
+			final ItemMeta resultMeta = requireNonNull(resultItem.getItemMeta());
+			final String text = resultMeta.getDisplayName();
+			final Inventory clickedInventory =
+				requireNonNull(context.getClickOrigin().getClickedInventory(), "Clicked inventory cannot be null");
+			final ItemStack ingredientItem = requireNonNull(clickedInventory.getItem(INGREDIENT_SLOT));
+			final ItemMeta ingredientMeta = requireNonNull(ingredientItem.getItemMeta());
+			ingredientMeta.setDisplayName(text);
+			context.updateState(anvilInput, text);
+			ingredientItem.setItemMeta(ingredientMeta);
 
-            final ItemStack resultItem = context.getItem();
-            if (resultItem == null || resultItem.getType() == Material.AIR) return;
+			if (config.closeOnSelect) {
+				context.closeForPlayer();
+			}
+		});
+	}
 
-            final ItemMeta resultMeta = requireNonNull(resultItem.getItemMeta());
-            final String text = resultMeta.getDisplayName();
-            final Inventory clickedInventory =
-                    requireNonNull(context.getClickOrigin().getClickedInventory(), "Clicked inventory cannot be null");
-            final ItemStack ingredientItem = requireNonNull(clickedInventory.getItem(INGREDIENT_SLOT));
-            final ItemMeta ingredientMeta = requireNonNull(ingredientItem.getItemMeta());
-            ingredientMeta.setDisplayName(text);
-            context.updateState(anvilInput, text);
-            ingredientItem.setItemMeta(ingredientMeta);
+	private void handleOpen(PlatformView view) {
+		view.getPipeline().intercept(StandardPipelinePhases.OPEN, (pipeline, subject) -> {
+			if (!(subject instanceof IFOpenContext)) return;
 
-            if (config.closeOnSelect) {
-                context.closeForPlayer();
-            }
-        });
-    }
+			final OpenContext context = (OpenContext) subject;
+			final AnvilInput anvilInput = getAnvilInput(context);
+			if (anvilInput == null) return;
 
-    private void handleOpen(PlatformView view) {
-        view.getPipeline().intercept(StandardPipelinePhases.OPEN, (pipeline, subject) -> {
-            if (!(subject instanceof IFOpenContext)) return;
+			// Forces internal state initialization
+			context.getInternalStateValue(anvilInput);
+			context.watchState(anvilInput.internalId(), new StateWatcher() {
+				@Override
+				public void stateRegistered(@NotNull State<?> state, Object caller) {
+				}
 
-            final OpenContext context = (OpenContext) subject;
-            final AnvilInput anvilInput = getAnvilInput(context);
-            if (anvilInput == null) return;
+				@Override
+				public void stateUnregistered(@NotNull State<?> state, Object caller) {
+				}
 
-            // Forces internal state initialization
-            context.getInternalStateValue(anvilInput);
-            context.watchState(anvilInput.internalId(), new StateWatcher() {
-                @Override
-                public void stateRegistered(@NotNull State<?> state, Object caller) {}
+				@Override
+				public void stateValueGet(
+					@NotNull State<?> state,
+					@NotNull StateValueHost host,
+					@NotNull StateValue internalValue,
+					Object rawValue) {
+				}
 
-                @Override
-                public void stateUnregistered(@NotNull State<?> state, Object caller) {}
+				@Override
+				public void stateValueSet(
+					@NotNull StateValueHost host,
+					@NotNull StateValue value,
+					Object rawOldValue,
+					Object rawNewValue) {
+					updatePhysicalResult((String) rawNewValue, ((IFRenderContext) host).getContainer());
+				}
+			});
 
-                @Override
-                public void stateValueGet(
-                        @NotNull State<?> state,
-                        @NotNull StateValueHost host,
-                        @NotNull StateValue internalValue,
-                        Object rawValue) {}
+			final String globalInitialInput = config.initialInput;
+			final String scopedInitialInput = anvilInput.get(context);
 
-                @Override
-                public void stateValueSet(
-                        @NotNull StateValueHost host,
-                        @NotNull StateValue value,
-                        Object rawOldValue,
-                        Object rawNewValue) {
-                    updatePhysicalResult((String) rawNewValue, ((IFRenderContext) host).getContainer());
-                }
-            });
+			final Inventory inventory = AnvilInputNMS.open(
+				context.getPlayer(),
+				context.getConfig().getTitle(),
+				scopedInitialInput.isEmpty() ? globalInitialInput : scopedInitialInput);
+			final ViewContainer container =
+				new BukkitViewContainer(inventory, context.isShared(), ViewType.ANVIL, true);
 
-            final String globalInitialInput = config.initialInput;
-            final String scopedInitialInput = anvilInput.get(context);
+			context.setContainer(container);
+		});
+	}
 
-            final Inventory inventory = AnvilInputNMS.open(
-                    context.getPlayer(),
-                    context.getConfig().getTitle(),
-                    scopedInitialInput.isEmpty() ? globalInitialInput : scopedInitialInput);
-            final ViewContainer container =
-                    new BukkitViewContainer(inventory, context.isShared(), ViewType.ANVIL, true);
+	private void handleClose(PlatformView view) {
+		view.getPipeline().intercept(StandardPipelinePhases.CLOSE, (pipeline, subject) -> {
+			if (!(subject instanceof IFCloseContext)) return;
 
-            context.setContainer(container);
-        });
-    }
+			final CloseContext context = (CloseContext) subject;
+			final AnvilInput anvilInput = getAnvilInput(context);
+			if (anvilInput == null) return;
 
-    private void handleClose(PlatformView view) {
-        view.getPipeline().intercept(StandardPipelinePhases.CLOSE, (pipeline, subject) -> {
-            if (!(subject instanceof IFCloseContext)) return;
+			final BukkitViewContainer container = (BukkitViewContainer) context.getContainer();
+			final int slot = container.getType().getResultSlots()[0];
+			final ItemStack item = container.getInventory().getItem(slot);
 
-            final CloseContext context = (CloseContext) subject;
-            final AnvilInput anvilInput = getAnvilInput(context);
-            if (anvilInput == null) return;
+			if (item == null || item.getType() == Material.AIR) return;
 
-            final BukkitViewContainer container = (BukkitViewContainer) context.getContainer();
-            final int slot = container.getType().getResultSlots()[0];
-            final ItemStack item = container.getInventory().getItem(slot);
-
-            if (item == null || item.getType() == Material.AIR) return;
-
-            final String input = requireNonNull(item.getItemMeta()).getDisplayName();
-            context.updateState(anvilInput, input);
-        });
-    }
+			final String input = requireNonNull(item.getItemMeta()).getDisplayName();
+			context.updateState(anvilInput, input);
+		});
+	}
 }

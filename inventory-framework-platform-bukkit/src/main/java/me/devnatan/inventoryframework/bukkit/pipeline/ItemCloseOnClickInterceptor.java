@@ -16,21 +16,21 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ItemCloseOnClickInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @Override
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
-        if (!(subject instanceof SlotClickContext)) return;
+	@Override
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
+		if (!(subject instanceof SlotClickContext)) return;
 
-        final SlotClickContext context = (SlotClickContext) subject;
-        final InventoryClickEvent event = context.getClickOrigin();
-        if (event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
+		final SlotClickContext context = (SlotClickContext) subject;
+		final InventoryClickEvent event = context.getClickOrigin();
+		if (event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
 
-        final Component component = context.getComponent();
-        if (!(component instanceof ItemComponent) || !component.isVisible()) return;
+		final Component component = context.getComponent();
+		if (!(component instanceof ItemComponent) || !component.isVisible()) return;
 
-        final ItemComponent item = (ItemComponent) component;
-        if (item.isCloseOnClick()) {
-            context.closeForPlayer();
-            pipeline.finish();
-        }
-    }
+		final ItemComponent item = (ItemComponent) component;
+		if (item.isCloseOnClick()) {
+			context.closeForPlayer();
+			pipeline.finish();
+		}
+	}
 }

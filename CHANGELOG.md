@@ -20,11 +20,13 @@
 
 # 3.0.7 (11-28-2023)
 
-* Solve issues with click handlers not working in pagination by calling component interaction handler in core interceptors (#542)
+* Solve issues with click handlers not working in pagination by calling component interaction handler in core
+  interceptors (#542)
 
 # 3.0.6 (11-27-2023)
 
-* New `createEndlessContext` and `openEndless` to create shared views with multiple players that are never invalidated (#538)
+* New `createEndlessContext` and `openEndless` to create shared views with multiple players that are never invalidated (
+  #538)
 * Re-propagate click interaction in pagination child - now `cancelOnClick()` works correctly in pagination items (#539)
 * Some components disappearing on global context update (#541)
 
@@ -32,7 +34,8 @@
 
 * Experimental `onViewerAdded` and `onViewerRemoved` to manage viewers in shared contexts (#516)
 * New `openActive(...)` to allow players "join" an already created context (#516)
-* Now ComponentBuilder's `closeOnClick()` closes only for the player who clicked, not for everyone in Shared Context (#516)
+* Now ComponentBuilder's `closeOnClick()` closes only for the player who clicked, not for everyone in Shared Context (
+  #516)
 * `type(ViewType.ANVIL)` is now automatically set when Anvil Input feature is applied (#523)
 * Do not fill all available slots when availableSlot() is used (#533)
 * Fix "Pagination state can only be registered by RootView" (#536)
@@ -42,7 +45,8 @@
 * Scheduled update now checks if a context is active before updating it (#517)
 * Now Anvil Input feature ingredient display name is updated when state value changes (#494)
 * Modify ComponentBuilder's `updateOnStateChange` to prohibit no-parameter usage (#520)
-* Components now use unified update mechanism in `show()` and `hide()` to ensure consistency and behavior in relation to other components (#491)
+* Components now use unified update mechanism in `show()` and `hide()` to ensure consistency and behavior in relation to
+  other components (#491)
 
 # 3.0.3 (11-19-2023)
 
@@ -60,9 +64,11 @@
 
 # 3.0.1 (10-04-2023)
 
-* Lock child interactions while pagination page is changing to prevent items be removed while asynchronous pagination is reloading (#488)
+* Lock child interactions while pagination page is changing to prevent items be removed while asynchronous pagination is
+  reloading (#488)
 * Option to enable data transitivity from one view to another automatically (#493)
-* Remove multiple layoutSlot with same character restriction, now multiple `layoutSlot` with the same character can be used (#489)
+* Remove multiple layoutSlot with same character restriction, now multiple `layoutSlot` with the same character can be
+  used (#489)
 
 # 3.0.0 (09-21-2023)
 
@@ -78,7 +84,8 @@
 
 # 3.0.0-rc.3 (09-13-2023)
 
-Please see [release notes](https://github.com/DevNatan/inventory-framework/releases/tag/v3.0.0-rc.3) to detailed changelog.
+Please see [release notes](https://github.com/DevNatan/inventory-framework/releases/tag/v3.0.0-rc.3) to detailed
+changelog.
 
 # 3.0.0-rc.2 (08-15-2023)
 
@@ -90,8 +97,11 @@ Please see [release notes](https://github.com/DevNatan/inventory-framework/relea
 * Internal state and component management related methods were marked as Internal API
 * Project module names changed now every module has "inventory-framework-" prefix
 * Removed kotlin-dsl and feature-event-bus modules
-* [Pagination on Wiki](https://github.com/DevNatan/inventory-framework/wiki/Pagination) had its structure reformulated to simplify the reading, go more straight to the point, add some missing topics to explain better about pagination with data source and dynamic items
-* Page "Inventory Title Programmatic Update" on Wiki reworked and renamed to [Dynamic Title Update](https://github.com/DevNatan/inventory-framework/wiki/dynamic-title-update)
+* [Pagination on Wiki](https://github.com/DevNatan/inventory-framework/wiki/Pagination) had its structure reformulated
+  to simplify the reading, go more straight to the point, add some missing topics to explain better about pagination
+  with data source and dynamic items
+* Page "Inventory Title Programmatic Update" on Wiki reworked and renamed
+  to [Dynamic Title Update](https://github.com/DevNatan/inventory-framework/wiki/dynamic-title-update)
 
 # 3.0.0-rc.1 (08-07-2023)
 
@@ -122,7 +132,9 @@ Please see [release notes](https://github.com/DevNatan/inventory-framework/relea
 
 # 3.0.0-EAP (06-07-2023)
 
-Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inventory-framework/wiki/Migrating-to-version-3) for migration details.
+Please refer
+to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inventory-framework/wiki/Migrating-to-version-3) for
+migration details.
 
 # 2.5.4-rc.1 (10-09-2022)
 
@@ -145,6 +157,7 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Provide unique element index for pagination (#239)
 
 # 2.5.4-beta (23-09-2022)
+
 * Auto slot fill and layout can now be used on regular views and paginated views (#174)
 * Updated Gradle to v7.5.1 (#189)
 * Remove nextTick from view open, close and updateSlot call (#193)
@@ -166,9 +179,10 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Slot conversion fix (#208)
 * Allow slot clear on update (#209)
 * Custom UnknownReferenceException and nullable ref (#210)
-* Instantiate entity container properly, fixes `isOnEntityContainer` checks (#211) 
+* Instantiate entity container properly, fixes `isOnEntityContainer` checks (#211)
 
 # 2.5.3
+
 * Fix scheduled updates (#175)
 * UnsupportedOperationException when use getPlayer in PaginatedViewSlotContext (#183)
 * Skip layout render if signature is not checked (#185)
@@ -181,6 +195,7 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Update bug report issue template (#171)
 
 # 2.5.2
+
 * Nested view open by context ClassCastException (#164)
 * Lately fetch update job initiator (#163)
 * Context update implementation (#162)
@@ -190,6 +205,7 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Create generate artifacts workflow (#165)
 
 # 2.5.1
+
 * Click handler doesn't work in onItemRender. Thanks to @Azodox (#142)
 * Random NPE when closing inventory by. Thanks to @azodox (#141)
 * ConcurrentModificationException in while opening view (#144)
@@ -197,6 +213,7 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Handle close if mark is applied or item is close on click (#148)
 
 # 2.5.1-rc.2
+
 * Fix container size normalization (#133)
 * Transfer open context data to regular context (#134)
 * Enable bStats metrics on library level (#136)
@@ -206,16 +223,20 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Update kotlin to v1.7.10 (#130)
 
 # 2.5.1-rc.1
+
 * Added support for more inventory types ([#58](https://github.com/DevNatan/inventory-framework/issues/58))
 * Lazy pagination source ([#72](https://github.com/DevNatan/inventory-framework/issues/72))
 * Item References ([#80](https://github.com/DevNatan/inventory-framework/issues/80))
-* Internal codebase rewrite with a new pipeline and feature system ([#89](https://github.com/DevNatan/inventory-framework/pull/89))
+* Internal codebase rewrite with a new pipeline and feature
+  system ([#89](https://github.com/DevNatan/inventory-framework/pull/89))
 * ~~Kotlin DSL ([#90](https://github.com/DevNatan/inventory-framework/pull/90))~~
 * Fixed the order of interceptors calls
 * Prohibit pagination item rendering function use ([#104](https://github.com/DevNatan/inventory-framework/pull/104))
-* Fixed a bug where when the paginated view was updated with empty source the items from the previous pagination were not cleared
+* Fixed a bug where when the paginated view was updated with empty source the items from the previous pagination were
+  not cleared
 * Fixed view update job error ([#106](https://github.com/DevNatan/inventory-framework/issues/106))
-* Fixed error that causes context to be cleared randomly by the Garbage Collector ([#107](https://github.com/DevNatan/inventory-framework/issues/107))
+* Fixed error that causes context to be cleared randomly by the Garbage
+  Collector ([#107](https://github.com/DevNatan/inventory-framework/issues/107))
 * Slot context item patch ([#112](https://github.com/DevNatan/inventory-framework/issues/112))
 * Now the item from a slot context can be accessed
 * More fluent ViewFrame API with chain accessors
@@ -236,6 +257,7 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Allow user defined layout in context scope
 
 # 2.5
+
 * Inheritable context data (#65)
 * User-defined paginated view layout pattern (#70)
 * Custom "on click outside" inventory handler (#55)
@@ -245,39 +267,44 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * Replaced `BLAZE_ROW` to `BLAZE_ROD` in readme (thanks to @mattnicee7) (#75)
 
 # 2.4.3
+
 * New `onHotbarInteract(...)` to handle hotbar button interactions;
 * Documentation explaining how view options work ([#66][p66]);
 * Allow transitive data context while transitioning to another view ([#48][i48]);
 * Error handling now works on the initial `onRender` ([#51][i51]);
 * Error handling now works on `onOpen` ([#51][i51]);
-* It's now allowed to cancel the initial render handler context, causing the inventory to not be displayed to the player ([#60][p60]);
+* It's now allowed to cancel the initial render handler context, causing the inventory to not be displayed to the
+  player ([#60][p60]);
 * An exception is thrown when trying to manipulate inventory before opening it ([#63][p63]);
 * New PaginatedView(rows) constructor ([#49][i49]);
 * Possibility to get the pagination source from ViewContext ([#62][p62]);
 * Allow getting current title from context inventory ([#56][p56]);
 
 # 2.4.2
+
 * Previous and next page items aren't displayed if item slot is manually defined ([#44][i44])
 * Add Jetbrains annotations as transitive dependency ([#45][i45])
 * Error handler is not working in paginated inventory ([#41][i41])
 
 # 2.4.1
+
 * Error Handling prototype.
 * No longer possible to use shift-click to move items from the player's inventory to the view's
   inventory that has `cancelOnClick` or `cancelOnShiftClick` enabled.
 * Fixed bug where `closeOnOutsideClick` closed the View for all its contexts not just for the player.
-* Fixed clicks being cancelled in player inventory if view is marked to cancel on click even 
+* Fixed clicks being cancelled in player inventory if view is marked to cancel on click even
   player is not clicking in the view inventory.
 * Now `closeOnOutsideClick` View option are enabled by default.
 * Build project on JDK 8 (thanks to @luiz-otavio [#40][i40])
 
 # 2.4.0
-* ~~Detect the movement of an item from the player's inventory to their View using `onMoveIn` 
+
+* ~~Detect the movement of an item from the player's inventory to their View using `onMoveIn`
   feature preview.~~ (postponed to 2.5)
 * Some public methods from VirtualView and View become internal, and fast path methods (to ItemStack)
   from VirtualView becomes `@Deprecated` and will be removed soon.
 * Allow PaginatedView layout removal by specifying null on `setLayout`.
-* Moved `ReflectionUtils` to a different package to prevent conflicts with other 
+* Moved `ReflectionUtils` to a different package to prevent conflicts with other
   libraries/plugins (thanks to @GeorgeV220 ([#31][i31]).
 * Slot conversion to near-limited row was fixed ([#32][i32]).
 * Introduced a more intuitive way to schedule view updates with`scheduleUpdate`, `ScheduledView` is
@@ -289,33 +316,54 @@ Please refer to [Migrating to version 3 on Wiki](https://github.com/DevNatan/inv
 * An exception will be thrown when an inventory tries to be modified in the `onOpen` View handler.
 
 # 2.3.2
+
 * Dynamic title update (`ViewContext#updateTitle`) support on 1.17 and 1.18 ([#25][p25]).
 * Expose `VirtualView.toSlot` to convert slot numbers.
 * Some contexts came with null click origin ([#27][p27]).
 * Now an exception is thrown when a View is registered multiple times.
 * `onItemRelease` now works with PaginatedView ([#26][p26]).
-* Some methods of the ViewFrame class have been marked ***@Deprecated*** as they will be removed in the near future and should not be used.
+* Some methods of the ViewFrame class have been marked ***@Deprecated*** as they will be removed in the near future and
+  should not be used.
 
 # 2.3.1
+
 * Assign deprecated annotation in View#getRows for dynamic views([#19][p19])
 * View auto update and Spigot 1.16.5 API support ([#18][p18])
 
 [p18]: https://github.com/DevNatan/inventory-framework/pull/18
+
 [p19]: https://github.com/DevNatan/inventory-framework/pull/19
+
 [p25]: https://github.com/DevNatan/inventory-framework/pull/25
+
 [p26]: https://github.com/DevNatan/inventory-framework/pull/26
+
 [p27]: https://github.com/DevNatan/inventory-framework/pull/27
+
 [p56]: https://github.com/DevNatan/inventory-framework/pull/56
+
 [p60]: https://github.com/DevNatan/inventory-framework/pull/60
+
 [p62]: https://github.com/DevNatan/inventory-framework/pull/62
+
 [p63]: https://github.com/DevNatan/inventory-framework/pull/63
+
 [p66]: https://github.com/DevNatan/inventory-framework/pull/66
+
 [i31]: https://github.com/DevNatan/inventory-framework/issues/31
+
 [i32]: https://github.com/DevNatan/inventory-framework/issues/32
+
 [i40]: https://github.com/DevNatan/inventory-framework/issues/40
+
 [i41]: https://github.com/DevNatan/inventory-framework/issues/41
+
 [i44]: https://github.com/DevNatan/inventory-framework/issues/44
+
 [i45]: https://github.com/DevNatan/inventory-framework/issues/45
+
 [i48]: https://github.com/DevNatan/inventory-framework/issues/48
+
 [i49]: https://github.com/DevNatan/inventory-framework/issues/49
+
 [i51]: https://github.com/DevNatan/inventory-framework/issues/51

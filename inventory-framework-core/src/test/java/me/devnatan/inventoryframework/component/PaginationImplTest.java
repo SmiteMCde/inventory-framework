@@ -14,46 +14,46 @@ import static org.mockito.Mockito.*;
 
 public class PaginationImplTest {
 
-    @Test
-    @Disabled("This test is not working as expected, because it is passed to parent")
-    void callAnyChildInteractionHandlerOnClickInteraction() {
-        PaginationImpl pagination = mock(PaginationImpl.class);
-        doCallRealMethod().when(pagination).clicked(any(), any());
+	@Test
+	@Disabled("This test is not working as expected, because it is passed to parent")
+	void callAnyChildInteractionHandlerOnClickInteraction() {
+		PaginationImpl pagination = mock(PaginationImpl.class);
+		doCallRealMethod().when(pagination).clicked(any(), any());
 
-        Component child = mock(Component.class);
-        InteractionHandler interactionHandler = mock(InteractionHandler.class);
-        when(child.getInteractionHandler()).thenReturn(interactionHandler);
-        when(child.isContainedWithin(0)).thenReturn(true);
-        when(pagination.getInternalComponents()).thenReturn(Collections.singletonList(child));
+		Component child = mock(Component.class);
+		InteractionHandler interactionHandler = mock(InteractionHandler.class);
+		when(child.getInteractionHandler()).thenReturn(interactionHandler);
+		when(child.isContainedWithin(0)).thenReturn(true);
+		when(pagination.getInternalComponents()).thenReturn(Collections.singletonList(child));
 
-        IFSlotClickContext clickContext = mock(IFSlotClickContext.class);
-        when(clickContext.getClickedSlot()).thenReturn(0);
-        pagination.clicked(pagination, clickContext);
-        verify(interactionHandler, atLeastOnce()).clicked(pagination, clickContext);
-    }
+		IFSlotClickContext clickContext = mock(IFSlotClickContext.class);
+		when(clickContext.getClickedSlot()).thenReturn(0);
+		pagination.clicked(pagination, clickContext);
+		verify(interactionHandler, atLeastOnce()).clicked(pagination, clickContext);
+	}
 
-    @Test
-    @Disabled("This test is not working as expected, because it is passed to parent")
-    void callCorrectChildInteractionHandlerOnClickInteraction() {
-        PaginationImpl pagination = mock(PaginationImpl.class);
-        doCallRealMethod().when(pagination).clicked(any(), any());
+	@Test
+	@Disabled("This test is not working as expected, because it is passed to parent")
+	void callCorrectChildInteractionHandlerOnClickInteraction() {
+		PaginationImpl pagination = mock(PaginationImpl.class);
+		doCallRealMethod().when(pagination).clicked(any(), any());
 
-        InteractionHandler child0InteractionHandler = mock(InteractionHandler.class);
-        Component childAt0 = mock(Component.class);
-        when(childAt0.isContainedWithin(0)).thenReturn(true);
-        when(childAt0.isContainedWithin(1)).thenReturn(false);
-        when(childAt0.getInteractionHandler()).thenReturn(child0InteractionHandler);
+		InteractionHandler child0InteractionHandler = mock(InteractionHandler.class);
+		Component childAt0 = mock(Component.class);
+		when(childAt0.isContainedWithin(0)).thenReturn(true);
+		when(childAt0.isContainedWithin(1)).thenReturn(false);
+		when(childAt0.getInteractionHandler()).thenReturn(child0InteractionHandler);
 
-        InteractionHandler child1InteractionHandler = mock(InteractionHandler.class);
-        Component childAt1 = mock(Component.class);
-        when(childAt1.isContainedWithin(0)).thenReturn(false);
-        when(childAt1.isContainedWithin(1)).thenReturn(true);
-        when(childAt1.getInteractionHandler()).thenReturn(child1InteractionHandler);
+		InteractionHandler child1InteractionHandler = mock(InteractionHandler.class);
+		Component childAt1 = mock(Component.class);
+		when(childAt1.isContainedWithin(0)).thenReturn(false);
+		when(childAt1.isContainedWithin(1)).thenReturn(true);
+		when(childAt1.getInteractionHandler()).thenReturn(child1InteractionHandler);
 
-        IFSlotClickContext clickContext = mock(IFSlotClickContext.class);
-        when(clickContext.getClickedSlot()).thenReturn(0);
-        pagination.clicked(pagination, clickContext);
-        verify(child0InteractionHandler, times(1)).clicked(pagination, clickContext);
-        verify(child1InteractionHandler, never()).clicked(pagination, clickContext);
-    }
+		IFSlotClickContext clickContext = mock(IFSlotClickContext.class);
+		when(clickContext.getClickedSlot()).thenReturn(0);
+		pagination.clicked(pagination, clickContext);
+		verify(child0InteractionHandler, times(1)).clicked(pagination, clickContext);
+		verify(child1InteractionHandler, never()).clicked(pagination, clickContext);
+	}
 }

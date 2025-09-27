@@ -93,15 +93,15 @@ class MinestomViewer(
 
     override fun toString(): String =
         (
-            "BukkitViewer{" +
-                "player=" +
-                player +
-                ", selfContainer=" +
-                selfContainer +
-                ", lastInteractionInMillis=" +
-                lastInteractionInMillis +
-                ", isSwitching=" +
-                switching +
-                "}"
-        )
+                "BukkitViewer{" +
+                        "player=" +
+                        player +
+                        ", selfContainer=" +
+                        selfContainer +
+                        ", lastInteractionInMillis=" +
+                        lastInteractionInMillis +
+                        ", isSwitching=" +
+                        switching +
+                        "}"
+                )
 }

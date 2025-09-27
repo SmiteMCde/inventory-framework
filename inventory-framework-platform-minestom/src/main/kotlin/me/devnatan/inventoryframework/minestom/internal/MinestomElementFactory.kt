@@ -37,10 +37,10 @@ class MinestomElementFactory : ElementFactory() {
         require(!(size != 0 && !finalType.isExtendable())) {
             String.format(
                 (
-                    "Only \"%s\" type can have a custom size," +
-                        " \"%s\" always have a size of %d. Remove the parameter that specifies the size" +
-                        " of the container on %s or just set the type explicitly."
-                ),
+                        "Only \"%s\" type can have a custom size," +
+                                " \"%s\" always have a size of %d. Remove the parameter that specifies the size" +
+                                " of the container on %s or just set the type explicitly."
+                        ),
                 ViewType.CHEST.getIdentifier(),
                 finalType.getIdentifier(),
                 finalType.getMaxSize(),
@@ -61,6 +61,7 @@ class MinestomElementFactory : ElementFactory() {
                         else -> InventoryType.CHEST_6_ROW
                     }
                 }
+
                 ViewType.BEACON -> InventoryType.BEACON
                 ViewType.HOPPER -> InventoryType.HOPPER
                 ViewType.SMOKER -> InventoryType.SMOKER
@@ -82,6 +83,7 @@ class MinestomElementFactory : ElementFactory() {
                     null ->
                         net.kyori.adventure.text.Component
                             .empty()
+
                     else -> text(title.toString())
                 },
             )
@@ -153,9 +155,11 @@ class MinestomElementFactory : ElementFactory() {
         viewer: Viewer?,
     ): IFSlotRenderContext = SlotRenderContext(slot, parent, viewer)
 
-    override fun createCloseContext(viewer: Viewer, parent: IFRenderContext, origin: Any): IFCloseContext = CloseContext(viewer, parent,origin as InventoryCloseEvent)
+    override fun createCloseContext(viewer: Viewer, parent: IFRenderContext, origin: Any): IFCloseContext =
+        CloseContext(viewer, parent, origin as InventoryCloseEvent)
 
-    override fun createComponentBuilder(root: VirtualView): ComponentBuilder<*, Context> = MinestomItemComponentBuilder(root)
+    override fun createComponentBuilder(root: VirtualView): ComponentBuilder<*, Context> =
+        MinestomItemComponentBuilder(root)
 
     override fun worksInCurrentPlatform(): Boolean = true
 

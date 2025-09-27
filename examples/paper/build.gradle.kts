@@ -1,4 +1,3 @@
-
 plugins {
     id("me.devnatan.inventoryframework.library")
     alias(libs.plugins.shadowjar)

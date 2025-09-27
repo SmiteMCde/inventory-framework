@@ -9,32 +9,32 @@ import org.jetbrains.annotations.ApiStatus;
 @ApiStatus.Internal
 public abstract class AbstractStateValue implements StateValue {
 
-    private final State<?> state;
+	private final State<?> state;
 
-    protected AbstractStateValue(State<?> state) {
-        this.state = state;
-    }
+	protected AbstractStateValue(State<?> state) {
+		this.state = state;
+	}
 
-    @Override
-    public final State<?> getState() {
-        return state;
-    }
+	@Override
+	public final State<?> getState() {
+		return state;
+	}
 
-    @Override
-    public final long getId() {
-        return getState().internalId();
-    }
+	@Override
+	public final long getId() {
+		return getState().internalId();
+	}
 
-    @Override
-    public abstract Object get();
+	@Override
+	public abstract Object get();
 
-    @Override
-    public void set(Object value) {
-        throw new IllegalStateModificationException("Immutable");
-    }
+	@Override
+	public void set(Object value) {
+		throw new IllegalStateModificationException("Immutable");
+	}
 
-    @Override
-    public String toString() {
-        return "AbstractStateValue{" + "state=" + state + '}';
-    }
+	@Override
+	public String toString() {
+		return "AbstractStateValue{" + "state=" + state + '}';
+	}
 }

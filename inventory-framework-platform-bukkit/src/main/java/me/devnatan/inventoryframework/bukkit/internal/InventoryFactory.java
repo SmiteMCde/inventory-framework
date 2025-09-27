@@ -7,32 +7,33 @@ import org.bukkit.inventory.InventoryHolder;
 
 abstract class InventoryFactory {
 
-    protected static InventoryFactory instance;
+	protected static InventoryFactory instance;
 
-    public static InventoryFactory current() {
-        if (instance == null) instance = forCurrentPlatform();
-        return instance;
-    }
+	public static InventoryFactory current() {
+		if (instance == null) instance = forCurrentPlatform();
+		return instance;
+	}
 
-    private static InventoryFactory forCurrentPlatform() {
-        String paperINFQName = "me.devnatan.inventoryframework.paper.internal.PaperInventoryFactory";
-        InventoryFactory factory = new BukkitInventoryFactory();
-        try {
-            final Class<?> clazz = Class.forName(paperINFQName);
-            factory = (InventoryFactory) clazz.newInstance();
-        } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException ignored) {
-        }
+	private static InventoryFactory forCurrentPlatform() {
+		String paperINFQName = "me.devnatan.inventoryframework.paper.internal.PaperInventoryFactory";
+		InventoryFactory factory = new BukkitInventoryFactory();
+		try {
+			final Class<?> clazz = Class.forName(paperINFQName);
+			factory = (InventoryFactory) clazz.newInstance();
+		} catch (final ClassNotFoundException | InstantiationException |
+					   IllegalAccessException ignored) {
+		}
 
-        try {
-            Class.forName("com.destroystokyo.paper.ParticleBuilder");
-        } catch (final ClassNotFoundException ignored) {
-            if (factory.getClass().getName().equals(paperINFQName))
-                throw new RuntimeException("inventory-framework-paper is loaded but current platform is not Paper.");
-        }
+		try {
+			Class.forName("com.destroystokyo.paper.ParticleBuilder");
+		} catch (final ClassNotFoundException ignored) {
+			if (factory.getClass().getName().equals(paperINFQName))
+				throw new RuntimeException("inventory-framework-paper is loaded but current platform is not Paper.");
+		}
 
-        IFDebug.debug("Using %s", factory.getClass().getName());
-        return factory;
-    }
+		IFDebug.debug("Using %s", factory.getClass().getName());
+		return factory;
+	}
 
-    public abstract Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title);
+	public abstract Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title);
 }

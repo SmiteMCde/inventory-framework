@@ -13,14 +13,14 @@ import java.util.List;
  */
 public final class UpdateInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @Override
-    public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
-        if (!(subject instanceof IFRenderContext)) return;
+	@Override
+	public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
+		if (!(subject instanceof IFRenderContext)) return;
 
-        final IFRenderContext context = (IFRenderContext) subject;
-        if (!context.isRendered()) return;
+		final IFRenderContext context = (IFRenderContext) subject;
+		if (!context.isRendered()) return;
 
-        final List<Component> componentList = context.getComponents();
-        for (final Component component : componentList) context.updateComponent(component, false);
-    }
+		final List<Component> componentList = context.getComponents();
+		for (final Component component : componentList) context.updateComponent(component, false);
+	}
 }

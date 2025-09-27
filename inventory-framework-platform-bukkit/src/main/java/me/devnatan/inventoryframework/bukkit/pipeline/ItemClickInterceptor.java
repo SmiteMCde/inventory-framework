@@ -15,22 +15,22 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ItemClickInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @Override
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
-        if (!(subject instanceof SlotClickContext)) return;
+	@Override
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
+		if (!(subject instanceof SlotClickContext)) return;
 
-        final SlotClickContext context = (SlotClickContext) subject;
-        final InventoryClickEvent event = context.getClickOrigin();
-        if (event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
+		final SlotClickContext context = (SlotClickContext) subject;
+		final InventoryClickEvent event = context.getClickOrigin();
+		if (event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
 
-        final Component component = context.getComponent();
-        if (component == null) return;
+		final Component component = context.getComponent();
+		if (component == null) return;
 
-        if (component instanceof ItemComponent) {
-            final ItemComponent item = (ItemComponent) component;
+		if (component instanceof ItemComponent) {
+			final ItemComponent item = (ItemComponent) component;
 
-            // inherit cancellation so we can un-cancel it
-            context.setCancelled(item.isCancelOnClick());
-        }
-    }
+			// inherit cancellation so we can un-cancel it
+			context.setCancelled(item.isCancelOnClick());
+		}
+	}
 }

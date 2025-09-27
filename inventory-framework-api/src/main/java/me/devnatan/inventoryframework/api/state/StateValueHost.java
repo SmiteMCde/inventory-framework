@@ -11,63 +11,63 @@ import java.util.Map;
  */
 public interface StateValueHost {
 
-    /**
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     */
-    @UnmodifiableView
-    Map<Long, StateValue> getStateValues();
+	/**
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 */
+	@UnmodifiableView
+	Map<Long, StateValue> getStateValues();
 
-    /**
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     */
-    @ApiStatus.Internal
-    StateValue getUninitializedStateValue(long stateId);
+	/**
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 */
+	@ApiStatus.Internal
+	StateValue getUninitializedStateValue(long stateId);
 
-    /**
-     * Returns the internal value of a state.
-     *
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     *
-     * @param state The target state.
-     * @return Raw value from the state with the specified id.
-     */
-    @ApiStatus.Internal
-    Object getRawStateValue(State<?> state);
+	/**
+	 * Returns the internal value of a state.
+	 *
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 *
+	 * @param state The target state.
+	 * @return Raw value from the state with the specified id.
+	 */
+	@ApiStatus.Internal
+	Object getRawStateValue(State<?> state);
 
-    /**
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     */
-    @ApiStatus.Internal
-    StateValue getInternalStateValue(State<?> state);
+	/**
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 */
+	@ApiStatus.Internal
+	StateValue getInternalStateValue(State<?> state);
 
-    /**
-     * Initializes the value of a state in this value host.
-     *
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     *
-     * @param id    The state id.
-     * @param value The initial state value.
-     */
-    @ApiStatus.Internal
-    void initializeState(long id, @NotNull StateValue value);
+	/**
+	 * Initializes the value of a state in this value host.
+	 *
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 *
+	 * @param id    The state id.
+	 * @param value The initial state value.
+	 */
+	@ApiStatus.Internal
+	void initializeState(long id, @NotNull StateValue value);
 
-    /**
-     * Updates the value of an initialized state in this value host.
-     *
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     *
-     * @param state The target state to update.
-     * @param value The new state value.
-     */
-    @ApiStatus.Internal
-    void updateState(State<?> state, Object value);
+	/**
+	 * Updates the value of an initialized state in this value host.
+	 *
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 *
+	 * @param state The target state to update.
+	 * @param value The new state value.
+	 */
+	@ApiStatus.Internal
+	void updateState(State<?> state, Object value);
 
-    @ApiStatus.Internal
-    void watchState(long id, StateWatcher listener);
+	@ApiStatus.Internal
+	void watchState(long id, StateWatcher listener);
 }

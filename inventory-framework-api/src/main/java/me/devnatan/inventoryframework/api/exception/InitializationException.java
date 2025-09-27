@@ -7,7 +7,7 @@ package me.devnatan.inventoryframework.api.exception;
  */
 public class InitializationException extends InventoryFrameworkException {
 
-    public InitializationException() {
-        super("This function cannot be called after initialization.", null);
-    }
+	public InitializationException() {
+		super("This function cannot be called after initialization.", null);
+	}
 }

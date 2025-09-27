@@ -20,122 +20,138 @@ import static org.mockito.Mockito.mock;
 
 public class MockRenderIFContext extends AbstractIFContext implements IFRenderContext {
 
-    private final RootView root;
+	private final RootView root;
 
-    public MockRenderIFContext(RootView root) {
-        this.root = root;
-    }
+	public MockRenderIFContext(RootView root) {
+		this.root = root;
+	}
 
-    @Override
-    public @UnmodifiableView List<ComponentFactory> getComponentFactories() {
-        return new ArrayList<>();
-    }
+	@Override
+	public @UnmodifiableView List<ComponentFactory> getComponentFactories() {
+		return new ArrayList<>();
+	}
 
-    @Override
-    public List<LayoutSlot> getLayoutSlots() {
-        return new ArrayList<>();
-    }
+	@Override
+	public List<LayoutSlot> getLayoutSlots() {
+		return new ArrayList<>();
+	}
 
-    @Override
-    public void addLayoutSlot(@NotNull LayoutSlot layoutSlot) {}
+	@Override
+	public void addLayoutSlot(@NotNull LayoutSlot layoutSlot) {
+	}
 
-    @Override
-    public List<BiFunction<Integer, Integer, ComponentFactory>> getAvailableSlotFactories() {
-        return new ArrayList<>();
-    }
+	@Override
+	public List<BiFunction<Integer, Integer, ComponentFactory>> getAvailableSlotFactories() {
+		return new ArrayList<>();
+	}
 
-    @Override
-    public @NotNull ViewContainer getContainer() {
-        return mock(ViewContainer.class);
-    }
+	@Override
+	public @NotNull ViewContainer getContainer() {
+		return mock(ViewContainer.class);
+	}
 
-    @Override
-    public boolean isRendered() {
-        return false;
-    }
+	@Override
+	public boolean isRendered() {
+		return false;
+	}
 
-    @Override
-    public Viewer getViewer() {
-        return mock(Viewer.class);
-    }
+	@Override
+	public Viewer getViewer() {
+		return mock(Viewer.class);
+	}
 
-    @Override
-    public void closeForPlayer() {}
+	@Override
+	public void closeForPlayer() {
+	}
 
-    @Override
-    public void openForPlayer(@NotNull Class<? extends RootView> other) {}
+	@Override
+	public void openForPlayer(@NotNull Class<? extends RootView> other) {
+	}
 
-    @Override
-    public void openForPlayer(@NotNull Class<? extends RootView> other, Object initialData) {}
+	@Override
+	public void openForPlayer(@NotNull Class<? extends RootView> other, Object initialData) {
+	}
 
-    @Override
-    public void updateTitleForPlayer(@NotNull String title) {}
+	@Override
+	public void updateTitleForPlayer(@NotNull String title) {
+	}
 
-    @Override
-    public void resetTitleForPlayer() {}
+	@Override
+	public void resetTitleForPlayer() {
+	}
 
-    @Override
-    public void back() {}
+	@Override
+	public void back() {
+	}
 
-    @Override
-    public void back(Object initialData) {}
+	@Override
+	public void back(Object initialData) {
+	}
 
-    @Override
-    public boolean canBack() {
-        return false;
-    }
+	@Override
+	public boolean canBack() {
+		return false;
+	}
 
-    @Override
-    public @NotNull UUID getId() {
-        return new UUID(3, 4);
-    }
+	@Override
+	public @NotNull UUID getId() {
+		return new UUID(3, 4);
+	}
 
-    @Override
-    public @NotNull ViewConfig getConfig() {
-        return mock(ViewConfig.class);
-    }
+	@Override
+	public @NotNull ViewConfig getConfig() {
+		return mock(ViewConfig.class);
+	}
 
-    @Override
-    public @NotNull RootView getRoot() {
-        return root;
-    }
+	@Override
+	public @NotNull RootView getRoot() {
+		return root;
+	}
 
-    @Override
-    public Object getInitialData() {
-        return null;
-    }
+	@Override
+	public Object getInitialData() {
+		return null;
+	}
 
-    @Override
-    public void setInitialData(Object initialData) {}
+	@Override
+	public void setInitialData(Object initialData) {
+	}
 
-    @Override
-    public void updateTitleForEveryone(@NotNull String title) {}
+	@Override
+	public void updateTitleForEveryone(@NotNull String title) {
+	}
 
-    @Override
-    public void resetTitleForEveryone() {}
+	@Override
+	public void resetTitleForEveryone() {
+	}
 
-    @Override
-    public void closeForEveryone() {}
+	@Override
+	public void closeForEveryone() {
+	}
 
-    @Override
-    public void openForEveryone(@NotNull Class<? extends RootView> other) {}
+	@Override
+	public void openForEveryone(@NotNull Class<? extends RootView> other) {
+	}
 
-    @Override
-    public void openForEveryone(@NotNull Class<? extends RootView> other, Object initialData) {}
+	@Override
+	public void openForEveryone(@NotNull Class<? extends RootView> other, Object initialData) {
+	}
 
-    @Override
-    public boolean isActive() {
-        return false;
-    }
+	@Override
+	public boolean isActive() {
+		return false;
+	}
 
-    @Override
-    public void setActive(boolean active) {}
+	@Override
+	public void setActive(boolean active) {
+	}
 
-    @Override
-    public boolean isEndless() {
-        return false;
-    }
+	@Override
+	public boolean isEndless() {
+		return false;
+	}
 
-    @Override
-    public void setEndless(boolean endless) {}
+	@Override
+	public void setEndless(boolean endless) {
+	}
 }

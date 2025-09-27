@@ -220,7 +220,8 @@ class ViewFrame private constructor(
      * *** This is an internal inventory-framework API that should not be used from outside of this
      * library. No compatibility guarantees are provided. ***
      */
-    @ApiStatus.Internal fun getViewer(player: Player): Viewer? = viewerById[player.uuid.toString()]
+    @ApiStatus.Internal
+    fun getViewer(player: Player): Viewer? = viewerById[player.uuid.toString()]
 
     /**
      * Installs a feature.

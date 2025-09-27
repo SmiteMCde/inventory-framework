@@ -17,22 +17,24 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 final class PaperInventoryFactory extends BukkitInventoryFactory {
 
-    PaperInventoryFactory() {}
+	PaperInventoryFactory() {
+	}
 
-    @Override
-    public Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title) {
-        if (!(title instanceof Component titleAsComponent)) return super.createInventory(holder, type, size, title);
-        final Inventory inventory;
+	@Override
+	public Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title) {
+		if (!(title instanceof Component titleAsComponent))
+			return super.createInventory(holder, type, size, title);
+		final Inventory inventory;
 
 		if (!type.isExtendable()) {
-            inventory = Bukkit.createInventory(
-                    holder, requireNonNull(InventoryUtils.toInventoryType(type)), titleAsComponent);
-        } else {
-            inventory = size == 0
-                    ? Bukkit.createInventory(
-                            holder, requireNonNull(InventoryUtils.toInventoryType(type)), titleAsComponent)
-                    : Bukkit.createInventory(holder, size, titleAsComponent);
-        }
-        return inventory;
-    }
+			inventory = Bukkit.createInventory(
+				holder, requireNonNull(InventoryUtils.toInventoryType(type)), titleAsComponent);
+		} else {
+			inventory = size == 0
+				? Bukkit.createInventory(
+				holder, requireNonNull(InventoryUtils.toInventoryType(type)), titleAsComponent)
+				: Bukkit.createInventory(holder, size, titleAsComponent);
+		}
+		return inventory;
+	}
 }

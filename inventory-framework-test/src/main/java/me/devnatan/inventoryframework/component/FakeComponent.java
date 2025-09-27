@@ -17,102 +17,109 @@ import java.util.Set;
 
 public class FakeComponent implements Component, InteractionHandler {
 
-    private final VirtualView root;
-    private int position = 0;
-    public Object item = new Object();
+	private final VirtualView root;
+	public Object item = new Object();
+	private int position = 0;
 
-    public FakeComponent(VirtualView root) {
-        this.root = root;
-    }
+	public FakeComponent(VirtualView root) {
+		this.root = root;
+	}
 
-    public FakeComponent(VirtualView root, int position) {
-        this(root);
-        this.position = position;
-    }
+	public FakeComponent(VirtualView root, int position) {
+		this(root);
+		this.position = position;
+	}
 
-    @Override
-    public String getKey() {
-        return null;
-    }
+	@Override
+	public String getKey() {
+		return null;
+	}
 
-    @Override
-    public @NotNull VirtualView getRoot() {
-        return root;
-    }
+	@Override
+	public @NotNull VirtualView getRoot() {
+		return root;
+	}
 
-    @Override
-    public int getPosition() {
-        return position;
-    }
+	@Override
+	public int getPosition() {
+		return position;
+	}
 
-    @Override
-    public boolean isContainedWithin(int position) {
-        return this.position == position;
-    }
+	@Override
+	public boolean isContainedWithin(int position) {
+		return this.position == position;
+	}
 
-    @Override
-    public boolean intersects(@NotNull Component other) {
-        return false;
-    }
+	@Override
+	public boolean intersects(@NotNull Component other) {
+		return false;
+	}
 
-    @Override
-    public @NotNull InteractionHandler getInteractionHandler() {
-        return this;
-    }
+	@Override
+	public @NotNull InteractionHandler getInteractionHandler() {
+		return this;
+	}
 
-    @Override
-    public void render(@NotNull IFSlotRenderContext context) {
-        context.getContainer().renderItem(position, item);
-    }
+	@Override
+	public void render(@NotNull IFSlotRenderContext context) {
+		context.getContainer().renderItem(position, item);
+	}
 
-    @Override
-    public void updated(@NotNull IFSlotRenderContext context) {}
+	@Override
+	public void updated(@NotNull IFSlotRenderContext context) {
+	}
 
-    @Override
-    public void clear(@NotNull IFContext context) {
-        ((IFRenderContext) context).getContainer().removeItem(position);
-    }
+	@Override
+	public void clear(@NotNull IFContext context) {
+		((IFRenderContext) context).getContainer().removeItem(position);
+	}
 
-    @Override
-    public @UnmodifiableView Set<State<?>> getWatchingStates() {
-        return Collections.emptySet();
-    }
+	@Override
+	public @UnmodifiableView Set<State<?>> getWatchingStates() {
+		return Collections.emptySet();
+	}
 
-    @Override
-    public boolean isVisible() {
-        return true;
-    }
+	@Override
+	public boolean isVisible() {
+		return true;
+	}
 
-    @Override
-    public void setVisible(boolean visible) {}
+	@Override
+	public void setVisible(boolean visible) {
+	}
 
-    @Override
-    public boolean isManagedExternally() {
-        return false;
-    }
+	@Override
+	public boolean isManagedExternally() {
+		return false;
+	}
 
-    @Override
-    public boolean shouldRender(IFContext context) {
-        return false;
-    }
+	@Override
+	public boolean shouldRender(IFContext context) {
+		return false;
+	}
 
-    @Override
-    public void update() {}
+	@Override
+	public void update() {
+	}
 
-    @Override
-    public void clicked(@NotNull Component component, @NotNull IFSlotClickContext context) {}
+	@Override
+	public void clicked(@NotNull Component component, @NotNull IFSlotClickContext context) {
+	}
 
-    @Override
-    public Ref<Component> getReference() {
-        return null;
-    }
+	@Override
+	public Ref<Component> getReference() {
+		return null;
+	}
 
-    @Override
-    public void forceUpdate() {}
+	@Override
+	public void forceUpdate() {
+	}
 
-    @Override
-    public void show() {}
+	@Override
+	public void show() {
+	}
 
-    @Override
-    public void hide() {}
+	@Override
+	public void hide() {
+	}
 }

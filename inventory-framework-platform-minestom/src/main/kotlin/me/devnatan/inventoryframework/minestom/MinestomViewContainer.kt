@@ -153,8 +153,8 @@ class MinestomViewContainer(
         if (other == null || javaClass != other.javaClass) return false
         val that = other as MinestomViewContainer
         return isShared == that.isShared &&
-            inventory == that.inventory &&
-            getType() == that.getType()
+                inventory == that.inventory &&
+                getType() == that.getType()
     }
 
     override fun hashCode(): Int = Objects.hash(inventory, isShared, getType())

@@ -20,38 +20,38 @@ import java.util.function.Supplier;
 @ApiStatus.Internal
 public final class LazyValue extends AbstractStateValue {
 
-    private static final Object UNINITIALIZED = new Object();
+	private static final Object UNINITIALIZED = new Object();
 
-    private final Supplier<?> computation;
-    private Object currValue = UNINITIALIZED;
+	private final Supplier<?> computation;
+	private Object currValue = UNINITIALIZED;
 
-    public LazyValue(State<?> state, @NotNull Supplier<?> computation) {
-        super(state);
-        this.computation = computation;
-    }
+	public LazyValue(State<?> state, @NotNull Supplier<?> computation) {
+		super(state);
+		this.computation = computation;
+	}
 
-    @Override
-    public Object get() {
-        if (currValue.equals(UNINITIALIZED)) currValue = computation.get();
-        return currValue;
-    }
+	@Override
+	public Object get() {
+		if (currValue.equals(UNINITIALIZED)) currValue = computation.get();
+		return currValue;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        LazyValue lazyValue = (LazyValue) o;
-        return computation.equals(lazyValue.computation) && Objects.equals(currValue, lazyValue.currValue);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		LazyValue lazyValue = (LazyValue) o;
+		return computation.equals(lazyValue.computation) && Objects.equals(currValue, lazyValue.currValue);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), computation, currValue);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), computation, currValue);
+	}
 
-    @Override
-    public String toString() {
-        return "LazyValue{" + "computation=" + computation + ", currValue=" + currValue + "} " + super.toString();
-    }
+	@Override
+	public String toString() {
+		return "LazyValue{" + "computation=" + computation + ", currValue=" + currValue + "} " + super.toString();
+	}
 }

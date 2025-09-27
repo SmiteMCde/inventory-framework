@@ -7,11 +7,11 @@ package me.devnatan.inventoryframework.api.exception;
  */
 public final class UnsupportedOperationInSharedContextException extends InventoryFrameworkException {
 
-    public UnsupportedOperationInSharedContextException() {
-        super("This operation is not supported in shared contexts.");
-    }
+	public UnsupportedOperationInSharedContextException() {
+		super("This operation is not supported in shared contexts.");
+	}
 
-    public UnsupportedOperationInSharedContextException(String replacement) {
-        super(String.format("This operation is not supported in shared contexts. Use #%s instead.", replacement));
-    }
+	public UnsupportedOperationInSharedContextException(String replacement) {
+		super(String.format("This operation is not supported in shared contexts. Use #%s instead.", replacement));
+	}
 }

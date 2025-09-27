@@ -14,70 +14,70 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface IFOpenContext extends IFConfinedContext {
 
-    /**
-     * The task that will run before this context transitions from opening to rendering context.
-     * <p>
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     *
-     * @return The task that will run before this context gets completed.
-     */
-    @ApiStatus.Internal
-    CompletableFuture<Void> getAsyncOpenJob();
+	/**
+	 * The task that will run before this context transitions from opening to rendering context.
+	 * <p>
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 *
+	 * @return The task that will run before this context gets completed.
+	 */
+	@ApiStatus.Internal
+	CompletableFuture<Void> getAsyncOpenJob();
 
-    /**
-     * Waits for a task to run before ending this opening context and transitioning to the rendering
-     * context.
-     * <p>
-     * This transition represents the opening of this context's container to the player viewing it.
-     *
-     * @param task The task that will be waited for.
-     */
-    void waitUntil(@NotNull CompletableFuture<Void> task);
+	/**
+	 * Waits for a task to run before ending this opening context and transitioning to the rendering
+	 * context.
+	 * <p>
+	 * This transition represents the opening of this context's container to the player viewing it.
+	 *
+	 * @param task The task that will be waited for.
+	 */
+	void waitUntil(@NotNull CompletableFuture<Void> task);
 
-    /**
-     * Whether opening the container to the viewer has been cancelled.
-     *
-     * @return If <code>true</code> the container will not be displayed to the player.
-     */
-    boolean isCancelled();
+	/**
+	 * Whether opening the container to the viewer has been cancelled.
+	 *
+	 * @return If <code>true</code> the container will not be displayed to the player.
+	 */
+	boolean isCancelled();
 
-    /**
-     * Cancels the opening of this context's container to the viewer.
-     *
-     * @param cancelled If <code>true</code>, the container will not open for the player.
-     */
-    void setCancelled(boolean cancelled);
+	/**
+	 * Cancels the opening of this context's container to the viewer.
+	 *
+	 * @param cancelled If <code>true</code>, the container will not open for the player.
+	 */
+	void setCancelled(boolean cancelled);
 
-    /**
-     * Allows access and change the current configuration specifically to that context.
-     * <p>
-     * By default, all contexts inherit their root configuration but context configuration always
-     * takes precedence over root.
-     *
-     * @return The current context configuration.
-     */
-    @NotNull
-    ViewConfigBuilder modifyConfig();
+	/**
+	 * Allows access and change the current configuration specifically to that context.
+	 * <p>
+	 * By default, all contexts inherit their root configuration but context configuration always
+	 * takes precedence over root.
+	 *
+	 * @return The current context configuration.
+	 */
+	@NotNull
+	ViewConfigBuilder modifyConfig();
 
-    /**
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     */
-    @ApiStatus.Internal
-    ViewConfig getModifiedConfig();
+	/**
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 */
+	@ApiStatus.Internal
+	ViewConfig getModifiedConfig();
 
-    /**
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     */
-    @ApiStatus.Internal
-    ViewContainer getContainer();
+	/**
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 */
+	@ApiStatus.Internal
+	ViewContainer getContainer();
 
-    /**
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     */
-    @ApiStatus.Internal
-    void setContainer(ViewContainer container);
+	/**
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 */
+	@ApiStatus.Internal
+	void setContainer(ViewContainer container);
 }

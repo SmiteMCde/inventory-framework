@@ -21,32 +21,32 @@ import org.jetbrains.annotations.NotNull;
  */
 @ApiStatus.OverrideOnly
 public class View
-        extends PlatformView<
-                ViewFrame,
-                Player,
-                BukkitItemComponentBuilder,
-                Context,
-                OpenContext,
-                CloseContext,
-                RenderContext,
-                SlotClickContext> {
+	extends PlatformView<
+	ViewFrame,
+	Player,
+	BukkitItemComponentBuilder,
+	Context,
+	OpenContext,
+	CloseContext,
+	RenderContext,
+	SlotClickContext> {
 
-    @Override
-    public final @NotNull ElementFactory getElementFactory() {
-        return super.getElementFactory();
-    }
+	@Override
+	public final @NotNull ElementFactory getElementFactory() {
+		return super.getElementFactory();
+	}
 
-    @Override
-    public final void registerPlatformInterceptors() {
-        final Pipeline<? super VirtualView> pipeline = getPipeline();
-        pipeline.intercept(StandardPipelinePhases.CLICK, new ItemClickInterceptor());
-        pipeline.intercept(StandardPipelinePhases.CLICK, new GlobalClickInterceptor());
-        pipeline.intercept(StandardPipelinePhases.CLICK, new ItemCloseOnClickInterceptor());
-        pipeline.intercept(StandardPipelinePhases.CLOSE, new CancelledCloseInterceptor());
-    }
+	@Override
+	public final void registerPlatformInterceptors() {
+		final Pipeline<? super VirtualView> pipeline = getPipeline();
+		pipeline.intercept(StandardPipelinePhases.CLICK, new ItemClickInterceptor());
+		pipeline.intercept(StandardPipelinePhases.CLICK, new GlobalClickInterceptor());
+		pipeline.intercept(StandardPipelinePhases.CLICK, new ItemCloseOnClickInterceptor());
+		pipeline.intercept(StandardPipelinePhases.CLOSE, new CancelledCloseInterceptor());
+	}
 
-    @Override
-    public final void nextTick(Runnable task) {
-        Bukkit.getServer().getScheduler().runTask(getFramework().getOwner(), task);
-    }
+	@Override
+	public final void nextTick(Runnable task) {
+		Bukkit.getServer().getScheduler().runTask(getFramework().getOwner(), task);
+	}
 }

@@ -21,67 +21,67 @@ import java.util.function.Consumer;
 @ApiStatus.Internal
 public class DefaultStateValueHost implements StateValueHost {
 
-    private final Map<Long, StateValue> valuesMap = new HashMap<>();
-    private final Map<Long, List<StateWatcher>> listeners = new HashMap<>();
+	private final Map<Long, StateValue> valuesMap = new HashMap<>();
+	private final Map<Long, List<StateWatcher>> listeners = new HashMap<>();
 
-    @Override
-    public @UnmodifiableView Map<Long, StateValue> getStateValues() {
-        return Collections.unmodifiableMap(valuesMap);
-    }
+	@Override
+	public @UnmodifiableView Map<Long, StateValue> getStateValues() {
+		return Collections.unmodifiableMap(valuesMap);
+	}
 
-    @Override
-    public StateValue getUninitializedStateValue(long stateId) {
-        return valuesMap.get(stateId);
-    }
+	@Override
+	public StateValue getUninitializedStateValue(long stateId) {
+		return valuesMap.get(stateId);
+	}
 
-    @Override
-    public Object getRawStateValue(State<?> state) {
-        final StateValue value = getInternalStateValue(state);
-        final Object result = value.get();
-        callListeners(value, listener -> listener.stateValueGet(state, this, value, result));
-        return result;
-    }
+	@Override
+	public Object getRawStateValue(State<?> state) {
+		final StateValue value = getInternalStateValue(state);
+		final Object result = value.get();
+		callListeners(value, listener -> listener.stateValueGet(state, this, value, result));
+		return result;
+	}
 
-    @Override
-    public StateValue getInternalStateValue(State<?> state) {
-        final long id = state.internalId();
-        StateValue value = getUninitializedStateValue(id);
-        if (value == null) {
-            value = state.factory().create(this, state);
-            initializeState(id, value);
-            IFDebug.debug("State %s lazily initialized (initialValue = %s)", id, value.toString());
-        }
+	@Override
+	public StateValue getInternalStateValue(State<?> state) {
+		final long id = state.internalId();
+		StateValue value = getUninitializedStateValue(id);
+		if (value == null) {
+			value = state.factory().create(this, state);
+			initializeState(id, value);
+			IFDebug.debug("State %s lazily initialized (initialValue = %s)", id, value.toString());
+		}
 
-        return value;
-    }
+		return value;
+	}
 
-    @Override
-    public void initializeState(long id, @NotNull StateValue value) {
-        valuesMap.put(id, value);
-    }
+	@Override
+	public void initializeState(long id, @NotNull StateValue value) {
+		valuesMap.put(id, value);
+	}
 
-    @Override
-    public void updateState(State<?> state, Object value) {
-        final StateValue stateValue = getInternalStateValue(state);
-        final Object oldValue = stateValue.get();
-        stateValue.set(value);
+	@Override
+	public void updateState(State<?> state, Object value) {
+		final StateValue stateValue = getInternalStateValue(state);
+		final Object oldValue = stateValue.get();
+		stateValue.set(value);
 
-        final Object newValue = stateValue.get();
-        IFDebug.debug("State %s updated (oldValue = %s, newValue = %s)", state.internalId(), oldValue, newValue);
-        callListeners(stateValue, listener -> listener.stateValueSet(this, stateValue, oldValue, newValue));
-    }
+		final Object newValue = stateValue.get();
+		IFDebug.debug("State %s updated (oldValue = %s, newValue = %s)", state.internalId(), oldValue, newValue);
+		callListeners(stateValue, listener -> listener.stateValueSet(this, stateValue, oldValue, newValue));
+	}
 
-    @Override
-    public void watchState(long id, StateWatcher listener) {
-        listeners.computeIfAbsent(id, $ -> new ArrayList<>()).add(listener);
-    }
+	@Override
+	public void watchState(long id, StateWatcher listener) {
+		listeners.computeIfAbsent(id, $ -> new ArrayList<>()).add(listener);
+	}
 
-    private void callListeners(@NotNull StateValue value, Consumer<StateWatcher> call) {
-        if (value instanceof StateWatcher) call.accept((StateWatcher) value);
-        if (value.getState() instanceof StateWatcher) call.accept((StateWatcher) value.getState());
+	private void callListeners(@NotNull StateValue value, Consumer<StateWatcher> call) {
+		if (value instanceof StateWatcher) call.accept((StateWatcher) value);
+		if (value.getState() instanceof StateWatcher) call.accept((StateWatcher) value.getState());
 
-        if (!listeners.containsKey(value.getId())) return;
+		if (!listeners.containsKey(value.getId())) return;
 
-        listeners.get(value.getId()).forEach(call);
-    }
+		listeners.get(value.getId()).forEach(call);
+	}
 }

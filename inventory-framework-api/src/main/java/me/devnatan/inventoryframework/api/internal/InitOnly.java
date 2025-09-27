@@ -11,4 +11,5 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.METHOD, ElementType.TYPE_USE})
-public @interface InitOnly {}
+public @interface InitOnly {
+}

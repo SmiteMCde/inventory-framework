@@ -11,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
  */
 public class BaseMutableState<T> extends BaseState<T> implements MutableState<T> {
 
-    public BaseMutableState(long id, StateValueFactory valueFactory) {
-        super(id, valueFactory);
-    }
+	public BaseMutableState(long id, StateValueFactory valueFactory) {
+		super(id, valueFactory);
+	}
 
-    @Override
-    public final void set(T value, @NotNull StateValueHost host) {
-        host.updateState(this, value);
-    }
+	@Override
+	public final void set(T value, @NotNull StateValueHost host) {
+		host.updateState(this, value);
+	}
 }

@@ -13,130 +13,130 @@ import java.util.Objects;
 
 public final class BukkitViewer implements Viewer {
 
-    private final Player player;
-    private ViewContainer selfContainer;
-    private IFRenderContext activeContext;
-    private Deque<IFRenderContext> previousContexts = new LinkedList<>();
-    private long lastInteractionInMillis;
-    private boolean switching;
+	private final Player player;
+	private ViewContainer selfContainer;
+	private IFRenderContext activeContext;
+	private Deque<IFRenderContext> previousContexts = new LinkedList<>();
+	private long lastInteractionInMillis;
+	private boolean switching;
 
-    public BukkitViewer(@NotNull Player player, IFRenderContext activeContext) {
-        this.player = player;
-        this.activeContext = activeContext;
-    }
+	public BukkitViewer(@NotNull Player player, IFRenderContext activeContext) {
+		this.player = player;
+		this.activeContext = activeContext;
+	}
 
-    public Player getPlayer() {
-        return player;
-    }
+	public Player getPlayer() {
+		return player;
+	}
 
-    @NotNull
-    @Override
-    public IFRenderContext getActiveContext() {
-        return activeContext;
-    }
+	@NotNull
+	@Override
+	public IFRenderContext getActiveContext() {
+		return activeContext;
+	}
 
-    @Override
-    public @NotNull IFRenderContext getCurrentContext() {
-        IFRenderContext prevCtx = null;
-        if (isSwitching() && ((prevCtx = getPreviousContext()) == null))
-            throw new IllegalStateException("Previous context cannot be null when switching");
+	@Override
+	public void setActiveContext(@NotNull IFRenderContext context) {
+		this.activeContext = context;
+	}
 
-        return prevCtx == null ? getActiveContext() : prevCtx;
-    }
+	@Override
+	public @NotNull IFRenderContext getCurrentContext() {
+		IFRenderContext prevCtx = null;
+		if (isSwitching() && ((prevCtx = getPreviousContext()) == null))
+			throw new IllegalStateException("Previous context cannot be null when switching");
 
-    @Override
-    public void setActiveContext(@NotNull IFRenderContext context) {
-        this.activeContext = context;
-    }
+		return prevCtx == null ? getActiveContext() : prevCtx;
+	}
 
-    @Override
-    public @NotNull String getId() {
-        return getPlayer().getUniqueId().toString();
-    }
+	@Override
+	public @NotNull String getId() {
+		return getPlayer().getUniqueId().toString();
+	}
 
-    @Override
-    public void open(@NotNull final ViewContainer container) {
-        getPlayer().openInventory(((BukkitViewContainer) container).getInventory());
-    }
+	@Override
+	public void open(@NotNull final ViewContainer container) {
+		getPlayer().openInventory(((BukkitViewContainer) container).getInventory());
+	}
 
-    @Override
-    public void close() {
-        getPlayer().closeInventory();
-    }
+	@Override
+	public void close() {
+		getPlayer().closeInventory();
+	}
 
-    @Override
-    public @NotNull ViewContainer getSelfContainer() {
-        if (selfContainer == null)
-            selfContainer = new BukkitViewContainer(
-                    getPlayer().getInventory(), getActiveContext().isShared(), ViewType.PLAYER, false);
+	@Override
+	public @NotNull ViewContainer getSelfContainer() {
+		if (selfContainer == null)
+			selfContainer = new BukkitViewContainer(
+				getPlayer().getInventory(), getActiveContext().isShared(), ViewType.PLAYER, false);
 
-        return selfContainer;
-    }
+		return selfContainer;
+	}
 
-    @Override
-    public long getLastInteractionInMillis() {
-        return lastInteractionInMillis;
-    }
+	@Override
+	public long getLastInteractionInMillis() {
+		return lastInteractionInMillis;
+	}
 
-    @Override
-    public void setLastInteractionInMillis(long lastInteractionInMillis) {
-        this.lastInteractionInMillis = lastInteractionInMillis;
-    }
+	@Override
+	public void setLastInteractionInMillis(long lastInteractionInMillis) {
+		this.lastInteractionInMillis = lastInteractionInMillis;
+	}
 
-    @Override
-    public boolean isBlockedByInteractionDelay() {
-        final long configuredDelay = activeContext.getConfig().getInteractionDelayInMillis();
-        if (configuredDelay <= 0 || getLastInteractionInMillis() <= 0) return false;
+	@Override
+	public boolean isBlockedByInteractionDelay() {
+		final long configuredDelay = activeContext.getConfig().getInteractionDelayInMillis();
+		if (configuredDelay <= 0 || getLastInteractionInMillis() <= 0) return false;
 
-        return getLastInteractionInMillis() + configuredDelay >= System.currentTimeMillis();
-    }
+		return getLastInteractionInMillis() + configuredDelay >= System.currentTimeMillis();
+	}
 
-    @Override
-    public boolean isSwitching() {
-        return switching;
-    }
+	@Override
+	public boolean isSwitching() {
+		return switching;
+	}
 
-    @Override
-    public void setSwitching(boolean switching) {
-        this.switching = switching;
-    }
+	@Override
+	public void setSwitching(boolean switching) {
+		this.switching = switching;
+	}
 
-    @Override
-    public IFRenderContext getPreviousContext() {
-        return previousContexts.peekLast();
-    }
+	@Override
+	public IFRenderContext getPreviousContext() {
+		return previousContexts.peekLast();
+	}
 
-    @Override
-    public void setPreviousContext(IFRenderContext previousContext) {
-        previousContexts.pollLast();
-        previousContexts.add(previousContext);
-    }
+	@Override
+	public void setPreviousContext(IFRenderContext previousContext) {
+		previousContexts.pollLast();
+		previousContexts.add(previousContext);
+	}
 
-    @Override
-    public Object getPlatformInstance() {
-        return player;
-    }
+	@Override
+	public Object getPlatformInstance() {
+		return player;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BukkitViewer that = (BukkitViewer) o;
-        return Objects.equals(getPlayer(), that.getPlayer());
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		BukkitViewer that = (BukkitViewer) o;
+		return Objects.equals(getPlayer(), that.getPlayer());
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getPlayer());
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(getPlayer());
+	}
 
-    @Override
-    public String toString() {
-        return "BukkitViewer{"
-                + "player=" + player
-                + ", selfContainer=" + selfContainer
-                + ", lastInteractionInMillis=" + lastInteractionInMillis
-                + ", isTransitioning=" + switching
-                + "}";
-    }
+	@Override
+	public String toString() {
+		return "BukkitViewer{"
+			+ "player=" + player
+			+ ", selfContainer=" + selfContainer
+			+ ", lastInteractionInMillis=" + lastInteractionInMillis
+			+ ", isTransitioning=" + switching
+			+ "}";
+	}
 }

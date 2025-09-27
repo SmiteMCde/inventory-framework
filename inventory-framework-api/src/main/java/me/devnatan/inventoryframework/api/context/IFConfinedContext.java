@@ -13,98 +13,98 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface IFConfinedContext extends IFContext {
 
-    /**
-     * The viewer in current scope of execution.
-     *
-     * @return The {@link Viewer} in the current scope of execution.
-     */
-    Viewer getViewer();
+	/**
+	 * The viewer in current scope of execution.
+	 *
+	 * @return The {@link Viewer} in the current scope of execution.
+	 */
+	Viewer getViewer();
 
-    /**
-     * Closes this context's container for the player in the current scope of execution.
-     */
-    void closeForPlayer();
+	/**
+	 * Closes this context's container for the player in the current scope of execution.
+	 */
+	void closeForPlayer();
 
-    /**
-     * Opens a new view only for the player that is in the current scope of execution.
-     * <p>
-     * This context will be immediately invalidated if there are no viewers left after opening.
-     *
-     * @param other The view to be opened.
-     */
-    void openForPlayer(@NotNull Class<? extends RootView> other);
+	/**
+	 * Opens a new view only for the player that is in the current scope of execution.
+	 * <p>
+	 * This context will be immediately invalidated if there are no viewers left after opening.
+	 *
+	 * @param other The view to be opened.
+	 */
+	void openForPlayer(@NotNull Class<? extends RootView> other);
 
-    /**
-     * Opens a new view only for the player that is in the current scope of execution with an
-     * initially defined data.
-     * <p>
-     * This context will be immediately invalidated if there are no viewers left after opening.
-     *
-     * @param other The view to be opened.
-     * @param initialData The initial context data.
-     */
-    void openForPlayer(@NotNull Class<? extends RootView> other, Object initialData);
+	/**
+	 * Opens a new view only for the player that is in the current scope of execution with an
+	 * initially defined data.
+	 * <p>
+	 * This context will be immediately invalidated if there are no viewers left after opening.
+	 *
+	 * @param other       The view to be opened.
+	 * @param initialData The initial context data.
+	 */
+	void openForPlayer(@NotNull Class<? extends RootView> other, Object initialData);
 
-    /**
-     * Updates the container title only for the player current scope of execution.
-     *
-     * <p>This should not be used before the container is opened, if you need to set the __initial
-     * title__ use {@link IFOpenContext#modifyConfig()} on open handler instead.
-     *
-     * <p>This method is version dependant, so it may be that your server version is not yet
-     * supported, if you try to use this method and fail (can fail silently), report it to the
-     * library developers to add support to your version.
-     *
-     * @param title The new container title.
-     */
-    void updateTitleForPlayer(@NotNull String title);
+	/**
+	 * Updates the container title only for the player current scope of execution.
+	 *
+	 * <p>This should not be used before the container is opened, if you need to set the __initial
+	 * title__ use {@link IFOpenContext#modifyConfig()} on open handler instead.
+	 *
+	 * <p>This method is version dependant, so it may be that your server version is not yet
+	 * supported, if you try to use this method and fail (can fail silently), report it to the
+	 * library developers to add support to your version.
+	 *
+	 * @param title The new container title.
+	 */
+	void updateTitleForPlayer(@NotNull String title);
 
-    /**
-     * Resets the container title only for the player current scope of execution to the initially
-     * defined title. Must be used after {@link #updateTitleForPlayer(String)} to take effect.
-     */
-    void resetTitleForPlayer();
+	/**
+	 * Resets the container title only for the player current scope of execution to the initially
+	 * defined title. Must be used after {@link #updateTitleForPlayer(String)} to take effect.
+	 */
+	void resetTitleForPlayer();
 
-    /**
-     * Goes back to the previous view, does nothing if there's no views to back to.
-     * <p>
-     * Only works if, from the previous view, the current view was opened using
-     * {@link IFContext#openForEveryone(Class) openForEveryone}
-     * or {@link IFConfinedContext#openForPlayer(Class) openForPlayer}.
-     *
-     * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     *
-     * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/navigating-between-views">Navigating between Views on Wiki</a>
-     */
-    @ApiStatus.Experimental
-    void back();
+	/**
+	 * Goes back to the previous view, does nothing if there's no views to back to.
+	 * <p>
+	 * Only works if, from the previous view, the current view was opened using
+	 * {@link IFContext#openForEveryone(Class) openForEveryone}
+	 * or {@link IFConfinedContext#openForPlayer(Class) openForPlayer}.
+	 *
+	 * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 *
+	 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/navigating-between-views">Navigating between Views on Wiki</a>
+	 */
+	@ApiStatus.Experimental
+	void back();
 
-    /**
-     * Goes back to the previous view, does nothing if there's no views to back to.
-     * <p>
-     * Only works if, from the previous view, the current view was opened using
-     * {@link IFContext#openForEveryone(Class) openForEveryone}
-     * or {@link IFConfinedContext#openForPlayer(Class) openForPlayer}.
-     *
-     * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     *
-     * @param initialData The initial data.
-     * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/navigating-between-views">Navigating between Views on Wiki</a>
-     */
-    @ApiStatus.Experimental
-    void back(Object initialData);
+	/**
+	 * Goes back to the previous view, does nothing if there's no views to back to.
+	 * <p>
+	 * Only works if, from the previous view, the current view was opened using
+	 * {@link IFContext#openForEveryone(Class) openForEveryone}
+	 * or {@link IFConfinedContext#openForPlayer(Class) openForPlayer}.
+	 *
+	 * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 *
+	 * @param initialData The initial data.
+	 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/navigating-between-views">Navigating between Views on Wiki</a>
+	 */
+	@ApiStatus.Experimental
+	void back(Object initialData);
 
-    /**
-     * Verifies if there's any view to {@link #back() back} to.
-     * <p>
-     * <b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     *
-     * @see #back()
-     * @return If there's any view to back to.
-     */
-    @ApiStatus.Experimental
-    boolean canBack();
+	/**
+	 * Verifies if there's any view to {@link #back() back} to.
+	 * <p>
+	 * <b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 *
+	 * @return If there's any view to back to.
+	 * @see #back()
+	 */
+	@ApiStatus.Experimental
+	boolean canBack();
 }

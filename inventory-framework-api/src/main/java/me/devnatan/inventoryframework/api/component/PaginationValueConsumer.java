@@ -14,13 +14,13 @@ import org.jetbrains.annotations.NotNull;
 @FunctionalInterface
 public interface PaginationValueConsumer<C, B, V> {
 
-    /**
-     * Performs this operation on the given arguments.
-     *
-     * @param context The pagination context.
-     * @param builder The builder used to modify the element being paginated
-     * @param index The index of the element being paginated in the pagination
-     * @param value The value that represents the current element being paginated
-     */
-    void accept(@NotNull C context, @NotNull B builder, int index, @NotNull V value);
+	/**
+	 * Performs this operation on the given arguments.
+	 *
+	 * @param context The pagination context.
+	 * @param builder The builder used to modify the element being paginated
+	 * @param index   The index of the element being paginated in the pagination
+	 * @param value   The value that represents the current element being paginated
+	 */
+	void accept(@NotNull C context, @NotNull B builder, int index, @NotNull V value);
 }

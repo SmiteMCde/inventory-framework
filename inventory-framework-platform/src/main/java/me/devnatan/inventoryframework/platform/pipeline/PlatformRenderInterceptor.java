@@ -9,12 +9,12 @@ import org.jetbrains.annotations.NotNull;
 
 public final class PlatformRenderInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, VirtualView view) {
-        if (!(view instanceof IFRenderContext)) return;
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, VirtualView view) {
+		if (!(view instanceof IFRenderContext)) return;
 
-        final PlatformView root = (PlatformView) ((IFRenderContext) view).getRoot();
-        final IFRenderContext context = (IFRenderContext) view;
-        root.onFirstRender(context);
-    }
+		final PlatformView root = (PlatformView) ((IFRenderContext) view).getRoot();
+		final IFRenderContext context = (IFRenderContext) view;
+		root.onFirstRender(context);
+	}
 }

@@ -13,12 +13,12 @@ import org.jetbrains.annotations.NotNull;
 @ApiStatus.Internal
 public final class MutableGenericStateImpl<T> extends BaseState<T> implements MutableState<T> {
 
-    public MutableGenericStateImpl(long id, @NotNull StateValueFactory valueFactory) {
-        super(id, valueFactory);
-    }
+	public MutableGenericStateImpl(long id, @NotNull StateValueFactory valueFactory) {
+		super(id, valueFactory);
+	}
 
-    @Override
-    public void set(T value, @NotNull StateValueHost host) {
-        host.updateState(this, value);
-    }
+	@Override
+	public void set(T value, @NotNull StateValueHost host) {
+		host.updateState(this, value);
+	}
 }

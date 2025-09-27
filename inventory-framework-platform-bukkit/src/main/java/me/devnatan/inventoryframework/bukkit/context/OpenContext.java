@@ -23,159 +23,156 @@ import java.util.stream.Collectors;
 
 public class OpenContext extends PlatformConfinedContext implements IFOpenContext, Context {
 
-    private ViewContainer container;
+	// --- Inherited ---
+	private final UUID id;
+	private final View root;
+	private final Viewer subject;
+	private final Map<String, Viewer> viewers;
+	// --- Properties ---
+	private final Player player;
+	private ViewContainer container;
+	private Object initialData;
+	// --- User Provided ---
+	private CompletableFuture<Void> waitTask;
+	private ViewConfigBuilder inheritedConfigBuilder;
+	private boolean cancelled = false;
 
-    // --- Inherited ---
-    private final UUID id;
-    private final View root;
-    private final Viewer subject;
-    private Object initialData;
-    private final Map<String, Viewer> viewers;
+	/**
+	 * Creates a new open context instance.
+	 * <p>
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 *
+	 * @param root        Root view that will be owner of the upcoming render context.
+	 * @param subject     The viewer that is opening the view.
+	 * @param viewers     Who'll be the viewers of this context, if this parameter is provided it
+	 *                    means that this context is a shared context.
+	 *                    Must be provided even in non-shared context cases.
+	 * @param initialData Initial data provided by the user.
+	 */
+	@ApiStatus.Internal
+	public OpenContext(
+		@NotNull View root, @Nullable Viewer subject, @NotNull Map<String, Viewer> viewers, Object initialData) {
+		this.id = UUID.randomUUID();
+		this.subject = subject;
+		this.root = root;
+		this.viewers = viewers;
+		this.initialData = initialData;
+		this.player = subject == null ? null : ((BukkitViewer) subject).getPlayer();
+	}
 
-    // --- User Provided ---
-    private CompletableFuture<Void> waitTask;
-    private ViewConfigBuilder inheritedConfigBuilder;
+	/**
+	 * The player that's currently opening the view.
+	 *
+	 * @return The player that is opening the view.
+	 * @throws UnsupportedOperationInSharedContextException If this context {@link #isShared() is shared}.
+	 */
+	public final @NotNull Player getPlayer() {
+		tryThrowDoNotWorkWithSharedContext("getAllPlayers()");
+		return player;
+	}
 
-    // --- Properties ---
-    private final Player player;
-    private boolean cancelled = false;
+	@Override
+	public List<Player> getAllPlayers() {
+		return getViewers().stream()
+			.map(viewer -> (BukkitViewer) viewer)
+			.map(BukkitViewer::getPlayer)
+			.collect(Collectors.toList());
+	}
 
-    /**
-     * Creates a new open context instance.
-     * <p>
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     *
-     * @param root        Root view that will be owner of the upcoming render context.
-     * @param subject     The viewer that is opening the view.
-     * @param viewers     Who'll be the viewers of this context, if this parameter is provided it
-     *                    means that this context is a shared context.
-     *                    Must be provided even in non-shared context cases.
-     * @param initialData Initial data provided by the user.
-     */
-    @ApiStatus.Internal
-    public OpenContext(
-            @NotNull View root, @Nullable Viewer subject, @NotNull Map<String, Viewer> viewers, Object initialData) {
-        this.id = UUID.randomUUID();
-        this.subject = subject;
-        this.root = root;
-        this.viewers = viewers;
-        this.initialData = initialData;
-        this.player = subject == null ? null : ((BukkitViewer) subject).getPlayer();
-    }
+	@Override
+	public void updateTitleForPlayer(@NotNull String title, @NotNull Player player) {
+		tryThrowDoNotWorkWithSharedContext();
+		modifyConfig().title(title);
+	}
 
-    /**
-     * The player that's currently opening the view.
-     *
-     * @return The player that is opening the view.
-     * @throws UnsupportedOperationInSharedContextException If this context {@link #isShared() is shared}.
-     */
-    public final @NotNull Player getPlayer() {
-        tryThrowDoNotWorkWithSharedContext("getAllPlayers()");
-        return player;
-    }
+	@Override
+	public void resetTitleForPlayer(@NotNull Player player) {
+		tryThrowDoNotWorkWithSharedContext();
+		if (getModifiedConfig() == null) return;
 
-    @Override
-    public List<Player> getAllPlayers() {
-        return getViewers().stream()
-                .map(viewer -> (BukkitViewer) viewer)
-                .map(BukkitViewer::getPlayer)
-                .collect(Collectors.toList());
-    }
+		modifyConfig().title(null);
+	}
 
-    @Override
-    public void updateTitleForPlayer(@NotNull String title, @NotNull Player player) {
-        tryThrowDoNotWorkWithSharedContext();
-        modifyConfig().title(title);
-    }
+	@Override
+	public final boolean isCancelled() {
+		return cancelled;
+	}
 
-    @Override
-    public void resetTitleForPlayer(@NotNull Player player) {
-        tryThrowDoNotWorkWithSharedContext();
-        if (getModifiedConfig() == null) return;
+	@Override
+	public final void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
 
-        modifyConfig().title(null);
-    }
+	@Override
+	public final CompletableFuture<Void> getAsyncOpenJob() {
+		return waitTask;
+	}
 
-    @Override
-    public final boolean isCancelled() {
-        return cancelled;
-    }
+	@Override
+	public final @NotNull View getRoot() {
+		return root;
+	}
 
-    @Override
-    public final void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
+	@Override
+	public final @NotNull Map<String, Viewer> getIndexedViewers() {
+		return viewers;
+	}
 
-    @Override
-    public final CompletableFuture<Void> getAsyncOpenJob() {
-        return waitTask;
-    }
+	@Override
+	public final @NotNull UUID getId() {
+		return id;
+	}
 
-    @Override
-    public final @NotNull View getRoot() {
-        return root;
-    }
+	@Override
+	public final Object getInitialData() {
+		return initialData;
+	}
 
-    @Override
-    public final @NotNull Map<String, Viewer> getIndexedViewers() {
-        return viewers;
-    }
+	@Override
+	public void setInitialData(Object initialData) {
+		this.initialData = initialData;
+	}
 
-    @Override
-    public final @NotNull UUID getId() {
-        return id;
-    }
+	@Override
+	public final void waitUntil(@NotNull CompletableFuture<Void> task) {
+		this.waitTask = task;
+	}
 
-    @Override
-    public final Object getInitialData() {
-        return initialData;
-    }
+	@Override
+	public final @NotNull ViewConfig getConfig() {
+		return inheritedConfigBuilder == null
+			? getRoot().getConfig()
+			: Objects.requireNonNull(getModifiedConfig(), "Modified config cannot be null");
+	}
 
-    @Override
-    public void setInitialData(Object initialData) {
-        this.initialData = initialData;
-    }
+	@Override
+	public final ViewConfig getModifiedConfig() {
+		if (inheritedConfigBuilder == null) return null;
 
-    @Override
-    public final void waitUntil(@NotNull CompletableFuture<Void> task) {
-        this.waitTask = task;
-    }
+		return inheritedConfigBuilder.build().merge(getRoot().getConfig());
+	}
 
-    @Override
-    public final @NotNull ViewConfig getConfig() {
-        return inheritedConfigBuilder == null
-                ? getRoot().getConfig()
-                : Objects.requireNonNull(getModifiedConfig(), "Modified config cannot be null");
-    }
+	@Override
+	public final @NotNull ViewConfigBuilder modifyConfig() {
+		if (inheritedConfigBuilder == null) inheritedConfigBuilder = new ViewConfigBuilder();
 
-    @Override
-    public final ViewConfig getModifiedConfig() {
-        if (inheritedConfigBuilder == null) return null;
+		return inheritedConfigBuilder;
+	}
 
-        return inheritedConfigBuilder.build().merge(getRoot().getConfig());
-    }
+	@Override
+	public Viewer getViewer() {
+		tryThrowDoNotWorkWithSharedContext("getViewers()");
+		return subject;
+	}
 
-    @Override
-    public final @NotNull ViewConfigBuilder modifyConfig() {
-        if (inheritedConfigBuilder == null) inheritedConfigBuilder = new ViewConfigBuilder();
+	@Override
+	public ViewContainer getContainer() {
+		return container;
+	}
 
-        return inheritedConfigBuilder;
-    }
-
-    @Override
-    public Viewer getViewer() {
-        tryThrowDoNotWorkWithSharedContext("getViewers()");
-        return subject;
-    }
-
-    @Override
-    public ViewContainer getContainer() {
-        return container;
-    }
-
-    @Override
-    public void setContainer(ViewContainer container) {
-        this.container = container;
-    }
+	@Override
+	public void setContainer(ViewContainer container) {
+		this.container = container;
+	}
 }

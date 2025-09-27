@@ -17,44 +17,44 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public interface State<T> {
 
-    AtomicLong ids = new AtomicLong();
+	AtomicLong ids = new AtomicLong();
 
-    /**
-     * Gets the current value for this state defined in the specified host.
-     *
-     * @param host The state host.
-     * @return The current state value.
-     */
-    T get(@NotNull StateValueHost host);
+	/**
+	 * Generates a new state id.
+	 *
+	 * @return A new unique state id.
+	 */
+	static long next() {
+		return ids.getAndIncrement();
+	}
 
-    /**
-     * The value factory of this state.
-     *
-     * <p><b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     *
-     * @return The internal value factory for this state.
-     */
-    @ApiStatus.Internal
-    StateValueFactory factory();
+	/**
+	 * Gets the current value for this state defined in the specified host.
+	 *
+	 * @param host The state host.
+	 * @return The current state value.
+	 */
+	T get(@NotNull StateValueHost host);
 
-    /**
-     * Returns the internal unique id of this state.
-     *
-     * <p><b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     *
-     * @return The state id.
-     */
-    @ApiStatus.Internal
-    long internalId();
+	/**
+	 * The value factory of this state.
+	 *
+	 * <p><b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 *
+	 * @return The internal value factory for this state.
+	 */
+	@ApiStatus.Internal
+	StateValueFactory factory();
 
-    /**
-     * Generates a new state id.
-     *
-     * @return A new unique state id.
-     */
-    static long next() {
-        return ids.getAndIncrement();
-    }
+	/**
+	 * Returns the internal unique id of this state.
+	 *
+	 * <p><b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 *
+	 * @return The state id.
+	 */
+	@ApiStatus.Internal
+	long internalId();
 }

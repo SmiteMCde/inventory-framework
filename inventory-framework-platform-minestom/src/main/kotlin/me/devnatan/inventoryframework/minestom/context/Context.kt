@@ -16,7 +16,8 @@ interface Context : IFConfinedContext {
      */
     val player: Player
 
-    @get:Experimental val allPlayers: List<Player>
+    @get:Experimental
+    val allPlayers: List<Player>
 
     /**
      * Updates the container title for a specific player.
@@ -34,7 +35,8 @@ interface Context : IFConfinedContext {
      * @param title The new container title.
      * @param player The player to update the title.
      */
-    @Experimental fun updateTitleForPlayer(
+    @Experimental
+    fun updateTitleForPlayer(
         title: Component,
         player: Player,
     )
@@ -48,5 +50,6 @@ interface Context : IFConfinedContext {
      *
      * @param player The player to reset the title.
      */
-    @Experimental fun resetTitleForPlayer(player: Player)
+    @Experimental
+    fun resetTitleForPlayer(player: Player)
 }

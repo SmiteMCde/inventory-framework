@@ -20,96 +20,96 @@ import java.util.*;
  */
 public final class Pipeline<S> {
 
-    private final List<PipelinePhase> _phases;
-    private final Map<PipelinePhase, List<PipelineInterceptor<S>>> interceptors = new HashMap<>();
+	private final List<PipelinePhase> _phases;
+	private final Map<PipelinePhase, List<PipelineInterceptor<S>>> interceptors = new HashMap<>();
 
-    public Pipeline(PipelinePhase... phases) {
-        _phases = new LinkedList<>(Arrays.asList(phases));
-    }
+	public Pipeline(PipelinePhase... phases) {
+		_phases = new LinkedList<>(Arrays.asList(phases));
+	}
 
-    private PipelinePhase findPhase(@NotNull PipelinePhase phase) {
-        final List<PipelinePhase> phasesList = _phases;
+	private PipelinePhase findPhase(@NotNull PipelinePhase phase) {
+		final List<PipelinePhase> phasesList = _phases;
 
-        for (int i = 0; i < phasesList.size(); i++) {
-            final PipelinePhase curr = phasesList.get(i);
-            if (curr.equals(phase)) {
-                phasesList.set(i, phase);
-                return curr;
-            }
-        }
+		for (int i = 0; i < phasesList.size(); i++) {
+			final PipelinePhase curr = phasesList.get(i);
+			if (curr.equals(phase)) {
+				phasesList.set(i, phase);
+				return curr;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    private int findIndexOrThrow(@NotNull PipelinePhase phase) {
-        final List<PipelinePhase> phasesList = new ArrayList<>(_phases);
-        for (int i = 0; i < phasesList.size(); i++) {
-            final PipelinePhase curr = phasesList.get(i);
-            if (curr.equals(phase)) return i;
-        }
+	private int findIndexOrThrow(@NotNull PipelinePhase phase) {
+		final List<PipelinePhase> phasesList = new ArrayList<>(_phases);
+		for (int i = 0; i < phasesList.size(); i++) {
+			final PipelinePhase curr = phasesList.get(i);
+			if (curr.equals(phase)) return i;
+		}
 
-        throw new IllegalArgumentException(String.format("Phase %s was not registered for this pipeline", phase));
-    }
+		throw new IllegalArgumentException(String.format("Phase %s was not registered for this pipeline", phase));
+	}
 
-    public boolean hasPhase(@NotNull PipelinePhase phase) {
-        final List<PipelinePhase> phasesList = new ArrayList<>(_phases);
-        for (final PipelinePhase curr : phasesList) {
-            if (curr.equals(phase)) return true;
-        }
+	public boolean hasPhase(@NotNull PipelinePhase phase) {
+		final List<PipelinePhase> phasesList = new ArrayList<>(_phases);
+		for (final PipelinePhase curr : phasesList) {
+			if (curr.equals(phase)) return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public void addPhase(@NotNull PipelinePhase phase) {
-        if (hasPhase(phase)) return;
+	public void addPhase(@NotNull PipelinePhase phase) {
+		if (hasPhase(phase)) return;
 
-        _phases.add(phase);
-    }
+		_phases.add(phase);
+	}
 
-    public void insertPhaseBefore(@NotNull PipelinePhase reference, @NotNull PipelinePhase phase) {
-        if (hasPhase(phase)) return;
+	public void insertPhaseBefore(@NotNull PipelinePhase reference, @NotNull PipelinePhase phase) {
+		if (hasPhase(phase)) return;
 
-        final int refIdx = findIndexOrThrow(reference);
-        _phases.add(refIdx, phase);
-    }
+		final int refIdx = findIndexOrThrow(reference);
+		_phases.add(refIdx, phase);
+	}
 
-    public void insertPhaseAfter(@NotNull PipelinePhase reference, @NotNull PipelinePhase phase) {
-        if (hasPhase(phase)) return;
+	public void insertPhaseAfter(@NotNull PipelinePhase reference, @NotNull PipelinePhase phase) {
+		if (hasPhase(phase)) return;
 
-        final int refIdx = findIndexOrThrow(reference);
-        _phases.add(refIdx + 1, phase);
-    }
+		final int refIdx = findIndexOrThrow(reference);
+		_phases.add(refIdx + 1, phase);
+	}
 
-    @SuppressWarnings("unchecked")
-    public void intercept(final @NotNull PipelinePhase phase, @NotNull PipelineInterceptor<? extends S> interceptor) {
-        final PipelinePhase pipelinePhase = findPhase(phase);
-        if (pipelinePhase == null)
-            throw new IllegalArgumentException(String.format("Phase %s was not registered for this pipeline", phase));
+	@SuppressWarnings("unchecked")
+	public void intercept(final @NotNull PipelinePhase phase, @NotNull PipelineInterceptor<? extends S> interceptor) {
+		final PipelinePhase pipelinePhase = findPhase(phase);
+		if (pipelinePhase == null)
+			throw new IllegalArgumentException(String.format("Phase %s was not registered for this pipeline", phase));
 
-        interceptors.computeIfAbsent(phase, $ -> new ArrayList<>()).add((PipelineInterceptor<S>) interceptor);
-    }
+		interceptors.computeIfAbsent(phase, $ -> new ArrayList<>()).add((PipelineInterceptor<S>) interceptor);
+	}
 
-    public void removeInterceptor(@NotNull PipelinePhase phase, @NotNull PipelineInterceptor<? extends S> interceptor) {
-        interceptors.computeIfAbsent(phase, $ -> new ArrayList<>()).remove(interceptor);
-    }
+	public void removeInterceptor(@NotNull PipelinePhase phase, @NotNull PipelineInterceptor<? extends S> interceptor) {
+		interceptors.computeIfAbsent(phase, $ -> new ArrayList<>()).remove(interceptor);
+	}
 
-    public void execute(S subject) {
-        final List<PipelineInterceptor<S>> pipelineInterceptors = new LinkedList<>();
-        for (final PipelinePhase phase : _phases) {
-            final List<PipelineInterceptor<S>> interceptors = this.interceptors.get(phase);
-            if (interceptors == null) continue;
+	public void execute(S subject) {
+		final List<PipelineInterceptor<S>> pipelineInterceptors = new LinkedList<>();
+		for (final PipelinePhase phase : _phases) {
+			final List<PipelineInterceptor<S>> interceptors = this.interceptors.get(phase);
+			if (interceptors == null) continue;
 
-            pipelineInterceptors.addAll(interceptors);
-        }
+			pipelineInterceptors.addAll(interceptors);
+		}
 
-        final PipelineContext<S> context = new PipelineContext<>(null, pipelineInterceptors);
-        context.execute(subject);
-    }
+		final PipelineContext<S> context = new PipelineContext<>(null, pipelineInterceptors);
+		context.execute(subject);
+	}
 
-    @TestOnly
-    public void execute(PipelinePhase phase, S subject) {
-        final PipelineContext<S> context =
-                new PipelineContext<>(phase, interceptors.getOrDefault(phase, Collections.emptyList()));
-        context.execute(subject);
-    }
+	@TestOnly
+	public void execute(PipelinePhase phase, S subject) {
+		final PipelineContext<S> context =
+			new PipelineContext<>(phase, interceptors.getOrDefault(phase, Collections.emptyList()));
+		context.execute(subject);
+	}
 }

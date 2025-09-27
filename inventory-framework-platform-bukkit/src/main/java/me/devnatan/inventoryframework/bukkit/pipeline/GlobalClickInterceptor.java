@@ -15,15 +15,15 @@ import static me.devnatan.inventoryframework.api.ViewConfig.CANCEL_ON_CLICK;
  */
 public final class GlobalClickInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @Override
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
-        if (!(subject instanceof SlotClickContext)) return;
+	@Override
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
+		if (!(subject instanceof SlotClickContext)) return;
 
-        final SlotClickContext context = (SlotClickContext) subject;
-        final InventoryClickEvent event = context.getClickOrigin();
+		final SlotClickContext context = (SlotClickContext) subject;
+		final InventoryClickEvent event = context.getClickOrigin();
 
-        // inherit cancellation so we can un-cancel it
-        context.setCancelled(event.isCancelled() || context.getConfig().isOptionSet(CANCEL_ON_CLICK, true));
-        context.getRoot().onClick(context);
-    }
+		// inherit cancellation so we can un-cancel it
+		context.setCancelled(event.isCancelled() || context.getConfig().isOptionSet(CANCEL_ON_CLICK, true));
+		context.getRoot().onClick(context);
+	}
 }

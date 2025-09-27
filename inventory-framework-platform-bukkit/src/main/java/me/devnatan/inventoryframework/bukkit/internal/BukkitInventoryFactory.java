@@ -10,24 +10,25 @@ import static me.devnatan.inventoryframework.bukkit.runtime.util.InventoryUtils.
 
 public class BukkitInventoryFactory extends InventoryFactory {
 
-    public BukkitInventoryFactory() {}
+	public BukkitInventoryFactory() {
+	}
 
-    @Override
-    public Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title) {
-        final Inventory inventory;
-        final String titleAsText = title == null || ((String) title).isEmpty() ? null : (String) title;
+	@Override
+	public Inventory createInventory(InventoryHolder holder, ViewType type, int size, Object title) {
+		final Inventory inventory;
+		final String titleAsText = title == null || ((String) title).isEmpty() ? null : (String) title;
 
-        if (titleAsText == null) {
-            inventory = !type.isExtendable() || size == 0
-                    ? Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)))
-                    : Bukkit.createInventory(holder, size);
-        } else if (!type.isExtendable()) {
-            inventory = Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)), titleAsText);
-        } else {
-            inventory = size == 0
-                    ? Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)), titleAsText)
-                    : Bukkit.createInventory(holder, size, titleAsText);
-        }
-        return inventory;
-    }
+		if (titleAsText == null) {
+			inventory = !type.isExtendable() || size == 0
+				? Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)))
+				: Bukkit.createInventory(holder, size);
+		} else if (!type.isExtendable()) {
+			inventory = Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)), titleAsText);
+		} else {
+			inventory = size == 0
+				? Bukkit.createInventory(holder, requireNonNull(toInventoryType(type)), titleAsText)
+				: Bukkit.createInventory(holder, size, titleAsText);
+		}
+		return inventory;
+	}
 }

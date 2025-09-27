@@ -22,34 +22,34 @@ import static org.mockito.Mockito.mock;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PlatformRenderContextTest {
 
-    @Test
-    void emptyAvailableSlot() {
-        ItemComponentBuilder itemBuilder = new TestItemComponentBuilder();
-        PlatformRenderContext context =
-                new PlatformRenderContext(
-                        UUID.randomUUID(),
-                        mock(PlatformView.class),
-                        mock(ViewConfig.class),
-                        mock(ViewContainer.class),
-                        mock(Map.class),
-                        mock(Viewer.class),
-                        null) {
-                    @Override
-                    public @NotNull PlatformView getRoot() {
-                        return root;
-                    }
+	@Test
+	void emptyAvailableSlot() {
+		ItemComponentBuilder itemBuilder = new TestItemComponentBuilder();
+		PlatformRenderContext context =
+			new PlatformRenderContext(
+				UUID.randomUUID(),
+				mock(PlatformView.class),
+				mock(ViewConfig.class),
+				mock(ViewContainer.class),
+				mock(Map.class),
+				mock(Viewer.class),
+				null) {
+				@Override
+				public @NotNull PlatformView getRoot() {
+					return root;
+				}
 
-                    @Override
-                    protected ItemComponentBuilder createBuilder() {
-                        return itemBuilder;
-                    }
-                };
+				@Override
+				protected ItemComponentBuilder createBuilder() {
+					return itemBuilder;
+				}
+			};
 
-        context.availableSlot();
+		context.availableSlot();
 
-        List<BiFunction<Integer, Integer, ComponentFactory>> factory = context.getAvailableSlotFactories();
-        BiFunction<Integer, Integer, ComponentFactory> first = factory.get(0);
-        ComponentFactory value = first.apply(0, 0);
-        assertEquals(itemBuilder, value);
-    }
+		List<BiFunction<Integer, Integer, ComponentFactory>> factory = context.getAvailableSlotFactories();
+		BiFunction<Integer, Integer, ComponentFactory> first = factory.get(0);
+		ComponentFactory value = first.apply(0, 0);
+		assertEquals(itemBuilder, value);
+	}
 }

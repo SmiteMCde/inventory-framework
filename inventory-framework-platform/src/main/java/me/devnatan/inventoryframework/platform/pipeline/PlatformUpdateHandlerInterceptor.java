@@ -9,13 +9,13 @@ import me.devnatan.inventoryframework.platform.PlatformView;
 
 public final class PlatformUpdateHandlerInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
-        if (!(subject instanceof IFContext) || pipeline.getPhase() != StandardPipelinePhases.UPDATE) return;
+	@SuppressWarnings("unchecked")
+	@Override
+	public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
+		if (!(subject instanceof IFContext) || pipeline.getPhase() != StandardPipelinePhases.UPDATE)
+			return;
 
-        @SuppressWarnings("rawtypes")
-        final PlatformView root = (PlatformView) ((IFContext) subject).getRoot();
-        root.onUpdate((IFContext) subject);
-    }
+		@SuppressWarnings("rawtypes") final PlatformView root = (PlatformView) ((IFContext) subject).getRoot();
+		root.onUpdate((IFContext) subject);
+	}
 }

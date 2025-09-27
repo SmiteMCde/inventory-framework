@@ -17,47 +17,47 @@ import java.util.function.UnaryOperator;
  */
 public class DefaultFeatureInstaller<P> implements FeatureInstaller<P> {
 
-    protected final Map<Class<?>, Feature<?, ?, P>> featureList = new HashMap<>();
-    private final P platform;
+	protected final Map<Class<?>, Feature<?, ?, P>> featureList = new HashMap<>();
+	private final P platform;
 
-    public DefaultFeatureInstaller(@NotNull P platform) {
-        this.platform = platform;
-    }
+	public DefaultFeatureInstaller(@NotNull P platform) {
+		this.platform = platform;
+	}
 
-    @NotNull
-    @Override
-    public P getPlatform() {
-        return platform;
-    }
+	@NotNull
+	@Override
+	public P getPlatform() {
+		return platform;
+	}
 
-    @Override
-    public Collection<Feature<?, ?, P>> getInstalledFeatures() {
-        return Collections.unmodifiableCollection(featureList.values());
-    }
+	@Override
+	public Collection<Feature<?, ?, P>> getInstalledFeatures() {
+		return Collections.unmodifiableCollection(featureList.values());
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <C, R> @NotNull R install(@NotNull Feature<C, R, P> feature, @NotNull UnaryOperator<C> configure) {
-        final Class<?> type = feature.getClass();
-        if (featureList.containsKey(type)) throw new IllegalStateException("Feature already installed: " + type);
+	@SuppressWarnings("unchecked")
+	@Override
+	public <C, R> @NotNull R install(@NotNull Feature<C, R, P> feature, @NotNull UnaryOperator<C> configure) {
+		final Class<?> type = feature.getClass();
+		if (featureList.containsKey(type))
+			throw new IllegalStateException("Feature already installed: " + type);
 
-        @SuppressWarnings("unchecked")
-        final Feature<C, R, P> value = (Feature<C, R, P>) feature.install(platform, configure);
-        synchronized (featureList) {
-            featureList.put(type, value);
-        }
+		@SuppressWarnings("unchecked") final Feature<C, R, P> value = (Feature<C, R, P>) feature.install(platform, configure);
+		synchronized (featureList) {
+			featureList.put(type, value);
+		}
 
-        return (R) value;
-    }
+		return (R) value;
+	}
 
-    @Override
-    public void uninstall(@NotNull Feature<?, ?, P> feature) {
-        final Class<?> type = feature.getClass();
-        if (!featureList.containsKey(type))
-            throw new IllegalStateException(String.format("Feature %s not installed", type.getSimpleName()));
+	@Override
+	public void uninstall(@NotNull Feature<?, ?, P> feature) {
+		final Class<?> type = feature.getClass();
+		if (!featureList.containsKey(type))
+			throw new IllegalStateException(String.format("Feature %s not installed", type.getSimpleName()));
 
-        synchronized (featureList) {
-            featureList.remove(type).uninstall(platform);
-        }
-    }
+		synchronized (featureList) {
+			featureList.remove(type).uninstall(platform);
+		}
+	}
 }

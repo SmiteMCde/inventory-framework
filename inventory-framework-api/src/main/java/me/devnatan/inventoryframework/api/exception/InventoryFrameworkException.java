@@ -1,19 +1,19 @@
 package me.devnatan.inventoryframework.api.exception;
 
 public class InventoryFrameworkException extends RuntimeException {
-    public InventoryFrameworkException() {
-        super();
-    }
+	public InventoryFrameworkException() {
+		super();
+	}
 
-    public InventoryFrameworkException(String message) {
-        super(message);
-    }
+	public InventoryFrameworkException(String message) {
+		super(message);
+	}
 
-    public InventoryFrameworkException(Throwable cause) {
-        super(cause);
-    }
+	public InventoryFrameworkException(Throwable cause) {
+		super(cause);
+	}
 
-    public InventoryFrameworkException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public InventoryFrameworkException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

@@ -54,7 +54,7 @@ Your issue should contain a title and a clear description of the issue. You shou
 information as possible, and a code sample that demonstrates the issue. The goal of a bug report is to make it easy for
 yourself - and others - to replicate the bug and develop a fix.
 
-Opening an issue is as easy as following 
+Opening an issue is as easy as following
 [this link](https://github.com/DevNatan/inventory-framework/issues/new?assignees=&labels=&template=bug_report.md)
 and filling out the given template.
 

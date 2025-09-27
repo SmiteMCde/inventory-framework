@@ -12,16 +12,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SamplePlugin extends JavaPlugin {
 
-    @Override
-    public void onEnable() {
-        ViewFrame viewFrame = ViewFrame.create(this)
-                .install(AnvilInputFeature.AnvilInput)
-                .with(new AnvilInputSample(), new Failing(), new SimplePagination(), new AutoUpdate())
-                .register();
+	@Override
+	public void onEnable() {
+		ViewFrame viewFrame = ViewFrame.create(this)
+			.install(AnvilInputFeature.AnvilInput)
+			.with(new AnvilInputSample(), new Failing(), new SimplePagination(), new AutoUpdate())
+			.register();
 
-        IFExampleCommandExecutor command = new IFExampleCommandExecutor(viewFrame);
-        getCommand("ifexample").setExecutor(command);
-        getCommand("ifexample").setTabCompleter(command);
-        getServer().getPluginManager().registerEvents(new PigListener(viewFrame), this);
-    }
+		IFExampleCommandExecutor command = new IFExampleCommandExecutor(viewFrame);
+		getCommand("ifexample").setExecutor(command);
+		getCommand("ifexample").setTabCompleter(command);
+		getServer().getPluginManager().registerEvents(new PigListener(viewFrame), this);
+	}
 }

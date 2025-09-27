@@ -16,166 +16,166 @@ import java.util.Set;
  */
 public interface Component extends VirtualView {
 
-    /**
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     */
-    @ApiStatus.Internal
-    String getKey();
+	/**
+	 * Checks if two components area intersects with each other.
+	 *
+	 * @param component The component A.
+	 * @param other     The component B.
+	 * @return If component B area conflicts with area of component A.
+	 */
+	static boolean intersects(@NotNull Component component, @NotNull Component other) {
+		if (component instanceof ComponentComposition) return intersects(other, component);
 
-    /**
-     * The root of this component.
-     *
-     * @return The root of this component.
-     */
-    @NotNull
-    VirtualView getRoot();
+		if (other instanceof ComponentComposition) {
+			for (final Component otherChildren : (ComponentComposition) other) {
+				if (otherChildren.intersects(component)) return true;
+			}
+		}
 
-    /**
-     * The current position of this component relative to its root view.
-     *
-     * @return The current position of this component.
-     */
-    int getPosition();
+		return other.isContainedWithin(component.getPosition());
+	}
 
-    /**
-     * Checks if this component is in a specific position.
-     *
-     * @param position The position.
-     * @return If this component is contained in the given position.
-     */
-    boolean isContainedWithin(int position);
+	/**
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 */
+	@ApiStatus.Internal
+	String getKey();
 
-    /**
-     * If this component are intersects with other component.
-     *
-     * @param other The other component.
-     * @return If both this and other component intersects in area.
-     */
-    boolean intersects(@NotNull Component other);
+	/**
+	 * The root of this component.
+	 *
+	 * @return The root of this component.
+	 */
+	@NotNull
+	VirtualView getRoot();
 
-    /**
-     * The interaction handler for this component.
-     *
-     * @return The interaction handler for this component.
-     */
-    InteractionHandler getInteractionHandler();
+	/**
+	 * The current position of this component relative to its root view.
+	 *
+	 * @return The current position of this component.
+	 */
+	int getPosition();
 
-    /**
-     * Renders this component to the given context.
-     *
-     * @param context The context that this component will be rendered on.
-     */
-    void render(@NotNull IFSlotRenderContext context);
+	/**
+	 * Checks if this component is in a specific position.
+	 *
+	 * @param position The position.
+	 * @return If this component is contained in the given position.
+	 */
+	boolean isContainedWithin(int position);
 
-    /**
-     * Called when this component is updated in the given context.
-     *
-     * @param context The update context.
-     */
-    void updated(@NotNull IFSlotRenderContext context);
+	/**
+	 * If this component are intersects with other component.
+	 *
+	 * @param other The other component.
+	 * @return If both this and other component intersects in area.
+	 */
+	boolean intersects(@NotNull Component other);
 
-    /**
-     * Clears this component from the given context.
-     *
-     * @param context The context that this component will be cleared from.
-     */
-    void clear(@NotNull IFContext context);
+	/**
+	 * The interaction handler for this component.
+	 *
+	 * @return The interaction handler for this component.
+	 */
+	InteractionHandler getInteractionHandler();
 
-    /**
-     * An unmodifiable set of all states that this component is watching.
-     *
-     * @return All states that this component is watching.
-     */
-    @UnmodifiableView
-    Set<State<?>> getWatchingStates();
+	/**
+	 * Renders this component to the given context.
+	 *
+	 * @param context The context that this component will be rendered on.
+	 */
+	void render(@NotNull IFSlotRenderContext context);
 
-    /**
-     * If this component can be seen, it is used in interaction treatments to ensure that the viewer
-     * does not interact with hidden components.
-     *
-     * @return If this component is visible.
-     */
-    boolean isVisible();
+	/**
+	 * Called when this component is updated in the given context.
+	 *
+	 * @param context The update context.
+	 */
+	void updated(@NotNull IFSlotRenderContext context);
 
-    /**
-     * Sets the visibility state of this component.
-     * <p>
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     *
-     * @param visible If this component is visible.
-     */
-    @ApiStatus.Internal
-    void setVisible(boolean visible);
+	/**
+	 * Clears this component from the given context.
+	 *
+	 * @param context The context that this component will be cleared from.
+	 */
+	void clear(@NotNull IFContext context);
 
-    /**
-     * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided.</i></b>
-     */
-    @ApiStatus.Internal
-    boolean isManagedExternally();
+	/**
+	 * An unmodifiable set of all states that this component is watching.
+	 *
+	 * @return All states that this component is watching.
+	 */
+	@UnmodifiableView
+	Set<State<?>> getWatchingStates();
 
-    // TODO Needs documentation
-    boolean shouldRender(IFContext context);
+	/**
+	 * If this component can be seen, it is used in interaction treatments to ensure that the viewer
+	 * does not interact with hidden components.
+	 *
+	 * @return If this component is visible.
+	 */
+	boolean isVisible();
 
-    /**
-     * Updates this component.
-     */
-    void update();
+	/**
+	 * Sets the visibility state of this component.
+	 * <p>
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 *
+	 * @param visible If this component is visible.
+	 */
+	@ApiStatus.Internal
+	void setVisible(boolean visible);
 
-    /**
-     * Checks if two components area intersects with each other.
-     *
-     * @param component The component A.
-     * @param other     The component B.
-     * @return If component B area conflicts with area of component A.
-     */
-    static boolean intersects(@NotNull Component component, @NotNull Component other) {
-        if (component instanceof ComponentComposition) return intersects(other, component);
+	/**
+	 * <p><b><i>This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided.</i></b>
+	 */
+	@ApiStatus.Internal
+	boolean isManagedExternally();
 
-        if (other instanceof ComponentComposition) {
-            for (final Component otherChildren : (ComponentComposition) other) {
-                if (otherChildren.intersects(component)) return true;
-            }
-        }
+	// TODO Needs documentation
+	boolean shouldRender(IFContext context);
 
-        return other.isContainedWithin(component.getPosition());
-    }
+	/**
+	 * Updates this component.
+	 */
+	void update();
 
-    /**
-     * Returns the reference assigned to this component.
-     * <p>
-     * <b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     */
-    @ApiStatus.Experimental
-    Ref<Component> getReference();
+	/**
+	 * Returns the reference assigned to this component.
+	 * <p>
+	 * <b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 */
+	@ApiStatus.Experimental
+	Ref<Component> getReference();
 
-    /**
-     * Forces this component to be updated.
-     *
-     * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     */
-    @ApiStatus.Experimental
-    void forceUpdate();
+	/**
+	 * Forces this component to be updated.
+	 *
+	 * <p><b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 */
+	@ApiStatus.Experimental
+	void forceUpdate();
 
-    /**
-     * Shows this component.
-     * <p>
-     * <b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     */
-    @ApiStatus.Experimental
-    void show();
+	/**
+	 * Shows this component.
+	 * <p>
+	 * <b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 */
+	@ApiStatus.Experimental
+	void show();
 
-    /**
-     * Hides this component.
-     * <p>
-     * <b><i> This API is experimental and is not subject to the general compatibility guarantees
-     * such API may be changed or may be removed completely in any further release. </i></b>
-     */
-    @ApiStatus.Experimental
-    void hide();
+	/**
+	 * Hides this component.
+	 * <p>
+	 * <b><i> This API is experimental and is not subject to the general compatibility guarantees
+	 * such API may be changed or may be removed completely in any further release. </i></b>
+	 */
+	@ApiStatus.Experimental
+	void hide();
 }

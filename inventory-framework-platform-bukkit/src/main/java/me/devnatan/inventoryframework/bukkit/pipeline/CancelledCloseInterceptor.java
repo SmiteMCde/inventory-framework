@@ -11,20 +11,20 @@ import org.bukkit.inventory.ItemStack;
 
 public class CancelledCloseInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @SuppressWarnings("ConstantValue")
-    @Override
-    public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
-        if (!(subject instanceof IFCloseContext)) return;
+	@SuppressWarnings("ConstantValue")
+	@Override
+	public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
+		if (!(subject instanceof IFCloseContext)) return;
 
-        final CloseContext context = (CloseContext) subject;
-        if (!context.isCancelled()) return;
+		final CloseContext context = (CloseContext) subject;
+		if (!context.isCancelled()) return;
 
-        final Player player = context.getPlayer();
-        final ItemStack cursor = player.getItemOnCursor();
+		final Player player = context.getPlayer();
+		final ItemStack cursor = player.getItemOnCursor();
 
-        context.getRoot().nextTick(() -> context.getViewer().open(context.getContainer()));
+		context.getRoot().nextTick(() -> context.getViewer().open(context.getContainer()));
 
-        // suppress cursor null check since it can be null in legacy versions
-        if ((cursor != null) && cursor.getType() != Material.AIR) player.setItemOnCursor(cursor);
-    }
+		// suppress cursor null check since it can be null in legacy versions
+		if ((cursor != null) && cursor.getType() != Material.AIR) player.setItemOnCursor(cursor);
+	}
 }

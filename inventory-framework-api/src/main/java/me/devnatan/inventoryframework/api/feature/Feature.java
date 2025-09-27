@@ -42,56 +42,57 @@ import java.util.function.UnaryOperator;
  */
 public interface Feature<C, R, F> {
 
-    /**
-     * The name of this feature.
-     *
-     * @return The name of this feature.
-     */
-    @NotNull
-    String name();
+	/**
+	 * The name of this feature.
+	 *
+	 * @return The name of this feature.
+	 */
+	@NotNull
+	String name();
 
-    /**
-     * Initializes and installs everything that must be installed within this feature using the
-     * platform and configuration factory as providers.
-     *
-     * @param framework The feature installer platform framework.
-     * @param configure The feature configuration factory.
-     * @return The initialized feature instance.
-     */
-    @NotNull
-    R install(F framework, UnaryOperator<C> configure);
+	/**
+	 * Initializes and installs everything that must be installed within this feature using the
+	 * platform and configuration factory as providers.
+	 *
+	 * @param framework The feature installer platform framework.
+	 * @param configure The feature configuration factory.
+	 * @return The initialized feature instance.
+	 */
+	@NotNull
+	R install(F framework, UnaryOperator<C> configure);
 
-    /**
-     * Uninstalls this feature, used to invalidate resources applied on installation.
-     *
-     * @param framework The feature uninstaller framework.
-     * @see #install(Object, UnaryOperator)
-     */
-    void uninstall(F framework);
+	/**
+	 * Uninstalls this feature, used to invalidate resources applied on installation.
+	 *
+	 * @param framework The feature uninstaller framework.
+	 * @see #install(Object, UnaryOperator)
+	 */
+	void uninstall(F framework);
 
-    final class Keys {
+	final class Keys {
 
-        /**
-         * Pagination feature key.
-         *
-         * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Pagination">Pagination on Wiki</a>
-         */
-        public static final String PAGINATION = "pagination";
+		/**
+		 * Pagination feature key.
+		 *
+		 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Pagination">Pagination on Wiki</a>
+		 */
+		public static final String PAGINATION = "pagination";
 
-        /**
-         * Layouts feature key.
-         *
-         * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Layouts">Layouts on Wiki</a>
-         */
-        public static final String LAYOUTS = "layouts";
+		/**
+		 * Layouts feature key.
+		 *
+		 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Layouts">Layouts on Wiki</a>
+		 */
+		public static final String LAYOUTS = "layouts";
 
-        /**
-         * Scheduled updates feature key.
-         *
-         * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Scheduled-Updates">Scheduled Updates on Wiki</a>
-         */
-        public static final String SCHEDULED_UPDATES = "scheduled-updates";
+		/**
+		 * Scheduled updates feature key.
+		 *
+		 * @see <a href="https://github.com/DevNatan/inventory-framework/wiki/Scheduled-Updates">Scheduled Updates on Wiki</a>
+		 */
+		public static final String SCHEDULED_UPDATES = "scheduled-updates";
 
-        private Keys() {}
-    }
+		private Keys() {
+		}
+	}
 }

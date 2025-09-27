@@ -11,13 +11,13 @@ import static org.mockito.Mockito.when;
 
 public class BukkitTestUtils {
 
-    public static Player createPlayerMock() {
-        Player player = mock(Player.class);
-        when(player.getUniqueId()).thenReturn(new UUID(0, 1));
-        return player;
-    }
+	public static Player createPlayerMock() {
+		Player player = mock(Player.class);
+		when(player.getUniqueId()).thenReturn(new UUID(0, 1));
+		return player;
+	}
 
-    public static ViewFrame createViewFrameMock() {
-        return ViewFrame.create(mock(Plugin.class));
-    }
+	public static ViewFrame createViewFrameMock() {
+		return ViewFrame.create(mock(Plugin.class));
+	}
 }

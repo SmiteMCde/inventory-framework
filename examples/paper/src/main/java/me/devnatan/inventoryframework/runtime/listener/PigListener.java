@@ -9,16 +9,16 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public final class PigListener implements Listener {
 
-    private final ViewFrame viewFrame;
+	private final ViewFrame viewFrame;
 
-    public PigListener(ViewFrame viewFrame) {
-        this.viewFrame = viewFrame;
-    }
+	public PigListener(ViewFrame viewFrame) {
+		this.viewFrame = viewFrame;
+	}
 
-    @EventHandler
-    public void onInteract(PlayerInteractEntityEvent event) {
-        if (event.getRightClicked().getType() != EntityType.PIG) return;
+	@EventHandler
+	public void onInteract(PlayerInteractEntityEvent event) {
+		if (event.getRightClicked().getType() != EntityType.PIG) return;
 
-        viewFrame.open(SimplePagination.class, event.getPlayer());
-    }
+		viewFrame.open(SimplePagination.class, event.getPlayer());
+	}
 }

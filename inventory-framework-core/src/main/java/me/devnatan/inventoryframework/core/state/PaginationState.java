@@ -22,69 +22,71 @@ import static me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases
 @ApiStatus.Internal
 public final class PaginationState extends BaseState<Pagination> implements StateWatcher {
 
-    @ApiStatus.Internal
-    public static final PipelinePhase PAGINATION_RENDER = new PipelinePhase("pagination-render");
+	@ApiStatus.Internal
+	public static final PipelinePhase PAGINATION_RENDER = new PipelinePhase("pagination-render");
 
-    private final PipelineInterceptor<VirtualView> pipelineInterceptor = new Interceptor(this);
+	private final PipelineInterceptor<VirtualView> pipelineInterceptor = new Interceptor(this);
 
-    public PaginationState(long id, @NotNull StateValueFactory valueFactory) {
-        super(id, valueFactory);
-    }
+	public PaginationState(long id, @NotNull StateValueFactory valueFactory) {
+		super(id, valueFactory);
+	}
 
-    @Override
-    public void stateRegistered(@NotNull State<?> state, Object caller) {
-        // This limitation must be removed in #498 to allow Component scoped states
-        if (!(caller instanceof RootView))
-            throw new IllegalArgumentException(
-                    "Pagination state can only be registered by RootView: " + caller.getClass());
+	@Override
+	public void stateRegistered(@NotNull State<?> state, Object caller) {
+		// This limitation must be removed in #498 to allow Component scoped states
+		if (!(caller instanceof RootView))
+			throw new IllegalArgumentException(
+				"Pagination state can only be registered by RootView: " + caller.getClass());
 
-        final Pipeline<VirtualView> pipeline = ((RootView) caller).getPipeline();
-        pipeline.insertPhaseAfter(LAYOUT_RESOLUTION, PAGINATION_RENDER);
-        pipeline.intercept(PAGINATION_RENDER, pipelineInterceptor);
-    }
+		final Pipeline<VirtualView> pipeline = ((RootView) caller).getPipeline();
+		pipeline.insertPhaseAfter(LAYOUT_RESOLUTION, PAGINATION_RENDER);
+		pipeline.intercept(PAGINATION_RENDER, pipelineInterceptor);
+	}
 
-    @Override
-    public void stateUnregistered(@NotNull State<?> state, Object caller) {
-        // This limitation must be removed in #498 to allow Component scoped states
-        if (!(caller instanceof RootView))
-            throw new IllegalArgumentException(
-                    "Pagination state can only be unregistered by RootView: " + caller.getClass());
+	@Override
+	public void stateUnregistered(@NotNull State<?> state, Object caller) {
+		// This limitation must be removed in #498 to allow Component scoped states
+		if (!(caller instanceof RootView))
+			throw new IllegalArgumentException(
+				"Pagination state can only be unregistered by RootView: " + caller.getClass());
 
-        (((RootView) caller)).getPipeline().removeInterceptor(PAGINATION_RENDER, pipelineInterceptor);
-    }
+		(((RootView) caller)).getPipeline().removeInterceptor(PAGINATION_RENDER, pipelineInterceptor);
+	}
 
-    @Override
-    public void stateValueGet(
-            @NotNull State<?> state,
-            @NotNull StateValueHost host,
-            @NotNull StateValue internalValue,
-            Object rawValue) {}
+	@Override
+	public void stateValueGet(
+		@NotNull State<?> state,
+		@NotNull StateValueHost host,
+		@NotNull StateValue internalValue,
+		Object rawValue) {
+	}
 
-    @Override
-    public void stateValueSet(
-            @NotNull StateValueHost host, @NotNull StateValue value, Object rawOldValue, Object rawNewValue) {}
+	@Override
+	public void stateValueSet(
+		@NotNull StateValueHost host, @NotNull StateValue value, Object rawOldValue, Object rawNewValue) {
+	}
 
-    @Override
-    public String toString() {
-        return "PaginationState{" + "pipelineInterceptor=" + pipelineInterceptor + "} " + super.toString();
-    }
+	@Override
+	public String toString() {
+		return "PaginationState{" + "pipelineInterceptor=" + pipelineInterceptor + "} " + super.toString();
+	}
 
-    private static final class Interceptor implements PipelineInterceptor<VirtualView> {
+	private static final class Interceptor implements PipelineInterceptor<VirtualView> {
 
-        private final State<?> state;
+		private final State<?> state;
 
-        public Interceptor(State<?> state) {
-            this.state = state;
-        }
+		public Interceptor(State<?> state) {
+			this.state = state;
+		}
 
-        @Override
-        public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
-            if (!(subject instanceof IFRenderContext)) return;
+		@Override
+		public void intercept(PipelineContext<VirtualView> pipeline, VirtualView subject) {
+			if (!(subject instanceof IFRenderContext)) return;
 
-            final IFContext context = (IFContext) subject;
-            final Pagination pagination = (Pagination) context.getRawStateValue(state);
+			final IFContext context = (IFContext) subject;
+			final Pagination pagination = (Pagination) context.getRawStateValue(state);
 
-            context.addComponent(pagination);
-        }
-    }
+			context.addComponent(pagination);
+		}
+	}
 }

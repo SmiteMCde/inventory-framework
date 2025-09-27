@@ -7,11 +7,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface ComponentFactory {
 
-    /**
-     * Creates a new component.
-     *
-     * @return A new component instance.
-     */
-    @NotNull
-    Component create();
+	/**
+	 * Creates a new component.
+	 *
+	 * @return A new component instance.
+	 */
+	@NotNull
+	Component create();
 }

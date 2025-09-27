@@ -22,40 +22,40 @@ import static org.mockito.Mockito.*;
 // TODO missing component builders registration for IFRenderContext test
 public class FirstRenderInterceptorTest {
 
-    @Test
-    void renderComponents() {
-        FirstRenderInterceptor interceptor = new FirstRenderInterceptor();
-        RootView root = createRootMock();
-        IFRenderContext context = createContextMock(root, MockRenderIFContext.class);
-        Mockito.doCallRealMethod().when(context).renderComponent(any());
+	@Test
+	void renderComponents() {
+		FirstRenderInterceptor interceptor = new FirstRenderInterceptor();
+		RootView root = createRootMock();
+		IFRenderContext context = createContextMock(root, MockRenderIFContext.class);
+		Mockito.doCallRealMethod().when(context).renderComponent(any());
 
-        ViewContainer container = mock(ViewContainer.class);
-        when(context.getContainer()).thenReturn(container);
-        FakeComponent component = spy(new FakeComponent(root, 0));
-        when(component.shouldRender(context)).thenReturn(true);
-        when(context.getComponents()).thenReturn(Collections.singletonList(component));
-        when(root.getInternalContexts()).thenReturn(Collections.singleton(context));
+		ViewContainer container = mock(ViewContainer.class);
+		when(context.getContainer()).thenReturn(container);
+		FakeComponent component = spy(new FakeComponent(root, 0));
+		when(component.shouldRender(context)).thenReturn(true);
+		when(context.getComponents()).thenReturn(Collections.singletonList(component));
+		when(root.getInternalContexts()).thenReturn(Collections.singleton(context));
 
-        interceptor.intercept(null, context);
-        verify(container, times(1)).renderItem(eq(component.getPosition()), eq(component.item));
-    }
+		interceptor.intercept(null, context);
+		verify(container, times(1)).renderItem(eq(component.getPosition()), eq(component.item));
+	}
 
-    @Test
-    void watchStates() {
-        FirstRenderInterceptor interceptor = new FirstRenderInterceptor();
-        RootView root = createRootMock();
-        IFRenderContext context = createContextMock(root, IFRenderContext.class);
+	@Test
+	void watchStates() {
+		FirstRenderInterceptor interceptor = new FirstRenderInterceptor();
+		RootView root = createRootMock();
+		IFRenderContext context = createContextMock(root, IFRenderContext.class);
 
-        ViewContainer container = mock(ViewContainer.class);
-        when(context.getContainer()).thenReturn(container);
+		ViewContainer container = mock(ViewContainer.class);
+		when(context.getContainer()).thenReturn(container);
 
-        Component component = mock(Component.class);
-        State<?> state = mock(State.class);
-        when(state.internalId()).thenReturn(4L);
-        when(component.getWatchingStates()).thenReturn(Collections.singleton(state));
-        when(context.getComponents()).thenReturn(Collections.singletonList(component));
+		Component component = mock(Component.class);
+		State<?> state = mock(State.class);
+		when(state.internalId()).thenReturn(4L);
+		when(component.getWatchingStates()).thenReturn(Collections.singleton(state));
+		when(context.getComponents()).thenReturn(Collections.singletonList(component));
 
-        interceptor.intercept(null, context);
-        verify(context).watchState(eq(4L), any());
-    }
+		interceptor.intercept(null, context);
+		verify(context).watchState(eq(4L), any());
+	}
 }

@@ -4,12 +4,12 @@ import org.jetbrains.annotations.Nullable;
 
 public interface Logger {
 
-    @Nullable
-    String getPrefix();
+	@Nullable
+	String getPrefix();
 
-    void debug(String message);
+	void debug(String message);
 
-    void warn(String message);
+	void warn(String message);
 
-    void error(String message);
+	void error(String message);
 }

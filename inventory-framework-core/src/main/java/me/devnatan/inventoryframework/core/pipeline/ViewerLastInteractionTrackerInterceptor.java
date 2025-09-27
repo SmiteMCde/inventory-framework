@@ -10,23 +10,23 @@ import org.jetbrains.annotations.NotNull;
 
 public final class ViewerLastInteractionTrackerInterceptor implements PipelineInterceptor<VirtualView> {
 
-    @Override
-    public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
-        if (!(subject instanceof IFSlotClickContext)) return;
+	@Override
+	public void intercept(@NotNull PipelineContext<VirtualView> pipeline, @NotNull VirtualView subject) {
+		if (!(subject instanceof IFSlotClickContext)) return;
 
-        final IFSlotClickContext click = (IFSlotClickContext) subject;
+		final IFSlotClickContext click = (IFSlotClickContext) subject;
 
-        // fast path -- skip checks and currentTimeMillis() calls if interaction delay is not enabled
-        if (click.getConfig().getInteractionDelayInMillis() <= 0) return;
+		// fast path -- skip checks and currentTimeMillis() calls if interaction delay is not enabled
+		if (click.getConfig().getInteractionDelayInMillis() <= 0) return;
 
-        final Viewer viewer = click.getViewer();
-        if (!click.isCombined() && viewer.isBlockedByInteractionDelay()) {
-            IFDebug.debug("ViewerLastInteractionTrackerInterceptor: pipeline finished due to interaction delay");
-            click.setCancelled(true);
-            pipeline.finish();
-            return;
-        }
+		final Viewer viewer = click.getViewer();
+		if (!click.isCombined() && viewer.isBlockedByInteractionDelay()) {
+			IFDebug.debug("ViewerLastInteractionTrackerInterceptor: pipeline finished due to interaction delay");
+			click.setCancelled(true);
+			pipeline.finish();
+			return;
+		}
 
-        viewer.setLastInteractionInMillis(System.currentTimeMillis());
-    }
+		viewer.setLastInteractionInMillis(System.currentTimeMillis());
+	}
 }

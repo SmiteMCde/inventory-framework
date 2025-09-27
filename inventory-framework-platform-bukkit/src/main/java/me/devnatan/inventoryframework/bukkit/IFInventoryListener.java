@@ -26,103 +26,103 @@ import org.bukkit.inventory.PlayerInventory;
 
 public final class IFInventoryListener implements Listener {
 
-    private final ViewFrame viewFrame;
+	private final ViewFrame viewFrame;
 
-    public IFInventoryListener(ViewFrame viewFrame) {
-        this.viewFrame = viewFrame;
-    }
+	public IFInventoryListener(ViewFrame viewFrame) {
+		this.viewFrame = viewFrame;
+	}
 
-    @EventHandler
-    public void onPluginDisable(final PluginDisableEvent event) {
-        if (!event.getPlugin().getName().equals(viewFrame.getOwner().getName())) return;
+	@EventHandler
+	public void onPluginDisable(final PluginDisableEvent event) {
+		if (!event.getPlugin().getName().equals(viewFrame.getOwner().getName())) return;
 
-        viewFrame.unregister();
-    }
+		viewFrame.unregister();
+	}
 
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onInventoryClick(final InventoryClickEvent event) {
-        if (!(event.getWhoClicked() instanceof Player)) return;
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void onInventoryClick(final InventoryClickEvent event) {
+		if (!(event.getWhoClicked() instanceof Player)) return;
 
-        final Player player = (Player) event.getWhoClicked();
-        final Viewer viewer = viewFrame.getViewer(player);
-        if (viewer == null) return;
+		final Player player = (Player) event.getWhoClicked();
+		final Viewer viewer = viewFrame.getViewer(player);
+		if (viewer == null) return;
 
-        final IFRenderContext context = viewer.getActiveContext();
-        final Component clickedComponent = context.getComponentsAt(event.getRawSlot()).stream()
-                .filter(Component::isVisible)
-                .findFirst()
-                .orElse(null);
-        final ViewContainer clickedContainer = event.getClickedInventory() instanceof PlayerInventory
-                ? viewer.getSelfContainer()
-                : context.getContainer();
+		final IFRenderContext context = viewer.getActiveContext();
+		final Component clickedComponent = context.getComponentsAt(event.getRawSlot()).stream()
+			.filter(Component::isVisible)
+			.findFirst()
+			.orElse(null);
+		final ViewContainer clickedContainer = event.getClickedInventory() instanceof PlayerInventory
+			? viewer.getSelfContainer()
+			: context.getContainer();
 
-        final RootView root = context.getRoot();
-        final IFSlotClickContext clickContext = root.getElementFactory()
-                .createSlotClickContext(event.getRawSlot(), viewer, clickedContainer, clickedComponent, event, false);
+		final RootView root = context.getRoot();
+		final IFSlotClickContext clickContext = root.getElementFactory()
+			.createSlotClickContext(event.getRawSlot(), viewer, clickedContainer, clickedComponent, event, false);
 
-        root.getPipeline().execute(StandardPipelinePhases.CLICK, clickContext);
-    }
+		root.getPipeline().execute(StandardPipelinePhases.CLICK, clickContext);
+	}
 
-    @SuppressWarnings("unused")
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onInventoryClose(final InventoryCloseEvent event) {
-        if (!(event.getPlayer() instanceof Player)) return;
+	@SuppressWarnings("unused")
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void onInventoryClose(final InventoryCloseEvent event) {
+		if (!(event.getPlayer() instanceof Player)) return;
 
-        final Inventory inventory = event.getInventory();
-        if (inventory.getType() != InventoryType.ANVIL /* Anvil Input support */
-                && !(event.getInventory().getHolder() instanceof IFRenderContext)) return;
+		final Inventory inventory = event.getInventory();
+		if (inventory.getType() != InventoryType.ANVIL /* Anvil Input support */
+			&& !(event.getInventory().getHolder() instanceof IFRenderContext)) return;
 
-        final Player player = (Player) event.getPlayer();
-        final Viewer viewer = viewFrame.getViewer(player);
-        if (viewer == null) return;
+		final Player player = (Player) event.getPlayer();
+		final Viewer viewer = viewFrame.getViewer(player);
+		if (viewer == null) return;
 
-        final IFRenderContext context = viewer.getCurrentContext();
-        final RootView root = context.getRoot();
-        final IFCloseContext closeContext = root.getElementFactory().createCloseContext(viewer, context, event);
+		final IFRenderContext context = viewer.getCurrentContext();
+		final RootView root = context.getRoot();
+		final IFCloseContext closeContext = root.getElementFactory().createCloseContext(viewer, context, event);
 
-        root.getPipeline().execute(StandardPipelinePhases.CLOSE, closeContext);
-    }
+		root.getPipeline().execute(StandardPipelinePhases.CLOSE, closeContext);
+	}
 
-    @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onItemPickup(PlayerPickupItemEvent event) {
-        final Viewer viewer = viewFrame.getViewer(event.getPlayer());
-        if (viewer == null) return;
+	@SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void onItemPickup(PlayerPickupItemEvent event) {
+		final Viewer viewer = viewFrame.getViewer(event.getPlayer());
+		if (viewer == null) return;
 
-        final IFContext context = viewer.getActiveContext();
-        if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_PICKUP)) return;
+		final IFContext context = viewer.getActiveContext();
+		if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_PICKUP)) return;
 
-        event.setCancelled(context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_PICKUP));
-    }
+		event.setCancelled(context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_PICKUP));
+	}
 
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onItemDrop(PlayerDropItemEvent event) {
-        final Viewer viewer = viewFrame.getViewer(event.getPlayer());
-        if (viewer == null) return;
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void onItemDrop(PlayerDropItemEvent event) {
+		final Viewer viewer = viewFrame.getViewer(event.getPlayer());
+		if (viewer == null) return;
 
-        final IFContext context = viewer.getActiveContext();
-        if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_DROP)) return;
+		final IFContext context = viewer.getActiveContext();
+		if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_DROP)) return;
 
-        event.setCancelled(context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_DROP));
-    }
+		event.setCancelled(context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_DROP));
+	}
 
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onInventoryDrag(InventoryDragEvent event) {
-        if (!(event.getWhoClicked() instanceof Player)) return;
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void onInventoryDrag(InventoryDragEvent event) {
+		if (!(event.getWhoClicked() instanceof Player)) return;
 
-        final Viewer viewer = viewFrame.getViewer((Player) event.getWhoClicked());
-        if (viewer == null) return;
+		final Viewer viewer = viewFrame.getViewer((Player) event.getWhoClicked());
+		if (viewer == null) return;
 
-        final IFContext context = viewer.getActiveContext();
-        if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_DRAG)) return;
+		final IFContext context = viewer.getActiveContext();
+		if (!context.getConfig().isOptionSet(ViewConfig.CANCEL_ON_DRAG)) return;
 
-        final boolean configValue = context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_DRAG);
-        final int size = event.getInventory().getSize();
-        for (final int rawSlot : event.getRawSlots()) {
-            if (!(rawSlot < size)) continue;
+		final boolean configValue = context.getConfig().getOptionValue(ViewConfig.CANCEL_ON_DRAG);
+		final int size = event.getInventory().getSize();
+		for (final int rawSlot : event.getRawSlots()) {
+			if (!(rawSlot < size)) continue;
 
-            event.setCancelled(configValue);
-            break;
-        }
-    }
+			event.setCancelled(configValue);
+			break;
+		}
+	}
 }

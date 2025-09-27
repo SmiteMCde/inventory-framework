@@ -22,101 +22,101 @@ import static me.devnatan.inventoryframework.bukkit.runtime.thirdparty.Reflectio
 
 class AnvilInputNMS {
 
-    // CONSTRUCTORS
-    private static final MethodHandle ANVIL_CONSTRUCTOR;
-    private static final Class<?> ANVIL;
+	// CONSTRUCTORS
+	private static final MethodHandle ANVIL_CONSTRUCTOR;
+	private static final Class<?> ANVIL;
 
-    // METHODS
-    private static final MethodHandle GET_PLAYER_NEXT_CONTAINER_COUNTER;
-    private static final MethodHandle GET_PLAYER_INVENTORY;
-    private static final MethodHandle SET_PLAYER_ACTIVE_CONTAINER;
-    private static final MethodHandle ADD_CONTAINER_SLOT_LISTENER;
-    private static final MethodHandle INIT_MENU;
+	// METHODS
+	private static final MethodHandle GET_PLAYER_NEXT_CONTAINER_COUNTER;
+	private static final MethodHandle GET_PLAYER_INVENTORY;
+	private static final MethodHandle SET_PLAYER_ACTIVE_CONTAINER;
+	private static final MethodHandle ADD_CONTAINER_SLOT_LISTENER;
+	private static final MethodHandle INIT_MENU;
 	private static final MethodHandle GET_TOP_INVENTORY;
 
-    // FIELDS
-    private static final MethodHandle CONTAINER_CHECK_REACHABLE;
-    private static final MethodHandle PLAYER_DEFAULT_CONTAINER;
-    private static final MethodHandle CONTAINER_WINDOW_ID;
+	// FIELDS
+	private static final MethodHandle CONTAINER_CHECK_REACHABLE;
+	private static final MethodHandle PLAYER_DEFAULT_CONTAINER;
+	private static final MethodHandle CONTAINER_WINDOW_ID;
 
-    static {
-        try {
-            ANVIL = Objects.requireNonNull(
-                    getNMSClass("world.inventory", "ContainerAnvil"), "ContainerAnvil NMS class not found");
+	static {
+		try {
+			ANVIL = Objects.requireNonNull(
+				getNMSClass("world.inventory", "ContainerAnvil"), "ContainerAnvil NMS class not found");
 
-            final Class<?> playerInventoryClass = getNMSClass("world.entity.player", "PlayerInventory");
+			final Class<?> playerInventoryClass = getNMSClass("world.entity.player", "PlayerInventory");
 
-            ANVIL_CONSTRUCTOR = getConstructor(ANVIL, int.class, playerInventoryClass);
-            CONTAINER_CHECK_REACHABLE = setFieldHandle(CONTAINER, boolean.class, "checkReachable");
+			ANVIL_CONSTRUCTOR = getConstructor(ANVIL, int.class, playerInventoryClass);
+			CONTAINER_CHECK_REACHABLE = setFieldHandle(CONTAINER, boolean.class, "checkReachable");
 
-            final Class<?> containerPlayer = getNMSClass("world.inventory", "ContainerPlayer");
-            PLAYER_DEFAULT_CONTAINER = getField(ENTITY_PLAYER, containerPlayer, "inventoryMenu", "bQ", "bR");
+			final Class<?> containerPlayer = getNMSClass("world.inventory", "ContainerPlayer");
+			PLAYER_DEFAULT_CONTAINER = getField(ENTITY_PLAYER, containerPlayer, "inventoryMenu", "bQ", "bR");
 
-            final String activeContainerObfuscatedName = ReflectionUtils.supportsMC1202() ? "bS" : "bR";
-            SET_PLAYER_ACTIVE_CONTAINER = setField(
-                    ENTITY_PLAYER, containerPlayer, "activeContainer", "containerMenu", activeContainerObfuscatedName);
+			final String activeContainerObfuscatedName = ReflectionUtils.supportsMC1202() ? "bS" : "bR";
+			SET_PLAYER_ACTIVE_CONTAINER = setField(
+				ENTITY_PLAYER, containerPlayer, "activeContainer", "containerMenu", activeContainerObfuscatedName);
 
-            GET_PLAYER_NEXT_CONTAINER_COUNTER =
-                    getMethod(ENTITY_PLAYER, "nextContainerCounter", MethodType.methodType(int.class));
+			GET_PLAYER_NEXT_CONTAINER_COUNTER =
+				getMethod(ENTITY_PLAYER, "nextContainerCounter", MethodType.methodType(int.class));
 
-            GET_PLAYER_INVENTORY = getMethod(
-                    ENTITY_PLAYER, "fN", MethodType.methodType(playerInventoryClass), false, "fR", "getInventory");
+			GET_PLAYER_INVENTORY = getMethod(
+				ENTITY_PLAYER, "fN", MethodType.methodType(playerInventoryClass), false, "fR", "getInventory");
 
-            CONTAINER_WINDOW_ID = setField(CONTAINER, int.class, "windowId", "containerId", "j");
-            ADD_CONTAINER_SLOT_LISTENER = getMethod(
-                    CONTAINER, "a", MethodType.methodType(void.class, getNMSClass("world.inventory.ICrafting")));
-            INIT_MENU = getMethod(ENTITY_PLAYER, "a", MethodType.methodType(void.class, CONTAINER));
+			CONTAINER_WINDOW_ID = setField(CONTAINER, int.class, "windowId", "containerId", "j");
+			ADD_CONTAINER_SLOT_LISTENER = getMethod(
+				CONTAINER, "a", MethodType.methodType(void.class, getNMSClass("world.inventory.ICrafting")));
+			INIT_MENU = getMethod(ENTITY_PLAYER, "a", MethodType.methodType(void.class, CONTAINER));
 
 			GET_TOP_INVENTORY = getMethod(InventoryView.class, "getTopInventory", MethodType.methodType(Inventory.class));
-        } catch (Exception exception) {
-            throw new RuntimeException(
-                    "Unsupported version for Anvil Input feature: " + ReflectionUtils.getVersionInformation(),
-                    exception);
-        }
-    }
+		} catch (Exception exception) {
+			throw new RuntimeException(
+				"Unsupported version for Anvil Input feature: " + ReflectionUtils.getVersionInformation(),
+				exception);
+		}
+	}
 
-    private AnvilInputNMS() {}
+	private AnvilInputNMS() {
+	}
 
-    public static Inventory open(Player player, Object title, String initialInput) {
-        try {
-            final Object entityPlayer = ReflectionUtils.getEntityPlayer(player);
-            final Object defaultContainer = PLAYER_DEFAULT_CONTAINER.invoke(entityPlayer);
-            SET_PLAYER_ACTIVE_CONTAINER.invoke(entityPlayer, defaultContainer);
+	public static Inventory open(Player player, Object title, String initialInput) {
+		try {
+			final Object entityPlayer = ReflectionUtils.getEntityPlayer(player);
+			final Object defaultContainer = PLAYER_DEFAULT_CONTAINER.invoke(entityPlayer);
+			SET_PLAYER_ACTIVE_CONTAINER.invoke(entityPlayer, defaultContainer);
 
-            final int windowId = (int) GET_PLAYER_NEXT_CONTAINER_COUNTER.invoke(entityPlayer);
-            final Object anvilContainer = ANVIL_CONSTRUCTOR.invoke(windowId, GET_PLAYER_INVENTORY.invoke(entityPlayer));
-            CONTAINER_CHECK_REACHABLE.invoke(anvilContainer, false);
+			final int windowId = (int) GET_PLAYER_NEXT_CONTAINER_COUNTER.invoke(entityPlayer);
+			final Object anvilContainer = ANVIL_CONSTRUCTOR.invoke(windowId, GET_PLAYER_INVENTORY.invoke(entityPlayer));
+			CONTAINER_CHECK_REACHABLE.invoke(anvilContainer, false);
 
-            final AnvilInventory inventory = (AnvilInventory) GET_TOP_INVENTORY.invoke(InventoryUpdate.getBukkitView.invoke(anvilContainer));
+			final AnvilInventory inventory = (AnvilInventory) GET_TOP_INVENTORY.invoke(InventoryUpdate.getBukkitView.invoke(anvilContainer));
 
-            inventory.setMaximumRepairCost(0);
+			inventory.setMaximumRepairCost(0);
 
-            @SuppressWarnings("deprecation")
-            final ItemStack item = new ItemStack(Material.PAPER, 1, (short) 0);
-            final ItemMeta meta = Objects.requireNonNull(item.getItemMeta());
-            meta.setDisplayName(initialInput);
-            item.setItemMeta(meta);
-            inventory.setItem(0, item);
+			@SuppressWarnings("deprecation") final ItemStack item = new ItemStack(Material.PAPER, 1, (short) 0);
+			final ItemMeta meta = Objects.requireNonNull(item.getItemMeta());
+			meta.setDisplayName(initialInput);
+			item.setItemMeta(meta);
+			inventory.setItem(0, item);
 
-            Object nmsContainers = getContainerOrName(InventoryUpdate.Containers.ANVIL, InventoryType.ANVIL);
-            Object updatedTitle = createTitleComponent(title == null ? "" : title);
-            Object openWindowPacket = useContainers()
-                    ? packetPlayOutOpenWindow.invoke(windowId, nmsContainers, updatedTitle)
-                    : packetPlayOutOpenWindow.invoke(
-                            windowId, nmsContainers, updatedTitle, InventoryType.ANVIL.getDefaultSize());
+			Object nmsContainers = getContainerOrName(InventoryUpdate.Containers.ANVIL, InventoryType.ANVIL);
+			Object updatedTitle = createTitleComponent(title == null ? "" : title);
+			Object openWindowPacket = useContainers()
+				? packetPlayOutOpenWindow.invoke(windowId, nmsContainers, updatedTitle)
+				: packetPlayOutOpenWindow.invoke(
+				windowId, nmsContainers, updatedTitle, InventoryType.ANVIL.getDefaultSize());
 
-            ReflectionUtils.sendPacketSync(player, openWindowPacket);
-            SET_PLAYER_ACTIVE_CONTAINER.invoke(entityPlayer, anvilContainer);
-            CONTAINER_WINDOW_ID.invoke(anvilContainer, windowId);
+			ReflectionUtils.sendPacketSync(player, openWindowPacket);
+			SET_PLAYER_ACTIVE_CONTAINER.invoke(entityPlayer, anvilContainer);
+			CONTAINER_WINDOW_ID.invoke(anvilContainer, windowId);
 
-            if (McVersion.supports(19)) {
-                INIT_MENU.invoke(entityPlayer, anvilContainer);
-            } else {
-                ADD_CONTAINER_SLOT_LISTENER.invoke(anvilContainer, player);
-            }
-            return inventory;
-        } catch (Throwable throwable) {
-            throw new RuntimeException("Something went wrong while opening Anvil Input NMS inventory.", throwable);
-        }
-    }
+			if (McVersion.supports(19)) {
+				INIT_MENU.invoke(entityPlayer, anvilContainer);
+			} else {
+				ADD_CONTAINER_SLOT_LISTENER.invoke(anvilContainer, player);
+			}
+			return inventory;
+		} catch (Throwable throwable) {
+			throw new RuntimeException("Something went wrong while opening Anvil Input NMS inventory.", throwable);
+		}
+	}
 }

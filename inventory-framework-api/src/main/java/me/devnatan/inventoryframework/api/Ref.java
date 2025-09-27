@@ -16,19 +16,19 @@ import org.jetbrains.annotations.NotNull;
 @ApiStatus.Experimental
 public interface Ref<E> {
 
-    /**
-     * Returns the value hold by this reference.
-     *
-     * @throws UnassignedReferenceException If reference wasn't assigned to any element.
-     * @return The value that this reference holds.
-     */
-    @NotNull
-    E value(@NotNull IFContext context);
+	/**
+	 * Returns the value hold by this reference.
+	 *
+	 * @return The value that this reference holds.
+	 * @throws UnassignedReferenceException If reference wasn't assigned to any element.
+	 */
+	@NotNull
+	E value(@NotNull IFContext context);
 
-    /**
-     * <b><i> This is an internal inventory-framework API that should not be used from outside of
-     * this library. No compatibility guarantees are provided. </i></b>
-     */
-    @ApiStatus.Internal
-    void assign(Object value);
+	/**
+	 * <b><i> This is an internal inventory-framework API that should not be used from outside of
+	 * this library. No compatibility guarantees are provided. </i></b>
+	 */
+	@ApiStatus.Internal
+	void assign(Object value);
 }
