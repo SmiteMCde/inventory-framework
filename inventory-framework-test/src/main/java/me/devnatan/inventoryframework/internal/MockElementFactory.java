@@ -6,11 +6,14 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import me.devnatan.inventoryframework.*;
-import me.devnatan.inventoryframework.component.Component;
-import me.devnatan.inventoryframework.component.ComponentBuilder;
-import me.devnatan.inventoryframework.context.*;
-import me.devnatan.inventoryframework.logging.Logger;
+
+import me.devnatan.inventoryframework.api.*;
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.ComponentBuilder;
+import me.devnatan.inventoryframework.api.context.*;
+import me.devnatan.inventoryframework.api.internal.ElementFactory;
+import me.devnatan.inventoryframework.api.internal.Job;
+import me.devnatan.inventoryframework.api.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

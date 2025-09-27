@@ -6,11 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import me.devnatan.inventoryframework.ViewConfig;
-import me.devnatan.inventoryframework.ViewContainer;
-import me.devnatan.inventoryframework.VirtualView;
-import me.devnatan.inventoryframework.context.IFRenderContext;
-import me.devnatan.inventoryframework.exception.InvalidLayoutException;
+import me.devnatan.inventoryframework.api.ViewConfig;
+import me.devnatan.inventoryframework.api.ViewContainer;
+import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.exception.InvalidLayoutException;
+import me.devnatan.inventoryframework.api.pipeline.Pipeline;
+import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+import me.devnatan.inventoryframework.core.pipeline.LayoutResolutionInterceptor;
 import org.junit.jupiter.api.Test;
 
 public class LayoutInterceptorTest {

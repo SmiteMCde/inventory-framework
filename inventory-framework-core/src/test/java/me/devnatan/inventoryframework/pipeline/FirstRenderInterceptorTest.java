@@ -7,13 +7,14 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.util.Collections;
-import me.devnatan.inventoryframework.RootView;
-import me.devnatan.inventoryframework.ViewContainer;
-import me.devnatan.inventoryframework.component.Component;
+import me.devnatan.inventoryframework.api.RootView;
+import me.devnatan.inventoryframework.api.ViewContainer;
+import me.devnatan.inventoryframework.api.component.Component;
 import me.devnatan.inventoryframework.component.FakeComponent;
-import me.devnatan.inventoryframework.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.context.IFRenderContext;
 import me.devnatan.inventoryframework.context.MockRenderIFContext;
-import me.devnatan.inventoryframework.state.State;
+import me.devnatan.inventoryframework.api.state.State;
+import me.devnatan.inventoryframework.core.pipeline.FirstRenderInterceptor;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

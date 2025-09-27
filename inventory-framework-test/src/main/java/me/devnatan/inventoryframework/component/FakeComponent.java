@@ -2,13 +2,15 @@ package me.devnatan.inventoryframework.component;
 
 import java.util.Collections;
 import java.util.Set;
-import me.devnatan.inventoryframework.Ref;
-import me.devnatan.inventoryframework.VirtualView;
-import me.devnatan.inventoryframework.context.IFContext;
-import me.devnatan.inventoryframework.context.IFRenderContext;
-import me.devnatan.inventoryframework.context.IFSlotClickContext;
-import me.devnatan.inventoryframework.context.IFSlotRenderContext;
-import me.devnatan.inventoryframework.state.State;
+import me.devnatan.inventoryframework.api.Ref;
+import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.InteractionHandler;
+import me.devnatan.inventoryframework.api.context.IFContext;
+import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
+import me.devnatan.inventoryframework.api.context.IFSlotRenderContext;
+import me.devnatan.inventoryframework.api.state.State;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 

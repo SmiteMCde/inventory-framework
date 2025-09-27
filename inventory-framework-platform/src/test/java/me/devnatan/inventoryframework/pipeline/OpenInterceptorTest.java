@@ -10,9 +10,13 @@ import static org.mockito.Mockito.when;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import me.devnatan.inventoryframework.RootView;
-import me.devnatan.inventoryframework.VirtualView;
-import me.devnatan.inventoryframework.context.IFOpenContext;
+import me.devnatan.inventoryframework.api.RootView;
+import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.context.IFOpenContext;
+import me.devnatan.inventoryframework.api.pipeline.Pipeline;
+import me.devnatan.inventoryframework.api.pipeline.PipelineContext;
+import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+import me.devnatan.inventoryframework.platform.pipeline.PlatformOpenInterceptor;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings({"rawtypes", "unchecked"})

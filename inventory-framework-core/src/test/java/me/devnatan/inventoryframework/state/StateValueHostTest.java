@@ -2,6 +2,11 @@ package me.devnatan.inventoryframework.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import me.devnatan.inventoryframework.api.state.State;
+import me.devnatan.inventoryframework.api.state.StateValueHost;
+import me.devnatan.inventoryframework.core.state.BaseState;
+import me.devnatan.inventoryframework.core.state.DefaultStateValueHost;
+import me.devnatan.inventoryframework.core.state.ImmutableValue;
 import org.junit.jupiter.api.Test;
 
 class StateValueHostTest {

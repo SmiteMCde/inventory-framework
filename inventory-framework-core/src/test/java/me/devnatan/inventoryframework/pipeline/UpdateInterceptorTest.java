@@ -10,11 +10,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Collections;
-import me.devnatan.inventoryframework.RootView;
-import me.devnatan.inventoryframework.ViewContainer;
-import me.devnatan.inventoryframework.VirtualView;
-import me.devnatan.inventoryframework.component.ItemComponent;
-import me.devnatan.inventoryframework.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.RootView;
+import me.devnatan.inventoryframework.api.ViewContainer;
+import me.devnatan.inventoryframework.api.VirtualView;
+import me.devnatan.inventoryframework.api.component.ItemComponent;
+import me.devnatan.inventoryframework.api.context.IFRenderContext;
+import me.devnatan.inventoryframework.api.pipeline.Pipeline;
+import me.devnatan.inventoryframework.api.pipeline.StandardPipelinePhases;
+import me.devnatan.inventoryframework.core.pipeline.UpdateInterceptor;
 import org.junit.jupiter.api.Test;
 
 public class UpdateInterceptorTest {

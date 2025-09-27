@@ -1,10 +1,14 @@
 package me.devnatan.inventoryframework;
 
 import java.util.function.UnaryOperator;
-import me.devnatan.inventoryframework.context.IFContext;
-import me.devnatan.inventoryframework.state.BaseMutableState;
-import me.devnatan.inventoryframework.state.State;
-import me.devnatan.inventoryframework.state.StateValueFactory;
+
+import me.devnatan.inventoryframework.api.ViewConfig;
+import me.devnatan.inventoryframework.api.ViewConfigBuilder;
+import me.devnatan.inventoryframework.api.ViewType;
+import me.devnatan.inventoryframework.api.context.IFContext;
+import me.devnatan.inventoryframework.core.state.BaseMutableState;
+import me.devnatan.inventoryframework.api.state.State;
+import me.devnatan.inventoryframework.api.state.StateValueFactory;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 

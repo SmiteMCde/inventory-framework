@@ -3,9 +3,13 @@ package me.devnatan.inventoryframework.component;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
-import me.devnatan.inventoryframework.Ref;
-import me.devnatan.inventoryframework.context.IFContext;
-import me.devnatan.inventoryframework.state.State;
+import me.devnatan.inventoryframework.api.Ref;
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.ComponentFactory;
+import me.devnatan.inventoryframework.api.component.ItemComponentBuilder;
+import me.devnatan.inventoryframework.api.context.IFContext;
+import me.devnatan.inventoryframework.api.state.State;
+import me.devnatan.inventoryframework.core.component.DefaultComponentBuilder;
 import org.jetbrains.annotations.NotNull;
 
 public class TestItemComponentBuilder extends DefaultComponentBuilder<TestItemComponentBuilder, IFContext>

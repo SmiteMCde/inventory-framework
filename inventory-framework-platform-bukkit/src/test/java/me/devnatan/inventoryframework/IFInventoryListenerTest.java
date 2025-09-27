@@ -5,6 +5,9 @@ import static me.devnatan.inventoryframework.BukkitTestUtils.createViewFrameMock
 import static me.devnatan.inventoryframework.TestUtils.createRootMock;
 import static org.mockito.Mockito.*;
 
+import me.devnatan.inventoryframework.api.RootView;
+import me.devnatan.inventoryframework.bukkit.IFInventoryListener;
+import me.devnatan.inventoryframework.bukkit.ViewFrame;
 import org.bukkit.entity.Item;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;

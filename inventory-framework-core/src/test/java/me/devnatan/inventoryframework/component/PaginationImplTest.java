@@ -10,7 +10,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Collections;
-import me.devnatan.inventoryframework.context.IFSlotClickContext;
+
+import me.devnatan.inventoryframework.api.component.Component;
+import me.devnatan.inventoryframework.api.component.InteractionHandler;
+import me.devnatan.inventoryframework.api.context.IFSlotClickContext;
+import me.devnatan.inventoryframework.core.component.PaginationImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

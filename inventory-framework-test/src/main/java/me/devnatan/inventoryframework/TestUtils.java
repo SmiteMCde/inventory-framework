@@ -4,7 +4,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
-import me.devnatan.inventoryframework.context.IFContext;
+
+import me.devnatan.inventoryframework.api.RootView;
+import me.devnatan.inventoryframework.api.context.IFContext;
 import me.devnatan.inventoryframework.internal.MockElementFactory;
 
 public class TestUtils {

@@ -4,6 +4,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.UUID;
+
+import me.devnatan.inventoryframework.bukkit.ViewFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

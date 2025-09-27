@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.runtime.view;
 
-import me.devnatan.inventoryframework.View;
-import me.devnatan.inventoryframework.ViewConfigBuilder;
-import me.devnatan.inventoryframework.component.Pagination;
-import me.devnatan.inventoryframework.context.Context;
-import me.devnatan.inventoryframework.context.RenderContext;
+import me.devnatan.inventoryframework.bukkit.View;
+import me.devnatan.inventoryframework.api.ViewConfigBuilder;
+import me.devnatan.inventoryframework.api.component.Pagination;
+import me.devnatan.inventoryframework.bukkit.context.Context;
+import me.devnatan.inventoryframework.bukkit.context.RenderContext;
 import me.devnatan.inventoryframework.runtime.ExampleUtil;
-import me.devnatan.inventoryframework.state.State;
+import me.devnatan.inventoryframework.api.state.State;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;

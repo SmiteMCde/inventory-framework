@@ -2,6 +2,7 @@
 
 package me.devnatan.inventoryframework
 
+import me.devnatan.inventoryframework.api.ViewConfigBuilder
 import org.jetbrains.annotations.ApiStatus
 import kotlin.time.Duration
 import kotlin.time.toJavaDuration

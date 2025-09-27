@@ -38,7 +38,7 @@ internal class LibraryConventionPlugin : Plugin<Project> {
         pluginManager.apply("java-library")
 
         extensions.configure<JavaPluginExtension> {
-            sourceCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_21
         }
 
         with(tasks) {

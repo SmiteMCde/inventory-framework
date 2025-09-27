@@ -1,7 +1,7 @@
 package me.devnatan.inventoryframework;
 
-import me.devnatan.inventoryframework.state.MutableValue;
-import me.devnatan.inventoryframework.state.State;
+import me.devnatan.inventoryframework.core.state.MutableValue;
+import me.devnatan.inventoryframework.api.state.State;
 
 class AnvilInputStateValue extends MutableValue {
 
