@@ -68,7 +68,7 @@ public final class AvailableSlotInterceptor implements PipelineInterceptor<Virtu
      * @param context The rendering context.
      */
     @VisibleForTesting
-    List<ComponentFactory> resolveFromLayoutSlot(IFRenderContext context) {
+	public List<ComponentFactory> resolveFromLayoutSlot(IFRenderContext context) {
         final Optional<LayoutSlot> layoutSlotOption = context.getLayoutSlots().stream()
                 .filter(layoutSlot -> layoutSlot.getCharacter() == LayoutSlot.FILLED_RESERVED_CHAR)
                 .findFirst();

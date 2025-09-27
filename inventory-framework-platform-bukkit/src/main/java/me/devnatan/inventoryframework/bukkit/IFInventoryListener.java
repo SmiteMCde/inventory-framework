@@ -24,7 +24,7 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.PlayerInventory;
 
-final class IFInventoryListener implements Listener {
+public final class IFInventoryListener implements Listener {
 
     private final ViewFrame viewFrame;
 

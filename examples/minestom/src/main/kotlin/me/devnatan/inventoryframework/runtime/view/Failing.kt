@@ -1,12 +1,12 @@
 package me.devnatan.inventoryframework.runtime.view
 
-import me.devnatan.inventoryframework.View
 import me.devnatan.inventoryframework.api.ViewConfigBuilder
 import me.devnatan.inventoryframework.minestom.context.RenderContext
 import me.devnatan.inventoryframework.minestom.context.SlotClickContext
 import me.devnatan.inventoryframework.minestom.context.SlotRenderContext
 import me.devnatan.inventoryframework.runtime.ExampleUtil.displayItem
 import me.devnatan.inventoryframework.api.state.MutableState
+import me.devnatan.inventoryframework.minestom.View
 import net.minestom.server.item.Material
 
 class Failing : View() {
